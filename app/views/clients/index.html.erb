@@ -1,0 +1,10 @@
+<h1>取引先一覧</h1>
+<ul>
+  <% @clients.each do |client| %>
+  <li>会社名：<%= client.name %></li>
+  <li>派遣料：<%= client.dispatching_fee_per_hour %>円/1時間</li>
+  <li>------------------------------------------------</li>
+  <% end %>
+</ul>
+
+  <%= link_to :新しい取引先を追加, new_client_path %>

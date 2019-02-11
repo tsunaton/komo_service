@@ -4,67 +4,58 @@ Rails.application.routes.draw do
   get '/signup',  to: 'users#new'
   post '/signup'  => 'users#new'
 
-  #ログイン
-  get    '/login',   to: 'sessions#new'
-  post   '/login'   => 'sessions#create'
-
-  #ログアウト
-  delete 'logout'  => 'sessions#destroy'
-
-  #ホームへ
-  get    '/home',   to: 'static_pages#home'
-
   #スタッフ一覧/index
   #スタッフ詳細/show
   #スタッフ情報編集/edit**komo
   #スタッフ情報削除/destroy**komo
   resources :users
-  #会場一覧
-  #会場詳細
-  # resources :places
-  #取引先一覧
-  #取引先詳細
-  # resources :clients
 
+  #会場一連
+  resources :places, :only => [:index, :new, :create, :edit, :update, :destroy]
 
+  #取引先一連
+  resources :clients, :only => [:index, :new, :create, :edit, :update, :destroy]
 
-
-  #案件詳細
-
+  #給与明細 > static_pages#payslip
+  get     '/payslip',  to:'static_pages#payslip'
 
 
   namespace :staff do
-  get    '/home',   to: 'static_pages#home'
 
-  #   スタッフホーム
-  #
+    #ログイン
+    get    '/login',   to: 'sessions#new'
+    post   '/login'   => 'sessions#create'
+
+    #ログアウト
+    delete '/logout'  => 'sessions#destroy'
+
+    #ホーム
+    get    '/home',   to: 'static_pages#home'
+
+    #終了報告一連
+    resources :working_hours, :only => [:new, :create, :edit, :update, :destroy]
+
+    #シフト
     resources :shifts
-  #
-  #   過去のお仕事一覧
-  #
-  #   給与明細
-  #
-  #   終了報告１
-  #   終了報告２
+
   end
-  #
+
+
   namespace :oba do
-  get    '/home',   to: 'static_pages#home'
-  #   こもホーム
-  #
-  #   案件入力１
-  #   案件入力２
-  #   案件入力３
-  #   再案件入力
-  #
-  #   給与明細
-  #   請求書
-  #
-  #   遅刻処理１
-  #   遅刻処理２
-  #   遅刻処理３
-  #
-  #   カレンダー
+
+    #ログイン
+    get    '/login',   to: 'sessions#new'
+    post   '/login'   => 'sessions#create'
+
+    #ログアウト
+    delete 'logout'  => 'sessions#destroy'
+
+    #ホーム
+    get    '/home',   to: 'static_pages#home'
+
+    #案件入力一連
+    resources :works, :only => [:new, :create, :edit, :update, :destroy]
+
   end
 
 end

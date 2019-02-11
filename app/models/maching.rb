@@ -1,0 +1,2 @@
+class Maching < ApplicationRecord
+end
