@@ -1,5 +1,5 @@
 class Staff::ShiftsController < ApplicationController
-  # before_action :set_shift, only: [:show, :edit, :update, :destroy]
+before_action :logged_in_user, only: [:new, :edit, :update, :destroy]
 
   def index
     @shifts = Shift.all
@@ -13,7 +13,7 @@ class Staff::ShiftsController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @shift = Shift.find(params[:id])
   end
 
   def create
@@ -26,14 +26,11 @@ class Staff::ShiftsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @shift.update(shift_params)
-        format.html { redirect_to @shift, notice: 'Shift was successfully updated.' }
-        format.json { render :show, status: :ok, location: @shift }
-      else
-        format.html { render :edit }
-        format.json { render json: @shift.errors, status: :unprocessable_entity }
-      end
+    shift = Shift.find(params[:id])
+    if shift.update(shift_params)
+      redirect_to staff_shifts_path
+    else
+      render :edit
     end
   end
 

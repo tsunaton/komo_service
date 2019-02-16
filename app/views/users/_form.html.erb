@@ -1,17 +1,21 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+<%= form_for @user do |f| %>
+  <div>
+    <%= f.label :氏名 %>
+    <%= f.text_field :name %>
   </div>
+  <div>
+    <%= f.label :メールアドレス %>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.label :パスワード %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :パスワード確認 %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+
+  <%= f.submit "登録申請" %>
 <% end %>

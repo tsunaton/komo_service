@@ -1,14 +1,5 @@
 <h1>シフト入力画面</h1>
-<ul>
-  <li>空いている時間帯を入力してください。</li>
-  <%= form_with(model: [ :staff, @shift ]) do |f| %>
-  <li><%= f.date_select :available_date %>
-  の</li>
-  <li><%= f.time_select :start_time, :minute_step => 15 %>
-  〜
-  <%= f.time_select :end_time, :minute_step => 15 %></li>
-  <%= f.submit %>
-<% end %>
-</ul>
+
+<%= render :partial => "form" %>
 
 <%= link_to 'ホームへ戻る', staff_home_path %>

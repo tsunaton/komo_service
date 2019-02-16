@@ -1,4 +1,5 @@
 class ClientsController < ApplicationController
+before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
     def index
       @clients = Client.all
@@ -18,9 +19,16 @@ class ClientsController < ApplicationController
     end
 
     def edit
+      @client = Client.find(params[:id])
     end
 
     def update
+      client = Client.find(params[:id])
+      if client.update(client_params)
+        redirect_to clients_path
+      else
+        render :edit
+      end
     end
 
     def destroy

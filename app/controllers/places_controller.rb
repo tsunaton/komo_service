@@ -1,4 +1,5 @@
 class PlacesController < ApplicationController
+before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
     def index
       @places = Place.all
@@ -18,9 +19,16 @@ class PlacesController < ApplicationController
     end
 
     def edit
+      @place = Place.find(params[:id])
     end
 
     def update
+      place = Place.find(params[:id])
+      if place.update(place_params)
+        redirect_to places_path
+      else
+        render :edit
+      end
     end
 
     def destroy

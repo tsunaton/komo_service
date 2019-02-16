@@ -2,10 +2,9 @@
 
 <ul>
   <% @users.each do |user| %>
-    <li>氏名：<%= user.name %></li>
-    <li>メールアドレス：<%= user.email %></li>
-    <li>住所：<%= user.address %></li>
-    #可能会場
-    <li>-----------------------------</li>
+    <li><%= user.name %>
+    <%= link_to "詳細", user_path(user.id) %></li>
   <% end %>
 </ul>
+
+<%= link_to "ホームに戻る", oba_home_path %>

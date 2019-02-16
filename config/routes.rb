@@ -11,10 +11,12 @@ Rails.application.routes.draw do
   resources :users
 
   #会場一連
-  resources :places, :only => [:index, :new, :create, :edit, :update, :destroy]
+  resources :places, :except => [:show]
 
   #取引先一連
-  resources :clients, :only => [:index, :new, :create, :edit, :update, :destroy]
+  resources :clients, :except => [:show]
+
+  resources :matchings
 
   #給与明細 > static_pages#payslip
   get     '/payslip',  to:'static_pages#payslip'
@@ -48,13 +50,14 @@ Rails.application.routes.draw do
     post   '/login'   => 'sessions#create'
 
     #ログアウト
-    delete 'logout'  => 'sessions#destroy'
+    delete '/logout'  => 'sessions#destroy'
 
     #ホーム
     get    '/home',   to: 'static_pages#home'
 
     #案件入力一連
-    resources :works, :only => [:new, :create, :edit, :update, :destroy]
+    get     '/search',  to: 'works#search'
+    resources :works
 
   end
 

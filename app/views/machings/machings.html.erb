@@ -1,0 +1,15 @@
+<h1>確定のお仕事</h1>
+
+<%= @machings.each do |maching| %>
+  <% work = Work.find(maching.work_id) %>
+  <%= work.start_timt %>
+  <%= work.end_time %>
+  <% users = User.where(id: maching.user_id) %>
+  <% users.each do |user| %>
+    <%= user.name %>
+  <% end %>
+  <% place = Place.find(work.place_id) %>
+  <%= place.name %>
+  <% client = Client.find(work.client_id) %>
+  <%= client.name %>
+<% end %>

@@ -1,5 +1,8 @@
 <h1>おばのhome</h1>
 
-<%= link_to "シフトを入力する", :controller => "staff/shifts", :action => "new" %>
-<%# <%= link_to "シフトを編集する", edit_shift_path %> %>
-<%= link_to "シフト一覧をみる", :controller => "staff/shifts", :action => "index" %>
+<%= link_to "仕事を入力する", new_oba_work_path %>
+<%= link_to "仕事一覧", oba_works_path %>
+<%= link_to "会場一覧", places_path %>
+<%= link_to "取引先一覧", clients_path %>
+<%= link_to "スタッフ一覧", users_path %>
+<%= link_to "ログアウト", oba_logout_path, method: :delete %>

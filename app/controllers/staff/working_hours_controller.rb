@@ -1,4 +1,5 @@
 class Staff::WorkingHoursController < ApplicationController
+before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   #終了報告
   def new

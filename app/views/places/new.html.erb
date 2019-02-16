@@ -1,14 +1,6 @@
 <h1>新規で会場を登録</h1>
-<ul>
-<%= form_with model: @place do |f| %>
-<li><%= f.label :会場名 %></li>
-<li><%= f.text_field :name %></li>
-<li><%= f.label :住所 %></li>
-<li><%= f.text_field :address %></li>
-<li><%= f.label :最寄駅 %></li>
-<li><%= f.text_field :nearest_station %></li>
-<li><%= f.submit %></li>
-<% end %>
 
-<li><%= link_to 'Back', :back %></li>
+<%= render :partial => "form" %>
+
+<li><%= link_to '一覧に戻る', places_path %></li>
 </ul>
