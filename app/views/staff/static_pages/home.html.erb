@@ -1,6 +1,6 @@
 <h1>スタッフのhome</h1>
 <%= link_to "シフトを入力する", :controller => "staff/shifts", :action => "new" %>
 <%= link_to "シフト一覧をみる", :controller => "staff/shifts", :action => "index" %>
-<%= link_to "会場一覧", places_path %>
-<%= link_to "取引先一覧", clients_path %>
+<%= link_to "会場一覧", staff_places_path %>
+<%= link_to "取引先一覧", staff_clients_path %>
 <%= link_to "ログアウト", staff_logout_path, method: :delete %>

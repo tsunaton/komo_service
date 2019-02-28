@@ -33,15 +33,6 @@ class Oba::WorksController < ApplicationController
   def destroy
   end
 
-  def search
-    @shift = Shifts.new(searched_date: params[:searched_date], searched_start_time: params[:searched_start_time], searched_place: params[:searched_place])
-    @shifts = @shift.matches
-    respond_to do |format|
-      format.html
-      format.js {render 'index', shifts: @shifts}
-    end
-  end
-
   private
 
   def work_params

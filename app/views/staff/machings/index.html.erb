@@ -1,0 +1,26 @@
+<h1>確定のお仕事</h1>
+<li>日時：
+  <% @works.each do |work| %>
+    <%= work.start_time %>
+    〜
+    <%= work.end_time %>
+  <% end %>
+</li>
+
+<li>スタッフ：
+  <% @users.each do |user| %>
+    <%= user.name %>
+  <% end %>
+</li>
+
+<li>会場：
+  <% @places.each do |place| %>
+    <%= place.name %>
+  <% end %>
+</li>
+
+<li>取引先：
+  <% @clients.each do |client| %>
+    <%= client.name %>
+  <% end %>
+</li>
