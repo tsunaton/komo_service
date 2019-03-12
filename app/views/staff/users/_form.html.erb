@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_with model: [:staff, @user] do |f| %>
   <div>
     <%= f.label :氏名 %>
     <%= f.text_field :name %>

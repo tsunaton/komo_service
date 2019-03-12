@@ -1,0 +1,33 @@
+<h1>給与明細</h1>
+
+<%= @current_user.name %>
+
+<div class="">
+  <%= "日付" %>|
+  <%= "家" %>|
+  <%= "開始時間" %>|
+  <%= "終了時間" %>|
+  <%= "総労働時間" %>|
+  <%= "時給" %>|
+  <%= "日給" %>|
+  <%= "場所" %>|
+  <%= "交通費" %>
+</div>
+
+<% @works.each do |work| %>
+  <div>
+    <% @current_user.pay_per_hour = 1500 %>
+
+    <%= "家" %>|
+    <%= work[0].start_time.strftime("%H:%M") %>|
+    <%= work[0].end_time.strftime("%H:%M") %>|
+    <% working_hours = (work[0].end_time - work[0].start_time) / 3600 %>
+    <%= working_hours %>|
+    <%= @current_user.pay_per_hour %>|
+    <% pay_per_day = @current_user.pay_per_hour * working_hours %>
+    <%= pay_per_day %>
+    <% place = Place.find(work[0].place_id) %>|
+    <%= place.name %>|
+    <%= "交通費" %>
+  </div>
+<% end %>

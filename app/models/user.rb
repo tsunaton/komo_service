@@ -1,8 +1,6 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token
-  has_secure_password
-  has_many :machings
-  has_many :works, through: :machings
+    attr_accessor :remember_token
+    has_secure_password
 
   # ただランダムなトークンを返すだけ
   def User.new_token

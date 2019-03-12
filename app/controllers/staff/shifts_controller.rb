@@ -18,6 +18,7 @@ before_action :logged_in_user, only: [:new, :edit, :update, :destroy]
 
   def create
     @shift = Shift.new(shift_params)
+    @shift.user_id = @current_user.id
     if @shift.save
       redirect_to action: 'index'
     else
@@ -36,10 +37,6 @@ before_action :logged_in_user, only: [:new, :edit, :update, :destroy]
 
   def destroy
     @shift.destroy
-    respond_to do |format|
-      format.html { redirect_to shifts_url, notice: 'Shift was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private

@@ -1,3 +1,0 @@
-class Searching < ApplicationRecord
-
-end

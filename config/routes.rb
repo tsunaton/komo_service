@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :staff do
 
     get '/signup',  to: 'users#new'
-    post '/signup'  => 'users#new'
+    post '/signup'  => 'users#create'
 
     get    '/login',   to: 'sessions#new'
     post   '/login'   => 'sessions#create'
@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     delete '/logout'  => 'sessions#destroy'
 
     get    '/home',   to: 'static_pages#home'
-    get     '/payslip',  to:'static_pages#payslip'
+    
+    get     '/payslip',  to:'documents#payslip'
 
     resources :users
 
@@ -43,6 +44,8 @@ Rails.application.routes.draw do
     resources :clients, :except => [:show]
 
     resources :works
+
+    get '/temp', to: 'works#temp'
 
     resources :machings
 

@@ -1,8 +1,6 @@
-class UsersController < ApplicationController
+class Staff::UsersController < ApplicationController
   before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
-  # GET /users
-  # GET /users.json
   def index
     @users = User.all
   end

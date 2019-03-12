@@ -1,15 +1,8 @@
-<ul>
-  <%= form_with(model: [:oba, @work]) do |f| %>
-  <%= f.label "日時" %>
-  <li><%= f.time_select :start_time, :minute_step => 15 %>
-  〜
-  <%= f.time_select :end_time, :minute_step => 15 %></li>
-  <%= f.label "会場" %>
-  <%= f.collection_select :place_id, Place.all, :id, :name %>
-  <%= f.label "取引先" %>
-  <%= f.collection_select :client_id, Client.all, :id, :name %>
-  <%= f.label "人数" %>
-  <%= f.number_field :number_of_people %>
-  <%= f.submit %>
-<% end %>
-</ul>
+ <%= form_with(model: [:oba, @work]) do |f| %>
+    <%= f.label "会場" %>
+    <%= f.collection_select :place_id, Place.all, :id, :name %>
+    <%= f.label "取引先" %>
+    <%= f.collection_select :client_id, Client.all, :id, :name %>
+
+    <%= f.submit %>
+  <% end %>

@@ -1,6 +1,0 @@
-<%= form_with url: oba_searching_path, method: (:get) do |f| %>
-      <li><%= f.datetime_select :start_time %></li>から
-      <li><%= f.datetime_select :end_time %></li>
-      <li><%= f.submit 'スタッフを探す', remote: true %></li>
-
-<% end %>

@@ -1,0 +1,7 @@
+<%= form_with url:oba_temp_path,local: true, method: (:get) do |f| %>
+  <% @users.each do |user|%>
+  <%= f.radio_button :user_id, "#{user.id}"  %>
+  <%= user.name %>
+  <% end %>
+  <%= f.submit  %>
+<% end %>
