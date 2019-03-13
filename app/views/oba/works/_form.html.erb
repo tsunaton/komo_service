@@ -1,8 +1,20 @@
- <%= form_with(model: [:oba, @work]) do |f| %>
+<%= form_with(model: [:oba, @work], url: oba_work_path) do |f| %>
+
+ <p>検索結果</p>
+    <% @users.each do |user|%>
+      <%= f.fields_for :machings, @work.machings.build do |maching| %>
+        <% shift = Shift.find_by(user_id: user.id)  %>
+        <%= maching.radio_button :shift_id, "#{shift.id}"  %>
+        <%= user.name %>
+      <% end %>
+    <% end %>
+
     <%= f.label "会場" %>
     <%= f.collection_select :place_id, Place.all, :id, :name %>
     <%= f.label "取引先" %>
+
     <%= f.collection_select :client_id, Client.all, :id, :name %>
+    <%# 家の名前 %>
 
     <%= f.submit %>
-  <% end %>
+<% end %>

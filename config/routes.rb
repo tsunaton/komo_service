@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     delete '/logout'  => 'sessions#destroy'
 
     get    '/home',   to: 'static_pages#home'
-    
+
     get     '/payslip',  to:'documents#payslip'
 
     resources :users
@@ -45,12 +45,10 @@ Rails.application.routes.draw do
 
     resources :works
 
-    get '/temp', to: 'works#temp'
+    get   '/search_page',  to: 'works#search_page'
+    get   '/search',  to: 'works#search'
 
     resources :machings
-
-    get   '/search_page',  to: 'searchings#search_page'
-    get   '/searching',  to: 'searchings#searching'
 
     resources :working_hours, :only => [:new, :create, :edit, :update, :destroy]
 

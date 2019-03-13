@@ -1,9 +1,0 @@
-<%= form_with url: oba_search_path, method: (:get) do |f| %>
-    <%= f.label "日時" %>
-    <li><%= f.time_select :start_time, :minute_step => 15 %>
-    〜
-    <%= f.time_select :end_time, :minute_step => 15 %></li>
-    <%= f.label "会場" %>
-    <%= f.collection_select :place_id, Place.all, :id, :name %>
-    <li><%= f.submit 'Search', remote: true %></li>
-<% end %>

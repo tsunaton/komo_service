@@ -2,15 +2,16 @@
 
 <ul>
   <% @works.each do |work| %>
-    <li>開始：<%= work.start_time %></li>
-    <li>終了予定：<%= work.end_time %></li>
+    <%= work.shifts[0].start_time.strftime("%Y年%m月%d日") %>
+      <li>開始：<%= work.shifts[0].start_time.strftime("%H:%M") %></li>
+      <li>終了予定：<%= work.shifts[0].end_time.strftime("%H:%M") %></li>
     <% place = Place.find(work.place_id).name %>
-    <li>会場：<%= place %></li>
+      <li>会場：<%= place %></li>
     <% client = Client.find(work.client_id).name %>
-    <li>取引先：<%= client %></li>
-    <li>募集人数：<%= work.number_of_people %></li>
-    <li><%= link_to "編集", edit_oba_work_path(work.id) %></li>
-    <li>-----------------------------</li>
+      <li>取引先：<%= client %></li>
+      <li>募集人数：<%= work.number_of_people %></li>
+      <li><%= link_to "編集", edit_oba_work_path(work.id) %></li>
+      <li>-----------------------------</li>
   <% end %>
 </ul>
 
