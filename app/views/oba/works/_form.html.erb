@@ -1,10 +1,18 @@
-<%= form_with(model: [:oba, @work], url: oba_work_path) do |f| %>
+<%= form_with url: oba_works_path, local: true do |f| %>
+    <%= f.label "開始" %>
+    <%= @work.start_time.strftime("%H:%M") %>
+    <%= f.hidden_field :start_time, :value => @work.start_time %>
+    <%= f.label "終了目安" %>
+    <%= f.hidden_field :end_time, :value => @work.end_time %>
+    <%= @work.end_time.strftime("%H:%M") %>
+    <%= f.hidden_field :id, :value => @work.id %>
 
- <p>検索結果</p>
+
     <% @users.each do |user|%>
       <%= f.fields_for :machings, @work.machings.build do |maching| %>
         <% shift = Shift.find_by(user_id: user.id)  %>
-        <%= maching.radio_button :shift_id, "#{shift.id}"  %>
+        <%= maching.label "検索結果" %>
+        <%= maching.check_box :shift_id  %>
         <%= user.name %>
       <% end %>
     <% end %>
@@ -14,7 +22,6 @@
     <%= f.label "取引先" %>
 
     <%= f.collection_select :client_id, Client.all, :id, :name %>
-    <%# 家の名前 %>
 
     <%= f.submit %>
 <% end %>

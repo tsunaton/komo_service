@@ -49,6 +49,6 @@ class Oba::UsersController < ApplicationController
     def user_params
       params
         .require(:user)
-        .permit(:name, :email, :password, :password_confirmation, :address, :possible_place)
+        .permit(:name, :email, :password, :password_confirmation, :address, :available_place, :pay_per_hour)
     end
 end

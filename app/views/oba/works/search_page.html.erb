@@ -1,4 +1,4 @@
-<%= form_with url: oba_search_path, local: true, method: (:get) do |f| %>
+<%= form_with url: new_oba_work_path, local: true, method: (:get) do |f| %>
 
       <li><%= f.datetime_select :start_time, :minute_step => 15 %></li>から
       <li><%= f.datetime_select :end_time, :minute_step => 15  %></li>
