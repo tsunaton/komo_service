@@ -2,7 +2,7 @@ class Staff::ShiftsController < ApplicationController
 before_action :logged_in_user, only: [:new, :edit, :update, :destroy]
 
   def index
-    @shifts = Shift.all
+    @shifts = Shift.where(user_id: @current_user)
   end
 
   def show

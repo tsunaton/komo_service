@@ -1,27 +1,28 @@
-<%= form_with url: oba_works_path, local: true do |f| %>
-    <%= f.label "開始" %>
+<%= form_with model: [:oba, @work] local: true do |f| %>
+  <%= f.label "開始" %>
     <%= @work.start_time.strftime("%H:%M") %>
-    <%= f.hidden_field :start_time, :value => @work.start_time %>
+  <%= f.hidden_field :start_time, :value => @work.start_time %>
     <%= f.label "終了目安" %>
-    <%= f.hidden_field :end_time, :value => @work.end_time %>
+  <%= f.hidden_field :end_time, :value => @work.end_time %>
     <%= @work.end_time.strftime("%H:%M") %>
-    <%= f.hidden_field :id, :value => @work.id %>
+    <% id = Work.last.id.to_i %>
+    <% id += 1 %>
+  <%= f.hidden_field :id, :value => id %>
 
-
-    <% @users.each do |user|%>
-      <%= f.fields_for :machings, @work.machings.build do |maching| %>
-        <% shift = Shift.find_by(user_id: user.id)  %>
-        <%= maching.label "検索結果" %>
-        <%= maching.check_box :shift_id  %>
-        <%= user.name %>
-      <% end %>
+  <% @users.each do |user|%>
+    <%= f.fields_for :machings, @work.machings.build do |maching| %>
+      <%= maching.label "検索結果" %>
+      <% shift = Shift.find_by(user_id: user.id) %>
+      <%= maching.check_box :shift_id, {multiple: true}, shift.id, nil %>
+      <%= user.name %>
     <% end %>
+  <% end %>
 
-    <%= f.label "会場" %>
-    <%= f.collection_select :place_id, Place.all, :id, :name %>
-    <%= f.label "取引先" %>
+  <%= f.label "会場" %>
+  <%= f.collection_select :place_id, Place.all, :id, :name %>
+  <%= f.label "取引先" %>
 
-    <%= f.collection_select :client_id, Client.all, :id, :name %>
+  <%= f.collection_select :client_id, Client.all, :id, :name %>
 
-    <%= f.submit %>
+  <%= f.submit %>
 <% end %>
