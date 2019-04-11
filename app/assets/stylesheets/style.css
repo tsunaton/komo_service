@@ -1,0 +1,213 @@
+@charset "UTF-8";
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナビ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* A PEN BY saruwakakun */
+
+header {
+  padding:5vw;
+  background: skyblue;
+}
+
+#nav-drawer {
+  position: relative;
+}
+
+/*チェックボックス等は非表示に*/
+.nav-unshown {
+  display:none;
+}
+
+/*アイコンのスペース*/
+#nav-open {
+  display: inline-block;
+  width: 30px;
+  height: 22px;
+  position: absolute;
+  top: 3px;
+}
+
+/* タイトル */
+.page_title {
+  text-align: center;
+  font-size: 5vw;
+}
+
+/*ハンバーガーアイコンをCSSだけで表現*/
+#nav-open span, #nav-open span:before, #nav-open span:after {
+    position: absolute;
+    height: 3px;/*線の太さ*/
+    width: 8vw;/*長さ*/
+    border-radius: 3px;
+    background: #555;
+    display: block;
+    content: '';
+    cursor: pointer;
+}
+#nav-open span:before {
+    bottom: -10px;
+}
+#nav-open span:after {
+    bottom: -20px;
+}
+
+/*閉じる用の薄黒カバー*/
+#nav-close {
+    display: none;/*はじめは隠しておく*/
+    position: fixed;
+    z-index: 99;
+    top: 0;/*全体に広がるように*/
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    transition: .3s ease-in-out;
+}
+
+/*中身*/
+#nav-content {
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;/*最前面に*/
+    width: 90%;/*右側に隙間を作る*/
+    max-width: 330px;/*最大幅*/
+    height: 100%;
+    background: #fff;/*背景色*/
+    transition: .3s ease-in-out;/*滑らかに表示*/
+    -webkit-transform: translateX(-105%);
+    transform: translateX(-105%);/*左に隠しておく*/
+}
+
+/*チェックが入ったらもろもろ表示*/
+#nav-input:checked ~ #nav-close {
+    display: block;/*カバーを表示*/
+    opacity: .5;
+}
+
+#nav-input:checked ~ #nav-content {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);/*中身を表示*/
+    box-shadow: 6px 0 25px rgba(0,0,0,.15);
+}
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナビここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナビのハンバーガ中身＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
+nav h1{
+  padding-top: 1em;
+  padding-left: 20px;
+}
+
+nav ul{
+  line-height: 3;
+  padding-top: 3em;
+  padding-left: 20px;
+  list-style: none;
+}
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナビのハンバーガー中身ここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝入力フォーム＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* CODE PEN BY Khaled Mneimneh */
+
+#input_form_body {
+background-color: #F3EBF6;
+font-family: 'Ubuntu', sans-serif;
+margin: 0 auto;
+}
+
+.main {
+background-color: #FFFFFF;
+margin: 5em auto;
+padding: 0 0 40px;
+border-radius: 1.5em;
+box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+width: 90%;
+}
+
+.sign {
+padding-top: 40px;
+color: #8C55AA;
+font-family: 'Ubuntu', sans-serif;
+font-weight: bold;
+font-size: 23px;
+}
+
+.un {
+width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+display: block;
+margin: 0 auto 30px;
+text-align: center;
+font-family: 'Ubuntu', sans-serif;
+}
+
+form.form1 {
+padding-top: 40px;
+}
+
+.pass {
+width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+text-align: center;
+display: block;
+margin: 0 auto 30px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+
+.un:focus, .pass:focus {
+border: 2px solid rgba(0, 0, 0, 0.18) !important;
+
+}
+
+.submit {
+cursor: pointer;
+border-radius: 5em;
+color: #fff;
+background: linear-gradient(to right, #9C27B0, #E040FB);
+border: 0;
+padding: 10px 40px;
+font-family: 'Ubuntu', sans-serif;
+display: block;
+margin: 0 auto;
+font-size: 13px;
+box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.forgot {
+text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+color: #E1BEE7;
+padding-top: 15px;
+display: block;
+text-align: center;
+}
+
+a {
+text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+color: #E1BEE7;
+text-decoration: none
+}
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝入力フォームここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
