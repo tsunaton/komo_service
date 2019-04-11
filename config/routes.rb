@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   end
 
 
-  namespace :oba do
+  namespace :admin do
 
     get    '/home',   to: 'static_pages#home'
     get     '/payslip',  to:'static_pages#payslip'

@@ -1,9 +1,0 @@
-<ul>
-<%= form_with model: [:oba,@client] do |f| %>
-<li><%= f.label :取引先名 %></li>
-<li><%= f.text_field :name %></li>
-<li><%= f.label :派遣料 %></li>
-<li><%= f.number_field :dispatching_fee_per_hour %></li>
-<li><%= f.submit %></li>
-<% end %>
-</ul>

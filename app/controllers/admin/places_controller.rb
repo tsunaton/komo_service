@@ -1,4 +1,4 @@
-class Staff::PlacesController < Staff::Base
+class Admin::PlacesController < Admin::Base
 before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -25,7 +25,7 @@ before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
     def update
       place = Place.find(params[:id])
       if place.update(place_params)
-        redirect_to staff_places_path
+        redirect_to admin_places_path
       else
         render :edit
       end
