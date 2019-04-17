@@ -1,4 +1,4 @@
-class Staff::ClientsController < Staff::Base
+class Admin::ClientsController < Admin::Base
 before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -25,7 +25,7 @@ before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
     def update
       client = Client.find(params[:id])
       if client.update(client_params)
-        redirect_to staff_clients_path
+        redirect_to admin_clients_path
       else
         render :edit
       end

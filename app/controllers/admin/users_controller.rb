@@ -1,4 +1,4 @@
-class Staff::UsersController < Staff::Base
+class Admin::UsersController < Admin::Base
   before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -29,7 +29,7 @@ class Staff::UsersController < Staff::Base
   def update
     user = User.find(params[:id])
     if user.update(user_params)
-      redirect_to edit_admin_user_path
+      redirect_to admin_users_path
     else
       render :edit
     end
@@ -49,6 +49,6 @@ class Staff::UsersController < Staff::Base
     def user_params
       params
         .require(:user)
-        .permit(:name, :email, :password, :password_confirmation, :address, :available_place)
+        .permit(:name, :email, :password, :password_confirmation, :address, :available_place, :pay_per_hour)
     end
 end

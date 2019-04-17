@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_044220) do
+ActiveRecord::Schema.define(version: 2019_04_06_223528) do
 
   create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2019_03_08_044220) do
     t.integer "dispatching_fee_per_hour"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "work_id"
+    t.index ["work_id"], name: "index_clients_on_work_id"
   end
 
   create_table "machings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -34,6 +36,8 @@ ActiveRecord::Schema.define(version: 2019_03_08_044220) do
     t.string "nearest_station"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "work_id"
+    t.index ["work_id"], name: "index_places_on_work_id"
   end
 
   create_table "shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -55,12 +59,12 @@ ActiveRecord::Schema.define(version: 2019_03_08_044220) do
     t.string "name"
     t.string "email"
     t.string "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "password_digest"
+    t.integer "pay_per_hour"
     t.string "available_place"
     t.string "remember_digest"
-    t.integer "pay_per_hour"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "working_hours", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -81,4 +85,6 @@ ActiveRecord::Schema.define(version: 2019_03_08_044220) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "clients", "works"
+  add_foreign_key "places", "works"
 end

@@ -1,5 +1,4 @@
-class Staff::SessionsController < Staff::Base
-   before_action :logged_in_user, only: [ :destroy]
+class Admin::SessionsController < Admin::Base
 
 def new
 end
@@ -9,7 +8,7 @@ def create
   if user && user.authenticate(params[:password])
     log_in(user)
     remember(user)
-    redirect_to staff_home_path
+    redirect_to admin_home_path
   else
     render :new
   end
@@ -17,7 +16,7 @@ end
 
 def destroy
   log_out if logged_in?
-  redirect_to staff_login_path
+  redirect_to admin_login_path
 end
 
 end

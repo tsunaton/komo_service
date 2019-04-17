@@ -1,4 +1,4 @@
-class Staff::WorkingHoursController < ApplicationController
+class Staff::WorkingHoursController < Staff::Base
 before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   #終了報告
