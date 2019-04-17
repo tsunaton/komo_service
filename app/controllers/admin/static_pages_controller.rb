@@ -1,4 +1,4 @@
-class Admin::StaticPagesController < Admin::Base
+class Admin::StaticPagesController < Admin::ApplicationController
 
   def home
   end

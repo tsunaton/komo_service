@@ -1,4 +1,4 @@
-class Admin::MachingsController < Admin::Base
+class Admin::MachingsController < Admin::ApplicationController
   def index
     @machings = Maching.all
 

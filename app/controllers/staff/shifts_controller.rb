@@ -1,4 +1,4 @@
-class Staff::ShiftsController < Staff::Base
+class Staff::ShiftsController < Staff::ApplicationController
 before_action :logged_in_user, only: [:new, :edit, :update, :destroy]
 
   def index

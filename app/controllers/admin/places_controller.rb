@@ -1,4 +1,4 @@
-class Admin::PlacesController < Admin::Base
+class Admin::PlacesController < Admin::ApplicationController
 before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
     def index

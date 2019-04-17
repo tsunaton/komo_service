@@ -1,4 +1,4 @@
-class Staff::WorkingHoursController < Staff::Base
+class Staff::WorkingHoursController < Staff::ApplicationController
 before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   #終了報告
@@ -18,6 +18,5 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
   #間違ったとき削除
   def destroy
   end
-
 
 end

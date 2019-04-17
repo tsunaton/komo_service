@@ -1,4 +1,4 @@
-class Staff::SessionsController < Staff::Base
+class Staff::SessionsController < Staff::ApplicationController
    before_action :logged_in_user, only: [ :destroy]
 
 def new

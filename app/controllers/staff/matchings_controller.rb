@@ -1,4 +1,4 @@
-class Staff::machingsController < Staff::Base
+class Staff::machingsController < Staff::ApplicationController
   def index
     @machings = maching.all
   end

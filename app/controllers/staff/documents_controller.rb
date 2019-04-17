@@ -1,4 +1,4 @@
-class Staff::DocumentsController < Staff::Base
+class Staff::DocumentsController < Staff::ApplicationController
   def payslip
     shifts = Shift.where(user_id: @current_user.id)
     @works = []

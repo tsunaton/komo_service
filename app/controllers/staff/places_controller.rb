@@ -1,4 +1,4 @@
-class Staff::PlacesController < Staff::Base
+class Staff::PlacesController < Staff::ApplicationController
 before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
     def index

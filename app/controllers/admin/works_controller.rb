@@ -1,4 +1,4 @@
-class Admin::WorksController < Admin::Base
+class Admin::WorksController < Admin::ApplicationController
 
   def index
     @works = Work.all
