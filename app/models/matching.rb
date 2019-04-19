@@ -1,4 +1,4 @@
-class Maching < ApplicationRecord
-  belongs_to :shift
-  belongs_to :work
+class Matching < ApplicationRecord
+  belongs_to :user
+  belongs_to :funeral
 end
