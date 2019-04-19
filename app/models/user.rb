@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-has_many :funeral_halls
+has_many :available_halls
 has_many :funeral_halls, through: :available_halls
 has_many :funerals
 has_many :funerals, through: :matcings
