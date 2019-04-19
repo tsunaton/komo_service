@@ -4,5 +4,8 @@ class Funeral < ApplicationRecord
   has_many :machings
   has_many :shifts, through: :machings
 
+  validates :number_of_people, presence: true
+  validates :number_of_people, presence: true, numericality: { less_than: 100 }
+
   accepts_nested_attributes_for :machings
 end
