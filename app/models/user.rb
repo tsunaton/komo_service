@@ -1,6 +1,13 @@
 class User < ApplicationRecord
-    attr_accessor :remember_token
-    has_secure_password
+has_many :available_halls
+has_many :funeral_halls, through: :available_halls
+has_many :matcings
+has_many :funerals, through: :matcings
+has_many :shifts
+has_many :working_hours
+
+  attr_accessor :remember_token
+  has_secure_password
 
   # ただランダムなトークンを返すだけ
   def User.new_token

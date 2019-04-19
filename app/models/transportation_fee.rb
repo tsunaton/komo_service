@@ -1,2 +1,0 @@
-class TransportationFee < ApplicationRecord
-end

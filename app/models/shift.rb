@@ -1,6 +1,5 @@
 class Shift < ApplicationRecord
-  has_many :machings
-  has_many :works, through: :machings
+  belongs_to :user
 
   def matches(start_time, end_time)
     results = Shift.all
