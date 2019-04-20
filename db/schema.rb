@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2019_02_04_060946) do
     t.string "mail"
     t.string "address"
     t.string "nearest_station"
+    t.integer "user_type"
     t.string "password_digest"
     t.string "remember_digest"
     t.datetime "created_at", null: false
