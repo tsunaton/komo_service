@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
 
-
-
+  root 'staff/sessions#new'
 
   namespace :staff do
 
     get '/signup',  to: 'users#new'
     post '/signup'  => 'users#create'
 
-    get    '/login',   to: 'sessions#new'
+
     post   '/login'   => 'sessions#create'
 
     delete '/logout'  => 'sessions#destroy'
