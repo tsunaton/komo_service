@@ -1,9 +1,9 @@
 class CreateMachings < ActiveRecord::Migration[5.2]
   def change
     create_table :machings do |t|
-      t.integer :user_id
-      t.integer :work_id
       t.boolean :confirmation
+      t.references :user, foreign_key: true
+      t.references :funeral, foreign_key: true
 
       t.timestamps
     end
