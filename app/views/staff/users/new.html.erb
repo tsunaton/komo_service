@@ -1,6 +1,8 @@
-<h1>Sign in</h1>
+<style> header {display: none;}</style>
 
-  <%= render :partial => "form" %>
+<% content_for :title, "新規登録" %>
+<% content_for :submit_button, "登録申請" %>
+<% content_for :under_link, "ログインはこちら" %>
+<% content_for :path, "staff_login_path" %>
 
-  <%= link_to 'もうアカウント持ってる', staff_login_path %>
-  
+<%= render :partial => "form" %>

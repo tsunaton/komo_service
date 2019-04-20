@@ -1,21 +1,14 @@
-<%= form_with model: [:staff, @user] do |f| %>
-  <div>
-    <%= f.label :氏名 %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :メールアドレス %>
-    <%= f.text_field :email %>
-  </div>
-  <div>
-    <%= f.label :パスワード %>
-    <%= f.password_field :password %>
-  </div>
-  <div>
-    <%= f.label :パスワード確認 %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+<div class="main">
+  <p class="sign" align="center"><%= yield :title %></p>
+    <form class="form1">
+    <%= form_with model: [:staff, @user] do |f| %>
+      <%= f.text_field :name,       class: "un", placeholder: "氏名" %>
+      <%= f.text_field :email,      class: "un", placeholder: "メールアドレス" %>
 
+      <%= f.password_field :password,              class: "pass", placeholder: "パスワード" %>
+      <%= f.password_field :password_confirmation, class: "pass", placeholder: "パスワード（確認）" %>
 
-  <%= f.submit "登録申請" %>
-<% end %>
+      <%= f.submit "#{ yield :submit_button }",    class: "submit" %>
+      <%= link_to "#{ yield :under_link }", "#{ yield :path }", class: "forgot" %>
+    <% end %>
+</div>
