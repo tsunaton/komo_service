@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_02_04_060946) do
 
   create_table "available_halls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -17,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_02_04_060946) do
     t.bigint "funeral_hall_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
     t.index ["funeral_hall_id"], name: "index_available_halls_on_funeral_hall_id"
     t.index ["user_id"], name: "index_available_halls_on_user_id"
   end
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_02_04_060946) do
     t.bigint "funeral_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
     t.index ["funeral_id"], name: "index_funeral_halls_on_funeral_id"
   end
 
@@ -67,6 +70,15 @@ ActiveRecord::Schema.define(version: 2019_02_04_060946) do
     t.index ["user_id"], name: "index_shifts_on_user_id"
   end
 
+  create_table "shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "scheduled_from"
+    t.datetime "scheduled_to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_shifts_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "mail"
@@ -77,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_02_04_060946) do
     t.string "remember_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_type"
   end
 
   create_table "working_hours", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
