@@ -8,7 +8,7 @@ class Admin::MachingsController < Admin::ApplicationController
     end
 
     @funerals.each do |funeral|
-      @funeral_hallss = FuneralHall.where(id: funeral.funeral_halls_id)
+      @funeral_halls = FuneralHall.where(id: funeral.funeral_halls_id)
       @clients = Client.where(id: funeral.client_id)
     end
 

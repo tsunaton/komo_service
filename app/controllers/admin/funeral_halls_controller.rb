@@ -2,7 +2,7 @@ class Admin::FuneralHallsController < Admin::ApplicationController
 before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
     def index
-      @funeral_hallss = FuneralHall.all
+      @funeral_halls = FuneralHall.all
     end
 
     def new
@@ -25,7 +25,7 @@ before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
     def update
       funeral_halls = FuneralHall.find(params[:id])
       if funeral_halls.update(funeral_halls_params)
-        redirect_to admin_funeral_hallss_path
+        redirect_to admin_funeral_halls_path
       else
         render :edit
       end
