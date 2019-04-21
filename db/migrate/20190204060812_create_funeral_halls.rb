@@ -1,9 +1,9 @@
-class CreateClients < ActiveRecord::Migration[5.2]
+class CreateFuneralHalls < ActiveRecord::Migration[5.2]
   def change
-    create_table :clients do |t|
+    create_table :funeral_halls do |t|
       t.string :name
       t.string :address
-      t.integer :dispatching_fee_per_hour
+      t.string :nearest_station
       t.references :funeral, foreign_key: true
 
       t.timestamps
