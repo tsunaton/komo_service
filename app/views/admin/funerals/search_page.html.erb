@@ -4,9 +4,54 @@
       <li><%= f.datetime_select :end_time, :minute_step => 15  %></li>
       <li><%= f.submit 'スタッフを探す' %></li>
 
-<% end %>
 
+  <div class="container">
+    <div class="radio-tile-group">
 
+      <ul class="horizontal-list">
+
+        <li class="item">
+          <div class="input-container">
+            <%=f.radio_button :start_time, Date.today, class: "radio-button" %>
+            <div class="radio-tile">
+              <label class="radio-tile-label">今日</label>
+            </div>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="input-container">
+            <%=f.radio_button :start_time, Date.today, class: "radio-button" %>
+            <div class="radio-tile">
+              <label class="radio-tile-label">明日</label>
+            </div>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="input-container">
+            <%=f.radio_button :start_time, Date.today, class: "radio-button" %>
+            <div class="radio-tile">
+              <label class="radio-tile-label"><%= Date.today.since(2.days).day %></label>
+            </div>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="input-container">
+            <%=f.radio_button :start_time, Date.today, class: "radio-button" %>
+            <div class="radio-tile">
+              <label class="radio-tile-label"><%= Date.today.since(3.days).day %></label>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+    <% end %>
+
+  </div>
+</div>
 
 <input type="text" id="alarm">
 
