@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
     resources :users
 
-    resources :places, :except => [:show]
+    resources :funeral_hallss, :except => [:show]
 
     resources :clients, :except => [:show]
 
@@ -38,14 +38,14 @@ Rails.application.routes.draw do
 
     resources :users
 
-    resources :places, :except => [:show]
+    resources :funeral_hallss, :except => [:show]
 
     resources :clients, :except => [:show]
 
-    resources :works
+    resources :funerals
 
-    get   '/search_page',  to: 'works#search_page'
-    get   '/search',  to: 'works#search'
+    get   '/search_page',  to: 'funerals#search_page'
+    get   '/search',  to: 'funerals#search'
 
     resources :machings
 

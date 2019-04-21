@@ -3,13 +3,13 @@ class Admin::MachingsController < Admin::ApplicationController
     @machings = Maching.all
 
     @machings.each do |maching|
-      @works = Work.where(id: maching.work_id)
+      @funerals = Funeral.where(id: maching.funeral_id)
       @users = User.where(id: maching.user_id)
     end
 
-    @works.each do |work|
-      @places = Place.where(id: work.place_id)
-      @clients = Client.where(id: work.client_id)
+    @funerals.each do |funeral|
+      @funeral_hallss = Funeral_hall.where(id: funeral.funeral_halls_id)
+      @clients = Client.where(id: funeral.client_id)
     end
 
   end
@@ -18,7 +18,7 @@ class Admin::MachingsController < Admin::ApplicationController
   end
 
   def create
-    maching = Maching.new(params[:user_id], params[:work_id])
+    maching = Maching.new(params[:user_id], params[:funeral_id])
     if maching.save
       redirect_to admin_maching_path
     else

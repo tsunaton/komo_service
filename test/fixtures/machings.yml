@@ -2,10 +2,10 @@
 
 one:
   user_id: 1
-  work_id: 1
+  funeral_id: 1
   confirmation: false
 
 two:
   user_id: 1
-  work_id: 1
+  funeral_id: 1
   confirmation: false

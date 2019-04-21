@@ -1,7 +1,7 @@
   <li>氏名：<%= @user.name %></li>
   <li>メールアドレス：<%= @user.email %></li>
   <li>住所：<%= @user.address %></li>
-  <li>可能会場：<%= @user.available_place %></li>
+  <li>可能会場：<%= @user.available_funeral_halls %></li>
   <li>時給：<%= @user.pay_per_hour %></li>
   <li><%= link_to "編集", edit_admin_user_path(@user.id) %></li>
   <%= link_to '一覧に戻る', admin_users_path %>

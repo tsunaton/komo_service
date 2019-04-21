@@ -49,6 +49,6 @@ class Staff::UsersController < Staff::ApplicationController
     def user_params
       params
         .require(:user)
-        .permit(:name, :email, :password, :password_confirmation, :address, :available_place)
+        .permit(:name, :email, :password, :password_confirmation, :address, :available_funeral_halls)
     end
 end
