@@ -1,16 +1,16 @@
-class Admin::Funeral_hallsController < Admin::ApplicationController
+class Admin::FuneralHallsController < Admin::ApplicationController
 before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
     def index
-      @funeral_hallss = Funeral_hall.all
+      @funeral_hallss = FuneralHall.all
     end
 
     def new
-      @funeral_halls = Funeral_hall.new
+      @funeral_halls = FuneralHall.new
     end
 
     def create
-      funeral_halls = Funeral_hall.new(funeral_halls_params)
+      funeral_halls = FuneralHall.new(funeral_halls_params)
       if funeral_halls.save
         redirect_to action: 'index'
       else
@@ -19,11 +19,11 @@ before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
     end
 
     def edit
-      @funeral_halls = Funeral_hall.find(params[:id])
+      @funeral_halls = FuneralHall.find(params[:id])
     end
 
     def update
-      funeral_halls = Funeral_hall.find(params[:id])
+      funeral_halls = FuneralHall.find(params[:id])
       if funeral_halls.update(funeral_halls_params)
         redirect_to admin_funeral_hallss_path
       else

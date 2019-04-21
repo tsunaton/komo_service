@@ -5,7 +5,7 @@
     <%= funeral.start_time.strftime("%Y年%m月%d日") %>
       <li>開始：<%= funeral.start_time.strftime("%H:%M") %></li>
       <li>終了予定：<%= funeral.end_time.strftime("%H:%M") %></li>
-    <% funeral_halls = Funeral_hall.find(funeral.funeral_halls_id).name %>
+    <% funeral_halls = FuneralHall.find(funeral.funeral_halls_id).name %>
       <li>会場：<%= funeral_halls %></li>
     <% client = Client.find(funeral.client_id).name %>
       <li>取引先：<%= client %></li>

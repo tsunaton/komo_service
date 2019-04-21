@@ -19,7 +19,7 @@
   <% end %>
 
   <%= f.label "会場" %>
-  <%= f.collection_select :funeral_halls_id, Funeral_hall.all, :id, :name %>
+  <%= f.collection_select :funeral_halls_id, FuneralHall.all, :id, :name %>
   <%= f.label "取引先" %>
 
   <%= f.collection_select :client_id, Client.all, :id, :name %>

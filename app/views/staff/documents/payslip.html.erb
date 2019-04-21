@@ -25,7 +25,7 @@
     <%= @current_user.pay_per_hour %>|
     <% pay_per_day = @current_user.pay_per_hour * working_hours %>
     <%= pay_per_day %>
-    <% funeral_halls = Funeral_hall.find(funeral.funeral_halls_id) %>|
+    <% funeral_halls = FuneralHall.find(funeral.funeral_halls_id) %>|
     <%= funeral_halls.name %>|
     <%= "交通費" %>
   </div>
