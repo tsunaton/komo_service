@@ -41,8 +41,8 @@ Rails.application.routes.draw do
 
     resources :funerals
 
-    get   '/search_page',  to: 'works#search_page'
-    get   '/search',  to: 'works#search'
+    get   '/search_page',  to: 'funerals#search_page'
+    get   '/search',  to: 'funerals#search'
 
     resources :machings
 
