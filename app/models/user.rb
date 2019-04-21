@@ -4,7 +4,7 @@ has_many :funeral_halls, through: :available_halls
 has_many :matcings
 has_many :funerals, through: :matcings
 has_many :shifts
-has_many :working_hours
+has_many :funeraling_hours
 
 validates :name, presence: true, length: { maximum: 50 }
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

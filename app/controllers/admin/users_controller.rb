@@ -49,6 +49,6 @@ class Admin::UsersController < Admin::ApplicationController
     def user_params
       params
         .require(:user)
-        .permit(:name, :email, :password, :password_confirmation, :address, :available_place, :pay_per_hour)
+        .permit(:name, :email, :password, :password_confirmation, :address, :available_funeral_halls, :pay_per_hour)
     end
 end

@@ -13,20 +13,20 @@
   <%= "場所" %>|
   <%= "交通費" %>
 </div>
-<% @works[0].each do |work| %>
+<% @funerals[0].each do |funeral| %>
   <div>
     <% @current_user.pay_per_hour = 1500 %>
 
     <%= "家" %>|
-    <%= work.start_time.strftime("%H:%M") %>|
-    <%= work.end_time.strftime("%H:%M") %>|
-    <% working_hours = (work.end_time - work.start_time) / 3600 %>
+    <%= funeral.start_time.strftime("%H:%M") %>|
+    <%= funeral.end_time.strftime("%H:%M") %>|
+    <% working_hours = (funeral.end_time - funeral.start_time) / 3600 %>
     <%= working_hours %>|
     <%= @current_user.pay_per_hour %>|
     <% pay_per_day = @current_user.pay_per_hour * working_hours %>
     <%= pay_per_day %>
-    <% place = Place.find(work.place_id) %>|
-    <%= place.name %>|
+    <% funeral_halls = FuneralHall.find(funeral.funeral_halls_id) %>|
+    <%= funeral_halls.name %>|
     <%= "交通費" %>
   </div>
 <% end %>
