@@ -1,15 +1,14 @@
 <%= form_with url: new_admin_funeral_path, local: true, method: (:get) do |f| %>
 
-      <li><%= f.datetime_select :start_time, :minute_step => 15 %></li>から
-      <li><%= f.datetime_select :end_time, :minute_step => 15  %></li>
-      <li><%= f.submit 'スタッフを探す' %></li>
+  <li><%= f.datetime_select :start_time, :minute_step => 15 %></li>から
+  <li><%= f.datetime_select :end_time, :minute_step => 15  %></li>
+
 
 
   <div class="container">
     <div class="radio-tile-group">
-
       <ul class="horizontal-list">
-
+<%= each do || %>
         <li class="item">
           <div class="input-container">
             <%=f.radio_button :start_time, Date.today, class: "radio-button" %>
@@ -46,21 +45,23 @@
           </div>
         </li>
 
-      </ul>
-
-    <% end %>
-
+    </ul>
   </div>
 </div>
 
 
 <!-- TimeDropper -->
 <input type="text" id="alarm">
-<script>$( "#alarm" ).timeDropper();</script>
-
 
 <!-- NumberPicker -->
 <input type="number" min="1" max="100" value="1" />
+
+<li><%= f.submit 'スタッフを探す' %></li>
+
+<% end %>
+
+
+<script>$( "#alarm" ).timeDropper();</script>
 <script>
 (function($) {
 	$.fn.spinner = function() {
