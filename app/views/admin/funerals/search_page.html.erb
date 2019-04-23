@@ -8,42 +8,30 @@
   <div class="container">
     <div class="radio-tile-group">
       <ul class="horizontal-list">
-<%= each do || %>
-        <li class="item">
-          <div class="input-container">
-            <%=f.radio_button :start_time, Date.today, class: "radio-button" %>
-            <div class="radio-tile">
-              <label class="radio-tile-label">今日</label>
-            </div>
-          </div>
-        </li>
 
-        <li class="item">
-          <div class="input-container">
-            <%=f.radio_button :start_time, Date.today, class: "radio-button" %>
-            <div class="radio-tile">
-              <label class="radio-tile-label">明日</label>
-            </div>
-          </div>
-        </li>
+<!-- 日付選択機能ここから -->
+<% i = 0 %>
+<% @dates.each do |date| %>
+  <% i += 1 %>
+  <li class="item">
+    <div class="input-container">
+      <%=f.radio_button :start_time, @today-1+i, class: "radio-button" %>
 
-        <li class="item">
-          <div class="input-container">
-            <%=f.radio_button :start_time, Date.today, class: "radio-button" %>
-            <div class="radio-tile">
-              <label class="radio-tile-label"><%= Date.today.since(2.days).day %></label>
-            </div>
-          </div>
-        </li>
+      <div class="radio-tile">
+        <label class="radio-tile-label">
+          <% if i == 1 %>
+            <%= "今日" %>
+          <% elsif i == 2 %>
+            <%= "明日" %>
+          <% end %>
+          <%= date %>
+        </label>
+      </div>
 
-        <li class="item">
-          <div class="input-container">
-            <%=f.radio_button :start_time, Date.today, class: "radio-button" %>
-            <div class="radio-tile">
-              <label class="radio-tile-label"><%= Date.today.since(3.days).day %></label>
-            </div>
-          </div>
-        </li>
+    </div>
+  </li>
+<% end %>
+<!-- 日付選択機能ここまで -->
 
     </ul>
   </div>
