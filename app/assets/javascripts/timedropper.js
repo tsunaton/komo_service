@@ -417,3 +417,5 @@
         });
     };
 }(jQuery));
+
+$( "#alarm" ).timeDropper();
