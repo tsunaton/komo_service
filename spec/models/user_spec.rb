@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'nameの文字数が51文字以上だとNG' do
-        @user.email = 'ア' * 51
+        @user.name = 'ア' * 51
         expect(@user).to be_invalid
       end
 
