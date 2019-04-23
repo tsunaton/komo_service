@@ -1,5 +1,5 @@
 class FuneralHall < ApplicationRecord
-belongs_to :funeral
+belongs_to :funeral, optional: true
 has_many :available_halls
 has_many :users, through: :available_halls
 
