@@ -1,10 +1,5 @@
 <%= form_with url: new_admin_funeral_path, local: true, method: (:get) do |f| %>
 
-  <li><%= f.datetime_select :start_time, :minute_step => 15 %></li>から
-  <li><%= f.datetime_select :end_time, :minute_step => 15  %></li>
-
-
-
   <div class="container">
     <div class="radio-tile-group">
       <ul class="horizontal-list">
@@ -47,34 +42,3 @@
 <li><%= f.submit 'スタッフを探す' %></li>
 
 <% end %>
-
-
-<script>$( "#alarm" ).timeDropper();</script>
-<script>
-(function($) {
-	$.fn.spinner = function() {
-		this.each(function() {
-			var el = $(this);
-
-			// add elements
-			el.wrap('<span class="spinner"></span>');
-			el.before('<span class="sub">-</span>');
-			el.after('<span class="add">+</span>');
-
-			// substract
-			el.parent().on('click', '.sub', function () {
-				if (el.val() > parseInt(el.attr('min')))
-					el.val( function(i, oldval) { return --oldval; });
-			});
-
-			// increment
-			el.parent().on('click', '.add', function () {
-				if (el.val() < parseInt(el.attr('max')))
-					el.val( function(i, oldval) { return ++oldval; });
-			});
-	    });
-	};
-})(jQuery);
-
-$('input[type=number]').spinner();
-</script>
