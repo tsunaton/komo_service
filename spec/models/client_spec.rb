@@ -20,7 +20,7 @@ RSpec.describe Client, type: :model do
         it 'カブるとNG' do
           client.name = 'SAME_NAME'
           client.save
-          dup = Client.new(name: 'SAME_NAME', address: 'not_same', dispatching_fee_per_hour: 9999)
+          dup = build(:client, name: 'SAME_NAME')
           expect(dup).to be_invalid
         end
 
@@ -34,7 +34,7 @@ RSpec.describe Client, type: :model do
         it 'カブるとNG' do
           client.address = 'SAME_ADDRESS'
           client.save
-          dup = Client.new(name: 'not_same', address: 'SAME_ADDRESS', dispatching_fee_per_hour: 9999)
+          dup = build(:client, address: 'SAME_ADDRESS')
           expect(dup).to be_invalid
         end
 
