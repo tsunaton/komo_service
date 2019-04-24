@@ -1,9 +1,11 @@
-@charset "UTF-8";
+
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝共通＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
+
 body {
-    width: 100wh;
-    height: 90vh;
+    /* height: 90vh; */
+    margin: 0;
     color: #fff;
     background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
     background-size: 400% 400%;
@@ -57,7 +59,9 @@ h6 {
     right: 0;
     left: 0;
 }
-
+form {
+	margin: 0 35px;
+}
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナビ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 /* A PEN BY saruwakakun */
 
@@ -387,8 +391,6 @@ table tr:hover td {
 
 
 .container {
-  display: flex;
-  align-items: center;
 }
 
 .radio-tile-group, .input-container, .radio-button {
@@ -454,8 +456,8 @@ table tr:hover td {
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナンバーピッカー＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 input[type=number] {
   float: left;
-  width: 70px;
-  height: 35px;
+  width: 40%;
+  height: 45px;
   padding: 0;
   font-family: Lato;
   font-weight: 700;
@@ -467,34 +469,32 @@ input[type=number] {
   background: none;
   outline: none;
   pointer-events: none;
+  box-sizing: border-box;
 }
 
 span.spinner {
   position: absolute;
+  width: 33.5%;
   height: 40px;
-  user-select: none;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
 }
 
 span.spinner > .sub,
 span.spinner > .add {
   float: left;
   display: block;
-  width: 35px;
-  height: 35px;
+  width: 30%;
+  height: 45px;
   text-align: center;
   font-family: Lato;
   font-weight: 700;
-  font-size: 1.2em;
-  line-height: 33px;
+  font-size: 1.4em;
+  line-height: 40px;
   color: #ffffff;
   border: 2px #ffffff solid;
   border-right: 0;
   border-radius: 2px 0 0 2px;
   cursor: pointer;
+  box-sizing: border-box;
   transition: 0.1s linear;
   -o-transition: 0.1s linear;
   -ms-transition: 0.1s linear;
@@ -521,8 +521,8 @@ span.spinner > .add:hover {
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝縦スクロール会場選択メニュー＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .vertical-menu {
-    width: 200px;
     height: 150px;
+    margin: 20px 0;
     overflow-y: auto;
 }
 
