@@ -1,23 +1,23 @@
 <%= form_with url: new_admin_funeral_path, local: true, method: (:get) do |f| %>
 
-  <div class="container">
-    <div class="radio-tile-group">
-      <ul class="horizontal-list">
+  <div class='container'>
+    <div class='radio-tile-group'>
+      <ul class='horizontal-list'>
 
 <!-- 日付選択機能ここから -->
 <% i = 0 %>
 <% @dates.each do |date| %>
   <% i += 1 %>
-  <li class="item">
-    <div class="input-container">
-      <%=f.radio_button :start_time, @today-1+i, class: "radio-button" %>
+  <li class='item'>
+    <div class='input-container'>
+      <%=f.radio_button :start_time, @today-1+i, class: 'radio-button' %>
 
-      <div class="radio-tile">
-        <label class="radio-tile-label">
+      <div class='radio-tile'>
+        <label class='radio-tile-label'>
           <% if i == 1 %>
-            <%= "今日" %>
+            <%= '今日' %>
           <% elsif i == 2 %>
-            <%= "明日" %>
+            <%= '明日' %>
           <% end %>
           <%= date %>
         </label>
@@ -34,11 +34,25 @@
 
 
 <!-- TimeDropper -->
-<input type="text" id="alarm">
+<input type='text' id='alarm'>
 
 <!-- NumberPicker -->
-<input type="number" min="1" max="100" value="1" />
+<input type='number' min='1' max='100' value='1' />
+
+<div class="vertical-menu">
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  <a href="#">Link 4</a>
+  <a href="#">Link 5</a>
+</div>
+
 
 <li><%= f.submit 'スタッフを探す' %></li>
 
 <% end %>
+
+<script>
+  $( '#alarm' ).timeDropper();
+  $('input[type=number]').spinner();
+</script>
