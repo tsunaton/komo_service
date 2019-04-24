@@ -47,7 +47,7 @@ RSpec.describe User, type: :model do
         it 'カブるとNG' do
           user.email = 'same@example.com'
           user.save
-          dup = User.new(name: 'not_same', email: 'same@example.com', address: 'not_same', pay_per_hour: 9999, user_type: 1)
+          dup = build(:user, email: 'same@example.com')
           expect(dup).to be_invalid
         end
       end
