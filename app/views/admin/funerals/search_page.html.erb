@@ -2,33 +2,31 @@
 
   <div class='container'>
     <div class='radio-tile-group'>
+
+      <!-- 日付選択機能 -->
       <ul class='horizontal-list'>
+        <% @days.each_with_index do |day, i| %>
+          <li class='item'>
+            <div class='input-container'>
+              <%=f.radio_button :start_time, day, class: 'radio-button' %>
 
-<!-- 日付選択機能ここから -->
-<% i = 0 %>
-<% @dates.each do |date| %>
-  <% i += 1 %>
-  <li class='item'>
-    <div class='input-container'>
-      <%=f.radio_button :start_time, @today-1+i, class: 'radio-button' %>
+              <div class='radio-tile'>
+                <label class='radio-tile-label'>
+                  <% if i == 0 %>
+                    <%= '今日' %>
+                  <% elsif i == 1 %>
+                    <%= '明日' %>
+                  <% else %>
+                    <%= day.day %>日
+                  <% end %>
+                </label>
+              </div>
 
-      <div class='radio-tile'>
-        <label class='radio-tile-label'>
-          <% if i == 1 %>
-            <%= '今日' %>
-          <% elsif i == 2 %>
-            <%= '明日' %>
-          <% end %>
-          <%= date %>
-        </label>
-      </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
 
-    </div>
-  </li>
-<% end %>
-<!-- 日付選択機能ここまで -->
-
-    </ul>
   </div>
 </div>
 
