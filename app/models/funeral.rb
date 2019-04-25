@@ -7,5 +7,5 @@ class Funeral < ApplicationRecord
   validates :start_time, presence: true
   validates :number_of_people, presence: true, numericality: { less_than: 100 }
 
-  accepts_nested_attributes_for :machings
+  accepts_nested_attributes_for :working_hours
 end

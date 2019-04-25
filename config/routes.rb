@@ -19,8 +19,6 @@ Rails.application.routes.draw do
 
     resources :clients, :except => [:show]
 
-    resources :machings
-
     resources :working_hours, :only => [:new, :create, :edit, :update, :destroy]
 
     resources :shifts
@@ -43,8 +41,6 @@ Rails.application.routes.draw do
 
     get   '/search_page',  to: 'funerals#search_page'
     get   '/search',  to: 'funerals#search'
-
-    resources :machings
 
     resources :working_hours, :only => [:new, :create, :edit, :update, :destroy]
 
