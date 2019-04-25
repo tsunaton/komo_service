@@ -3,6 +3,7 @@
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝共通＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
 
+
 body {
     /* height: 90vh; */
     margin: 0;
@@ -539,3 +540,64 @@ span.spinner > .add:hover {
 }
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝縦スクロール会場選択メニューここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝リップルボタンここから＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* クリックできる要素 */
+.ripple {
+    /* エフェクトに直接関係はない */
+    margin: 0 auto;
+    border: 3px solid white;
+    height: 70px;
+    width: 200px;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 70px;
+    cursor: pointer;
+
+    /* 必須 */
+    overflow: hidden;
+    position: relative;
+}
+
+/* エフェクト要素 */
+.ripple__effect {
+    /* 値の変更はエフェクト形体・サイズ・スピードに影響する */
+    width: 150px;
+    height: 150px;
+
+    /* 必須 */
+    position: absolute;
+    border-radius: 100%;
+    pointer-events: none;
+    transform: scale(0);
+    opacity: 0;
+}
+
+/* エフェクト要素の色を指定 */
+.ripple__effect.is-white { background: #fff;}
+
+/* classが付与されたらアニメーションを実行 */
+.ripple__effect.is-show {
+    animation: ripple 0.75s ease-out;
+}
+/* 中身 */
+.content_in_ripple_button {
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* アニメーションの定義 */
+@keyframes ripple {
+    from {
+        opacity: 1;
+    }
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝リップルボタンここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
