@@ -9,13 +9,10 @@ has_many :funeraling_hours
 validates :name, presence: true, length: { maximum: 50 }
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }, length: { maximum: 255 }
-validates :papay_per_hour, presence: true
+validates :pay_per_hour, presence: true
 validates :user_type, presence: true
 validates :address, length: { maximum: 50 }
 validates :nearest_station, length: { maximum: 50 }
-end
-
-
 validates :pay_per_hour, numericality: { less_than: 10000 }
 
   attr_accessor :remember_token
