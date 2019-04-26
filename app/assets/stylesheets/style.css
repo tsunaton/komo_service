@@ -3,6 +3,9 @@
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝共通＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
 
+
+
+
 body {
     /* height: 90vh; */
     margin: 0;
@@ -48,16 +51,11 @@ body {
         background-position: 0% 50%
     }
 }
-
-h1,
-h6 {
-    font-family: 'Open Sans';
-    font-weight: 300;
-    text-align: center;
-    position: absolute;
-    top: 45%;
-    right: 0;
-    left: 0;
+h1 {text-align: center;font-size: 28px;}
+h2 {
+  margin: 1rem 0 0.5rem 0;
+  font-size: 18px;
+  font-weight: 300;
 }
 form {
 	margin: 0 35px;
@@ -381,6 +379,8 @@ table tr:hover td {
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
   width: 300px;
+  margin: 0;
+  padding: 10px;
 }
 
 .item {
@@ -401,7 +401,7 @@ table tr:hover td {
   position: relative;
   height:  7rem;
   width:  7rem;
-  margin: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .radio-button {
@@ -431,18 +431,19 @@ table tr:hover td {
 
 .radio-tile-label {
   text-align: center;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 20px;
   color: white;
 }
 
 .radio-button:checked + .radio-tile {
   background-color: white;
   border: 2px solid white;
-  color: #A58FD1;
+  border-radius: 5px;
   transform: scale(1.1, 1.1);
+}
+
+.radio-button:checked + .radio-tile .radio-tile-label {
+  color: #a58fd1;
 }
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝横スクロール日付選択ここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
@@ -515,7 +516,7 @@ span.spinner > .add:hover {
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝縦スクロール会場選択メニュー＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .vertical-menu {
     height: 150px;
-    margin: 20px 0;
+    margin: 0;
     border-radius: 5px;
     overflow-y: auto;
 }
