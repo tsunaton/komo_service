@@ -49,6 +49,8 @@ class Admin::FuneralsController < Admin::ApplicationController
   def search_page
     t = Date.today
     @days = (t..(t + 7)).to_a
+
+    @halls = FuneralHall.all
   end
 
   def destroy

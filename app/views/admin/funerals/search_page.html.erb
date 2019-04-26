@@ -27,26 +27,27 @@
         <% end %>
       </ul>
 
+    </div>
   </div>
-</div>
 
 
-<!-- TimeDropper -->
-<input type='text' id='alarm'>
+  <!-- TimeDropper -->
+  <input type='text' id='alarm'>
 
-<!-- NumberPicker -->
-<input type='number' min='1' max='100' value='1' />
+  <!-- NumberPicker -->
+  <input type='number' min='1' max='100' value='1' />
 
-<div class="vertical-menu">
-  <a href="#">Link 1</a>
-  <a href="#">Link 2</a>
-  <a href="#">Link 3</a>
-  <a href="#">Link 4</a>
-  <a href="#">Link 5</a>
-</div>
+  <!-- 会場選択 -->
+  <div class="vertical-menu">
+    <% @halls.each do |hall| %>
+      <label>
+        <%= f.radio_button :funeral_hall, hall.id %>
+        <%= hall.name %>
+      </label>
+    <% end %>
+  </div>
 
-
-<li><%= f.submit 'スタッフを探す' %></li>
+  <li><%= f.submit 'スタッフを探す' %></li>
 
 <% end %>
 
