@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_04_060946) do
+ActiveRecord::Schema.define(version: 2019_04_25_092829) do
 
   create_table "available_halls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -48,16 +48,6 @@ ActiveRecord::Schema.define(version: 2019_02_04_060946) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "machings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.boolean "confirmation"
-    t.bigint "user_id"
-    t.bigint "funeral_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["funeral_id"], name: "index_machings_on_funeral_id"
-    t.index ["user_id"], name: "index_machings_on_user_id"
-  end
-
   create_table "shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "scheduled_from"
     t.datetime "scheduled_to"
@@ -86,6 +76,9 @@ ActiveRecord::Schema.define(version: 2019_02_04_060946) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "funeral_id"
+    t.integer "status"
+    t.index ["funeral_id"], name: "index_working_hours_on_funeral_id"
     t.index ["user_id"], name: "index_working_hours_on_user_id"
   end
 
@@ -93,8 +86,7 @@ ActiveRecord::Schema.define(version: 2019_02_04_060946) do
   add_foreign_key "available_halls", "users"
   add_foreign_key "clients", "funerals"
   add_foreign_key "funeral_halls", "funerals"
-  add_foreign_key "machings", "funerals"
-  add_foreign_key "machings", "users"
   add_foreign_key "shifts", "users"
+  add_foreign_key "working_hours", "funerals"
   add_foreign_key "working_hours", "users"
 end

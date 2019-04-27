@@ -1,5 +1,7 @@
-<%= form_with url: new_admin_funeral_path, local: true, method: (:get) do |f| %>
 
+<%= form_with url: new_admin_funeral_path, local: true, method: (:get) do |f| %>
+  <h1>スタッフ検索</h1>
+  <h2>日付</h2>
   <div class='container'>
     <div class='radio-tile-group'>
 
@@ -27,23 +29,27 @@
         <% end %>
       </ul>
 
+    </div>
   </div>
-</div>
 
 
-<!-- TimeDropper -->
-<input type='text' id='alarm'>
+  <!-- TimeDropper -->
+  <h2>開始時間と人数</h2>
+  <input type='text' id='alarm'>
 
-<!-- NumberPicker -->
-<input type='number' min='1' max='100' value='1' />
+  <!-- NumberPicker -->
+  <input type='number' min='1' max='100' value='1' />
 
-<div class="vertical-menu">
-  <a href="#">Link 1</a>
-  <a href="#">Link 2</a>
-  <a href="#">Link 3</a>
-  <a href="#">Link 4</a>
-  <a href="#">Link 5</a>
-</div>
+  <!-- 会場選択 -->
+  <h2>斎場</h2>
+  <div class="vertical-menu">
+    <% @halls.each do |hall| %>
+      <label>
+        <%= f.radio_button :funeral_hall, hall.id %>
+        <%= hall.name %>
+      </label>
+    <% end %>
+  </div>
 
 <div class="ripple">
     <span class="ripple__effect is-white"></span>

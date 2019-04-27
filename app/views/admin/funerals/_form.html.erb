@@ -10,10 +10,10 @@
   <%= f.hidden_field :id, :value => id %>
 
   <% @users.each do |user|%>
-    <%= f.fields_for :machings, @funeral.machings.build do |maching| %>
-      <%= maching.label "検索結果" %>
+    <%= f.fields_for :working_hours, @funeral.working_hours.build do |working_hour| %>
+      <%= working_hour.label "検索結果" %>
       <% shift = Shift.find_by(user_id: user.id) %>
-      <%= maching.check_box :shift_id, {multiple: true}, shift.id, nil %>
+      <%= working_hour.check_box :shift_id, {multiple: true}, shift.id, nil %>
       <%= user.name %>
     <% end %>
   <% end %>
