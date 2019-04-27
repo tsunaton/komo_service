@@ -1,7 +1,61 @@
-<%= form_with url: new_admin_funeral_path, local: true, method: (:get) do |f| %>
 
-      <li><%= f.datetime_select :start_time, :minute_step => 15 %></li>から
-      <li><%= f.datetime_select :end_time, :minute_step => 15  %></li>
-      <li><%= f.submit 'スタッフを探す' %></li>
+<%= form_with url: new_admin_funeral_path, local: true, method: (:get) do |f| %>
+  <h1>スタッフ検索</h1>
+  <h2>日付</h2>
+  <div class='container'>
+    <div class='radio-tile-group'>
+
+      <!-- 日付選択機能 -->
+      <ul class='horizontal-list'>
+        <% @days.each_with_index do |day, i| %>
+          <li class='item'>
+            <div class='input-container'>
+              <%=f.radio_button :start_time, day, class: 'radio-button' %>
+
+              <div class='radio-tile'>
+                <label class='radio-tile-label'>
+                  <% if i == 0 %>
+                    <%= '今日' %>
+                  <% elsif i == 1 %>
+                    <%= '明日' %>
+                  <% else %>
+                    <%= day.day %>日
+                  <% end %>
+                </label>
+              </div>
+
+            </div>
+          </li>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+
+
+  <!-- TimeDropper -->
+  <h2>開始時間と人数</h2>
+  <input type='text' id='alarm'>
+
+  <!-- NumberPicker -->
+  <input type='number' min='1' max='100' value='1' />
+
+  <!-- 会場選択 -->
+  <h2>斎場</h2>
+  <div class="vertical-menu">
+    <% @halls.each do |hall| %>
+      <label>
+        <%= f.radio_button :funeral_hall, hall.id %>
+        <%= hall.name %>
+      </label>
+    <% end %>
+  </div>
+
+  <li><%= f.submit 'スタッフを探す' %></li>
 
 <% end %>
+
+<script>
+  $( '#alarm' ).timeDropper();
+  $('input[type=number]').spinner();
+</script>

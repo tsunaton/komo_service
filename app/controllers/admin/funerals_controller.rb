@@ -47,15 +47,10 @@ class Admin::FuneralsController < Admin::ApplicationController
   end
 
   def search_page
-    @today = Date.today
+    t = Date.today
+    @days = (t..(t + 7)).to_a
 
-     i = 0
-     7.times do
-       i += 1
-       day = @today-1+i
-       @days = Array(@days) << day.day
-     end
-     @dates = @days
+    @halls = FuneralHall.all
   end
 
   def destroy
