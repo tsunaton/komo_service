@@ -51,7 +51,10 @@
     <% end %>
   </div>
 
-  <li><%= f.submit 'スタッフを探す' %></li>
+<div class="ripple">
+    <span class="ripple__effect is-white"></span>
+    <%= f.submit 'スタッフを探す',class: 'content_in_ripple_button' %>
+</div>
 
 <% end %>
 
