@@ -13,20 +13,32 @@ RSpec.describe Funeral, type: :model do
 
     context '通らない' do
       describe 'start_time' do
-        it 'start_timeが空だとNG' do
+        it '空だとNG' do
           funeral.start_time = ''
           expect(funeral).to be_invalid
         end
       end
 
       describe 'number_of_people' do
-        it 'number_of_peopleが空だとNG' do
+        it '空だとNG' do
           funeral.number_of_people = ''
           expect(funeral).to be_invalid
         end
 
-        it 'number_of_peopleが101以上だとNG' do
+        it '101以上だとNG' do
           funeral.number_of_people = 101
+          expect(funeral).to be_invalid
+        end
+      end
+
+      describe 'family_name' do
+        it '空だとNG' do
+          funeral.family_name = ''
+          expect(funeral).to be_invalid
+        end
+
+        it '文字数が51文字以上だとNG' do
+          funeral.family_name = 'ア' * 51
           expect(funeral).to be_invalid
         end
       end
