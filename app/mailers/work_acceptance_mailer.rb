@@ -1,0 +1,2 @@
+class WorkAcceptanceMailer < ApplicationMailer
+end
