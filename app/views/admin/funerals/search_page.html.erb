@@ -10,7 +10,7 @@
         <% @days.each_with_index do |day, i| %>
           <li class='item'>
             <div class='input-container'>
-              <%=f.radio_button :start_time, day, class: 'radio-button' %>
+              <%=f.radio_button :start_date, day, class: 'radio-button' %>
 
               <div class='radio-tile'>
                 <label class='radio-tile-label'>
@@ -35,10 +35,12 @@
 
   <!-- TimeDropper -->
   <h2>開始時間と人数</h2>
-  <input type='text' id='alarm'>
+  <!-- <input type='text' id='alarm'> -->
+  <%= f.text_field :start_time, id: 'alarm' %>
 
   <!-- NumberPicker -->
-  <input type='number' min='1' max='100' value='1' />
+  <!-- <input type='number' min='1' max='100' value='1' /> -->
+  <%= f.number_field :number_of_people, min: '1', max: '100', value: '1' %>
 
   <!-- 会場選択 -->
   <h2>斎場</h2>
