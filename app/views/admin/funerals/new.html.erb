@@ -1,5 +1,54 @@
-<h1>スタッフ検索結果・案件入力</h1>
+<%= form_with url: admin_funerals_path, local: true do |f| %>
+<h1>検索結果</h1>
+<span id="start-time-and-hall">
+  <%= @funeral.start_time.month %>月
+  <%= @funeral.start_time.day %>日
+  <%= @funeral.start_time.strftime("%H:%M") %>〜
+  <%= @hall_name %>,
+  <%= @funeral.number_of_people %>人
+</span>
+<h2>スタッフ</h2>
 
-<%= render :partial => "form" %>
+  <!-- 該当スタッフ表示 -->
+  <div class='container'>
+    <div class='radio-tile-group'>
 
-<%= link_to 'ホームへ戻る', admin_home_path %>
+      <ul class='horizontal-list'>
+        <% @users.each do |user|%>
+          <li class='item'>
+            <div class='input-container'>
+
+              <%= f.fields_for :working_hours, @funeral.working_hours.build do |working_hour| %>
+                <%= working_hour.check_box :user_id, class: 'radio-button' %>
+                <div class='radio-tile'>
+                  <label class='radio-tile-label'>
+                    <%= user.name %>
+                  </label>
+                </div>
+              <% end %>
+
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <h2>取引先</h2>
+    <div class="vertical-menu">
+      <% @clients.each do |client| %>
+        <label>
+          <%= f.radio_button :client, client.id %>
+          <%= client.name %>
+        </label>
+      <% end %>
+    </div>
+
+    <h2>ご喪家</h2>
+    <%= f.text_field :family_name,class: 'one-line-input' %><span id="ie">家</span>
+
+    <div class="ripple">
+        <span class="ripple__effect is-white"></span>
+        <%= f.submit 'お仕事をお願いする',class: 'content_in_ripple_button' %>
+    </div>
+<% end %>

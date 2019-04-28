@@ -50,7 +50,7 @@ body {
     }
 }
 
-h1 {text-align: center;font-size: 28px;}
+h1 {text-align: center;font-size: 25px;}
 h2 {
   margin: 1rem 0 0.5rem 0;
   font-size: 18px;
@@ -58,6 +58,25 @@ h2 {
 }
 form {
 	margin: 0 35px;
+}
+.one-line-input {
+  width: 150px;
+  border-radius: 5px;
+  border-style: none;
+  font-size: 25px;
+}
+#ie{
+  font-size: 25px;
+  padding-left: 5px;
+}
+#start-time-and-hall{
+  margin-bottom: 10px;
+  padding: 10px;
+  background: rgb(255, 255, 255, 0.2);
+  border-radius: 5px;
+  font-size: 18px;
+  display: inline-block;
+
 }
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナビ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 /* A PEN BY saruwakakun */
@@ -191,7 +210,7 @@ padding-top: 40px;
 color: #8C55AA;
 font-family: 'Ubuntu', sans-serif;
 font-weight: bold;
-font-size: 23px;
+font-size: 25px;
 }
 
 .un {
@@ -251,7 +270,7 @@ padding: 10px 40px;
 font-family: 'Ubuntu', sans-serif;
 display: block;
 margin: 0 auto;
-font-size: 13px;
+font-size: 14px;
 box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
 
@@ -290,7 +309,7 @@ table a:hover {
 table {
 	font-family:Arial, Helvetica, sans-serif;
 	color:#666;
-	font-size:12px;
+	font-size:14px;
 	text-shadow: 1px 1px 0px #fff;
 	background:#eaebec;
 	margin:20px;
@@ -379,7 +398,7 @@ table tr:hover td {
   -webkit-overflow-scrolling: touch;
   width: 300px;
   margin: 0;
-  padding: 10px;
+  padding-left: 10px;
 }
 
 .item {
@@ -454,7 +473,7 @@ input[type=number] {
   padding: 0;
   font-family: Lato;
   font-weight: 700;
-  font-size: 1.2em;
+  font-size: 25px;
   text-transform: uppercase;
   text-align: center;
   color: #ffffff;
@@ -480,7 +499,7 @@ span.spinner > .add {
   text-align: center;
   font-family: Lato;
   font-weight: 700;
-  font-size: 1.4em;
+  font-size: 25px;
   line-height: 40px;
   color: #ffffff;
   border: 2px #ffffff solid;
@@ -541,7 +560,7 @@ span.spinner > .add:hover {
 /* クリックできる要素 */
 .ripple {
     /* エフェクトに直接関係はない */
-    margin: 0 auto;
+    margin: 20px auto;
     border: 3px solid white;
     height: 70px;
     width: 200px;
