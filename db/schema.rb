@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_25_092829) do
+ActiveRecord::Schema.define(version: 2019_04_27_100952) do
 
   create_table "available_halls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -25,20 +25,16 @@ ActiveRecord::Schema.define(version: 2019_04_25_092829) do
     t.string "name"
     t.string "address"
     t.integer "dispatching_fee_per_hour"
-    t.bigint "funeral_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["funeral_id"], name: "index_clients_on_funeral_id"
   end
 
   create_table "funeral_halls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.string "nearest_station"
-    t.bigint "funeral_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["funeral_id"], name: "index_funeral_halls_on_funeral_id"
   end
 
   create_table "funerals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -46,6 +42,11 @@ ActiveRecord::Schema.define(version: 2019_04_25_092829) do
     t.datetime "start_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "family_name"
+    t.bigint "funeral_hall_id"
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_funerals_on_client_id"
+    t.index ["funeral_hall_id"], name: "index_funerals_on_funeral_hall_id"
   end
 
   create_table "shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -84,8 +85,8 @@ ActiveRecord::Schema.define(version: 2019_04_25_092829) do
 
   add_foreign_key "available_halls", "funeral_halls"
   add_foreign_key "available_halls", "users"
-  add_foreign_key "clients", "funerals"
-  add_foreign_key "funeral_halls", "funerals"
+  add_foreign_key "funerals", "clients"
+  add_foreign_key "funerals", "funeral_halls"
   add_foreign_key "shifts", "users"
   add_foreign_key "working_hours", "funerals"
   add_foreign_key "working_hours", "users"
