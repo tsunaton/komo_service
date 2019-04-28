@@ -60,4 +60,13 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   #インスタンス変数がビューに渡らないのでキータ見て追加
   config.reload_classes_only_on_change = false;
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.mail.yahoo.co.jp',
+    port:                 587,
+    user_name:            'urusei_suika',
+    password:             'Apple517',
+    authentication:       'plain',
+    enable_starttls_auto: true }
 end
