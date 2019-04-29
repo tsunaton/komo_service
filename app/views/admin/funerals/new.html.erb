@@ -1,4 +1,4 @@
-<%= form_with url: admin_funerals_path, local: true do |f| %>
+<%= form_with(model: [ :admin, @funeral ], local: true) do |f| %>
 <h1>検索結果</h1>
 <span id="start-time-and-hall">
   <%= @funeral.start_time.month %>月
@@ -7,6 +7,10 @@
   <%= @hall_name %>,
   <%= @funeral.number_of_people %>人
 </span>
+<%= f.hidden_field :start_time, value: @funeral.start_time %>
+<%= f.hidden_field :funeral_hall_id, value: @hall_id %>
+<%= f.hidden_field :number_of_people, value: @funeral.number_of_people %>
+
 <h2>スタッフ</h2>
 
   <!-- 該当スタッフ表示 -->
@@ -25,6 +29,7 @@
                     <%= user.name %>
                   </label>
                 </div>
+                <%= working_hour.hidden_field :status, value: 1 %>
               <% end %>
 
               </div>
@@ -38,7 +43,7 @@
     <div class="vertical-menu">
       <% @clients.each do |client| %>
         <label>
-          <%= f.radio_button :client, client.id %>
+          <%= f.radio_button :client_id, client.id %>
           <%= client.name %>
         </label>
       <% end %>

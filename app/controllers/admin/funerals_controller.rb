@@ -17,7 +17,8 @@ class Admin::FuneralsController < Admin::ApplicationController
     end
 
     @funeral = Funeral.new(start_time: start_time, number_of_people: params[:number_of_people])
-    @hall_name = FuneralHall.find(params[:funeral_hall]).name
+    @hall_id = params[:funeral_hall]
+    @hall_name = FuneralHall.find(@hall_id).name
     @clients = Client.all
   end
 
@@ -61,7 +62,13 @@ class Admin::FuneralsController < Admin::ApplicationController
   private
 
     def funeral_params
-    params.require(:funeral).permit(:id, :funeral_halls_id, :client_id, :start_time, :end_time, working_hours_attributes:['0': :shift_id] )
+    params.require(:funeral)
+          .permit(:start_time,
+                  :funeral_hall_id,
+                  :client_id,
+                  :family_name,
+                  :number_of_people,
+                  working_hours_attributes:[:user_id, :status])
     end
 
 end
