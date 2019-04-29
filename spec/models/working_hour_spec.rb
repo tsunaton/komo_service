@@ -11,9 +11,9 @@ RSpec.describe WorkingHour, type: :model do
     end
 
     context '通らない' do
-      describe 'start_time' do
+      describe 'status' do
         it '空だとNG' do
-          working_hour.start_time = ''
+          working_hour.status = ''
           expect(working_hour).to be_invalid
         end
       end
