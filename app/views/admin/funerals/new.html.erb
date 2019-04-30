@@ -18,12 +18,12 @@
     <div class='radio-tile-group'>
 
       <ul class='horizontal-list'>
-        <% @users.each do |user|%>
+        <% @users.each_with_index do |user,i|%>
           <li class='item'>
             <div class='input-container'>
 
               <%= f.fields_for :working_hours, @funeral.working_hours.build do |working_hour| %>
-                <%= working_hour.check_box :user_id, class: 'radio-button' %>
+                <%= working_hour.check_box :user_id, {} , "#{user.id}", "false" %>
                 <div class='radio-tile'>
                   <label class='radio-tile-label'>
                     <%= user.name %>
