@@ -2,5 +2,5 @@ class WorkingHour < ApplicationRecord
 belongs_to :user
 belongs_to :funeral
 
-validates :start_time, presence: true
+validates :status, presence: true
 end
