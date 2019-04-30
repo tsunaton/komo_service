@@ -23,13 +23,12 @@
             <div class='input-container'>
 
               <%= f.fields_for :working_hours, @funeral.working_hours.build do |working_hour| %>
-                <%= working_hour.check_box :user_id, {} , "#{user.id}", "false" %>
+                <%= working_hour.check_box :user_id, {} , "#{user.id}", nil %>
                 <div class='radio-tile'>
                   <label class='radio-tile-label'>
                     <%= user.name %>
                   </label>
                 </div>
-                <%= working_hour.hidden_field :status, value: 1 %>
               <% end %>
 
               </div>
