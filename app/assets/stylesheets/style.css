@@ -465,6 +465,30 @@ table tr:hover td {
 }
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝横スクロール日付選択ここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝縦スクロールシフト選択＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.radio-tile-group-shift{
+  white-space: nowrap;
+  display: flex;
+  overflow: auto;
+}
+.horizontal-list-shift {
+}
+.item-shift {
+  display: flex;
+}
+.input-container-shift {
+  position: relative;
+  height: 32px;
+  width:  7rem;
+  margin-right: 0.5rem;
+}
+.radio-tile-shift {
+  border: none;
+  border-radius: 0px;
+  border-bottom: 1px solid white;
+}
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝縦スクロールシフト選択ここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナンバーピッカー＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 input[type=number] {
   float: left;
