@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_100952) do
+ActiveRecord::Schema.define(version: 2019_04_30_103227) do
 
   create_table "available_halls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2019_04_27_100952) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "funeral_id"
-    t.integer "status"
+    t.integer "status", default: 0
     t.index ["funeral_id"], name: "index_working_hours_on_funeral_id"
     t.index ["user_id"], name: "index_working_hours_on_user_id"
   end
