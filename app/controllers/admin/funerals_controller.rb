@@ -20,8 +20,8 @@ class Admin::FuneralsController < Admin::ApplicationController
 
   def create
     funeral = Funeral.new(funeral_params)
-    binding.pry
     if funeral.save!
+      WorkAcceptanceMailer.with(user: @user).send_mail.deliver_later
       redirect_to admin_funerals_path
     else
       render :new

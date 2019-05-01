@@ -4,9 +4,15 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @user.name %>様、example.comへようこそ。</h1>
+    <h1><%= @user.name %>様</h1>
     <p>
-      このサイトにログインするには、<%= @url %>をクリックしてください。
+      お疲れさまです！
+      お仕事依頼が来ています。
+      ・開始：<%= @funeral.start_time %>
+      ・場所：<%= @funeral.funeral_hall.name %>
+
+      ↓こちらをクリックして、承認 または 辞退の意をお伝えください。
+      <%= @url %>
     </p>
   </body>
 </html>

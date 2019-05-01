@@ -3,7 +3,8 @@ class WorkAcceptanceMailer < ApplicationMailer
 
   def send_mail
     @user = User.first
+    @funeral = Funeral.first
     @url  = 'localhost:3000'
-    mail(to: @user.email, subject: '私の素敵なサイトへようこそ')
+    mail(to: @user.email, subject: 'お仕事依頼がきました')
   end
 end
