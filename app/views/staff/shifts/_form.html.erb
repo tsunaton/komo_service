@@ -1,9 +1,35 @@
-<ul>
-  <li>空いている時間帯を入力してください。</li>
-  <%= form_with(model: [:staff, @shift]) do |f| %>
-  <li><%= f.datetime_select :start_time, :minute_step => 15 %>
-  の</li>
-  <li><%= f.datetime_select :end_time, :minute_step => 15 %>
-  <li><%= f.submit %></li>
-<% end %>
-</ul>
+<%= form_with(model: [:staff, @shift], local: true) do |f| %>
+  <div class='container'>
+    <div class='radio-tile-group-shift'>
+
+      <!-- 日付選択機能 -->
+        <% @days.each_with_index do |day,i| %>
+        <ul class='horizontal-list-shift'>
+          <!--日付表示-->
+          <%= day.day %>日
+          <!--時間表示-->
+          <% @times.each_with_index do |t,i_2| %>
+              <li class='item-shift'>
+                <div class='input-container input-container-shift'>
+                  <%= f.check_box "scheduled_from#{i}-#{i_2}", {} , "#{day}:#{t}", nil %>
+                  <div class='radio-tile radio-tile-shift'>
+                    <label class='radio-tile-label'>
+                      <%= t %>
+                    </label>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+
+          </ul>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="ripple">
+        <span class="ripple__effect is-white"></span>
+        <%= f.submit 'シフトを登録',class: 'content_in_ripple_button' %>
+    </div>
+
+  <% end %>
