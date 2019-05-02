@@ -1,8 +1,7 @@
 
 お疲れさまです！
 お仕事依頼が来ています。
-・開始：<%= @funeral.start_time %>
+・開始：<%= @funeral.start_time.strftime("%m月%d日 %H:%M〜") %>
 ・場所：<%= @funeral.funeral_hall.name %>
 
-↓こちらをクリックして、承認 または 辞退の意をお伝えください。
-<%= @url %>
+<%=link_to "こちら", @url %>をクリックして、承認 または 辞退の意をお伝えください。
