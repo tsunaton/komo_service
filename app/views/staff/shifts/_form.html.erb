@@ -1,19 +1,19 @@
 <%= form_with(model: [:staff, @shift], local: true) do |f| %>
   <div class='container'>
-    <div class='radio-tile-group-shift'>
+    <div class='checkbox-tile-group-shift'>
 
       <!-- 日付選択機能 -->
         <% @days.each_with_index do |day,i| %>
         <ul class='horizontal-list-shift'>
           <!--日付表示-->
-          <%= day.day %>日
+          <span class="shift-date"><%= day.day %>日</span>
           <!--時間表示-->
           <% @times.each_with_index do |t,i_2| %>
               <li class='item-shift'>
-                <div class='input-container input-container-shift'>
+                <div class='input-container-shift'>
                   <%= f.check_box "scheduled_from#{i}-#{i_2}", {} , "#{day}:#{t}", nil %>
-                  <div class='radio-tile radio-tile-shift'>
-                    <label class='radio-tile-label'>
+                  <div class='checkbox-tile-shift'>
+                    <label class='checkbox-tile-label'>
                       <%= t %>
                     </label>
                   </div>
