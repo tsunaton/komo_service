@@ -1,0 +1,11 @@
+defaults: &defaults
+  url: https://komo-service-staging.herokuapp.com/staff/working_hours/id/edit
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  
+production:
+  url: https://komo-service.herokuapp.com/staff/working_hours/id/edit
