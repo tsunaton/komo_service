@@ -10,6 +10,7 @@ class Admin::FuneralsController < Admin::ApplicationController
 
     @shift = Shift.new
     @shifts = @shift.matches(start_time, quickest_end_time)
+
     @users = []
     @shifts.each do |shift|
       user = User.find(shift.user_id)
@@ -68,7 +69,7 @@ class Admin::FuneralsController < Admin::ApplicationController
                   :client_id,
                   :family_name,
                   :number_of_people,
-                  working_hours_attributes:[:user_id, :status])
+                  working_hours_attributes:[:user_id])
     end
 
 end
