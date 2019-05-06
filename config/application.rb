@@ -12,6 +12,7 @@ module KomoService
     config.load_defaults 5.2
     config.time_zone = 'Tokyo'
     config.generators do |g|
+    config.assets.initialize_on_precompile = false
       g.test_framework :rspec,
                        fixtures: true,
                        view_specs: false,
