@@ -3,7 +3,7 @@ belongs_to :user
 belongs_to :funeral
 
 enum status: [
-  :sent_email,
+  :waiting,
   :accepted,
   :rejected
 ]

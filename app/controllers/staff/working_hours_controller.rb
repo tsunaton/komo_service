@@ -38,7 +38,7 @@ class Staff::WorkingHoursController < Staff::ApplicationController
       else
 
       end
-    when nil
+    when nil #終了報告時
       if working_hour.update(end_time: working_hour_params[:end_time])
         redirect_to staff_home_path
       else
