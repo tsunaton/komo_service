@@ -15,4 +15,11 @@ module DocumentsHelper
     works.each { |w| @sum += calculate_pay_per_day(w) }
     @sum
   end
+
+  def calculate_pay_per_this_month_for_client(client)
+    funerals = Funeral.where(client_id: client.id)
+    @sum = 0
+    @working_hours.each { |w| @sum += calculate_pay_per_day(w) }
+    @sum
+  end
 end

@@ -390,6 +390,33 @@ a {text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
   color: white;
 }
 
+.invoices_table_container {
+  width: 100%;
+  overflow-x: scroll;
+  text-align: center;
+}
+.invoices_table_container table {
+  width: 800px;
+	background: rgba(255,255,255,0.2);
+	margin: 0 auto;
+	border-radius:3px;
+	box-shadow: 0 1px 2px #d1d1d1;
+  border-collapse: collapse;
+  font-size: 4.7vw;
+}
+.invoices_table_container table tr {
+}
+.invoices_table_container table th {
+  padding: 10px;
+  border-bottom: 2px solid white;
+  box-sizing: border-box;
+}
+.invoices_table_container table td {
+  text-align: center;
+  padding: 15px 10px;
+	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+}
+
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝テーブルここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝横スクロールラジオボタン＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
