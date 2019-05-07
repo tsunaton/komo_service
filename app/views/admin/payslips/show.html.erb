@@ -5,10 +5,11 @@
   <p class="right-p">時給<%= @current_user.pay_per_hour %>円</p>
 </div>
 
-<div class="table_container">
+<div class="pay_table_container">
   <table>
     <tr>
-      <% @t_headers.each do |th| %>
+      <% t_headers = %w(日時 会場 実働 日給 就労時間 喪家 取引先 交通費) %>
+      <% t_headers.each do |th| %>
       <th><%= th %></th>
       <% end %>
     </tr>

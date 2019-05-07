@@ -16,6 +16,8 @@
 
 
 
+
+
 body {
     /* height: 90vh; */
     margin: 0;
@@ -323,12 +325,12 @@ a {text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝入力フォームここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝テーブル＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-.table_container {
+.pay_table_container {
   width: 100%;
   overflow-x: scroll;
   text-align: center;
 }
-table {
+.pay_table_container table {
   width: 800px;
 	background: rgba(255,255,255,0.2);
 	margin: 0 auto;
@@ -337,37 +339,57 @@ table {
   border-collapse: collapse;
   font-size: 4.7vw;
 }
-table tr {
+.pay_table_container table tr {
 }
-table th {
+.pay_table_container table th {
   padding: 10px;
   border-bottom: 2px solid white;
   box-sizing: border-box;
 }
-table td {
+.pay_table_container table td {
   text-align: center;
   padding: 15px 10px;
 	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
 }
-table th:first-child {
+.pay_table_container table th:first-child {
   width: 20vw;
   text-align: right;
 }
-table th:nth-of-type(2) {
+.pay_table_container table th:nth-of-type(2) {
   width: 35vw;
 }
-table th:nth-of-type(3) {
+.pay_table_container table th:nth-of-type(3) {
   width: 15vw;
 }
-table th:nth-of-type(4) {
+.pay_table_container table th:nth-of-type(4) {
   width: 28vw;
 }
-table th:first-child {
+.pay_table_container table th:first-child {
   margin-right: 8px;
 }
-table td:first-child {
+.pay_table_container table td:first-child {
   text-align: right;
 }
+
+.users_table_container {
+}
+.users_table_container table{
+  width: 85%;
+  background: rgba(255,255,255,0.2);
+  margin: 0 auto;
+}
+.users_table_container table tr{
+}
+.users_table_container table td{
+  padding: 10px;
+  border-bottom: 2px solid white;
+  box-sizing: border-box;
+  color: white;
+}
+.users_table_container table td a{
+  color: white;
+}
+
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝テーブルここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝横スクロールラジオボタン＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
