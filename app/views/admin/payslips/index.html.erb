@@ -1,0 +1,12 @@
+<div class="users_table_container">
+<h1>給与明細</h1>
+<table>
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= link_to user.name, admin_payslip_path(user.id) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+</div>
