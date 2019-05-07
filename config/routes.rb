@@ -29,7 +29,6 @@ Rails.application.routes.draw do
   namespace :admin do
 
     get    '/home',   to: 'static_pages#home'
-    get     '/payslip',  to:'static_pages#payslip'
 
     resources :users
 
@@ -43,6 +42,10 @@ Rails.application.routes.draw do
     get   '/search',  to: 'funerals#search'
 
     resources :working_hours, :only => [:new, :create, :edit, :update, :destroy]
+
+    resources :payslips, :only => [:index, :show, :edit, :update]
+
+    resources :invoices, :only => [:index, :show, :edit, :update]
 
   end
 
