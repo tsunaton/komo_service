@@ -15,25 +15,20 @@ class Staff::WorkingHoursController < Staff::ApplicationController
 
   def update
     working_hour = WorkingHour.find(params[:id])
+    action_after = proc {|cond|
+      if cond
+        redirect_to staff_home_path
+      else
+        render :edit
+      end
+    }
     case working_hour_params[:commit]
     when "受ける"
-      if working_hour.update(start_time: working_hour.funeral.start_time, status: "accepted")
-        redirect_to staff_home_path
-      else
-        render :edit
-      end
+      action_after.(working_hour.update(start_time: working_hour.funeral.start_time, status: "accepted"))
     when "辞退する"
-      if working_hour.update(status: "rejected")
-        redirect_to staff_home_path
-      else
-        render :edit
-      end
+      action_after.(working_hour.update(status: "rejected"))
     else
-      if working_hour.update(end_time: working_hour_params[:end_time])
-        redirect_to staff_home_path
-      else
-        render :edit
-      end
+      action_after.(working_hour.update(end_time: working_hour_params[:end_time]))
     end
   end
 
@@ -52,4 +47,6 @@ class Staff::WorkingHoursController < Staff::ApplicationController
       params.permit(:commit)
     end
   end
+
+
 end
