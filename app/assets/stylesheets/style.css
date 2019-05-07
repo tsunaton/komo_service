@@ -15,6 +15,7 @@
 
 
 
+
 body {
     /* height: 90vh; */
     margin: 0;
@@ -405,7 +406,7 @@ table tr:hover td {
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝テーブルここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
-/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝横スクロール日付選択＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝横スクロールラジオボタン＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .horizontal-list {
   overflow-x: auto;
   white-space: nowrap;
@@ -418,9 +419,6 @@ table tr:hover td {
 .item {
   /* 横スクロール用 */
   display: inline-block;
-}
-
-.container {
 }
 
 .radio-tile-group, .input-container, .radio-button {
@@ -477,10 +475,24 @@ table tr:hover td {
 .radio-button:checked + .radio-tile .radio-tile-label {
   color: #a58fd1;
 }
-/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝横スクロール日付選択ここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝横スクロールラジオボタンここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
-/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝縦スクロールシフト選択＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-input[type=checkbox]{
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝横スクロールチェックボックス＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+* {
+
+}
+.checkbox-tile-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.checkbox-tile-group .input-container {
+  position: relative;
+  height: 7rem;
+  width: 7rem;
+  margin: 0.5rem;
+}
+.checkbox-tile-group .input-container input[type=checkbox] {
   opacity: 0;
   position: absolute;
   top: 0;
@@ -490,24 +502,55 @@ input[type=checkbox]{
   margin: 0;
   cursor: pointer;
 }
-input[type=checkbox]:checked + .radio-tile {
-  background-color: white;
+.checkbox-tile-group .input-container .checkbox-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   border: 2px solid white;
   border-radius: 5px;
+  padding: 1rem;
+  transition: transform 300ms ease;
+  box-sizing: border-box;
+}
+.checkbox-tile-group .input-container .checkbox-tile-label {
+  text-align: center;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+}
+.checkbox-tile-group .input-container input[type=checkbox]:checked {
+  z-index: 1;
+}
+.checkbox-tile-group .input-container input[type=checkbox]:checked + .checkbox-tile {
+  background-color: #fff;
+  border: 2px solid #fff;
+  color: white;
   transform: scale(1.1, 1.1);
+  z-index: 0;
 }
-input[type=checkbox]:checked + .radio-tile .radio-tile-label {
+.checkbox-tile-group .input-container input[type=checkbox]:checked + .checkbox-tile .checkbox-tile-label {
   color: #a58fd1;
+  background-color: #fff;
 }
-.radio-tile-group-shift{
-  white-space: nowrap;
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝横スクロールチェックボックス＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝縦スクロールチェックボックス＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.horizontal-list-shift {
+}
+.checkbox-tile-group-shift{
   display: flex;
   overflow: auto;
 }
-.horizontal-list-shift {
-}
-.item-shift {
-  display: flex;
+.checkbox-tile-shift {
+  border: none;
+  border-radius: 0px;
+  border-bottom: 1px solid white;
+  transition: transform 300ms ease;
 }
 .input-container-shift {
   position: relative;
@@ -515,12 +558,46 @@ input[type=checkbox]:checked + .radio-tile .radio-tile-label {
   width:  7rem;
   margin-right: 0.5rem;
 }
-.radio-tile-shift {
-  border: none;
-  border-radius: 0px;
-  border-bottom: 1px solid white;
+.item-shift {
+  display: flex;
 }
-/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝縦スクロールシフト選択ここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.input-container-shift input[type=checkbox] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+.input-container-shift input[type=checkbox]:checked {
+  z-index: 1;
+}
+.input-container-shift input[type=checkbox]:checked + .checkbox-tile-shift {
+  background-color: #fff;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  color: white;
+  transform: scale(1.1, 1.2);
+  z-index: 0;
+}
+.input-container-shift input[type=checkbox]:checked + .checkbox-tile-shift .checkbox-tile-label {
+  color: #a58fd1;
+  background-color: #fff;
+}
+.shift-date{
+  text-align: center;
+  font-size: 20px;
+  display: block;
+  background: #fff;
+  border-radius: 40px;
+  width: 50px;
+  color: a58fd1;
+  padding: 5px;
+  margin: 0 auto 10px;
+}
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝縦スクロールチェックボックス選択ここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナンバーピッカー＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 input[type=number] {
