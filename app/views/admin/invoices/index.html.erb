@@ -1,0 +1,12 @@
+<div class="users_table_container">
+<h1>請求書</h1>
+<table>
+  <% @clients.each do |client| %>
+    <tr>
+      <td>
+        <%= link_to client.name, admin_invoice_path(client.id) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+</div>
