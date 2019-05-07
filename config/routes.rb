@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
     resources :clients, :except => [:show]
 
-    resources :working_hours, :only => [:new, :create, :edit, :update, :destroy]
+    resources :working_hours
 
     resources :shifts
 

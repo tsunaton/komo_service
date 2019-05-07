@@ -1,1 +1,5 @@
-遅刻処理
+<% if work_started?(@working_hour) %>
+ <%= render :partial => "end_report" %>
+ <% else %>
+ <%= render :partial => "accept" %>
+<% end %>
