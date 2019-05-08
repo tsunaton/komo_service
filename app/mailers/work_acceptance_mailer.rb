@@ -4,7 +4,7 @@ class WorkAcceptanceMailer < ApplicationMailer
   def send_mail
     @user = User.first
     @funeral = Funeral.first
-    @url = 'https://komo-service-staging.herokuapp.com/'
+    @url = Settings.url % @working_hour.id
     mail(to: @user.email, subject: 'お仕事依頼がきました')
   end
 end
