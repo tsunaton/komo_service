@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 
     get    '/home',   to: 'static_pages#home'
 
-    get     '/payslip',  to:'documents#payslip'
-
     resources :users
 
     resources :funeral_halls, :except => [:show]
@@ -22,6 +20,8 @@ Rails.application.routes.draw do
     resources :working_hours
 
     resources :shifts
+
+    resources :payslips, :only => [:show]
 
   end
 

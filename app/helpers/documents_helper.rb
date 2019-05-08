@@ -9,17 +9,7 @@ module DocumentsHelper
     pay_per_day.ceil
   end
 
-  def calculate_pay_per_this_month(user)
-    works = WorkingHour.where(user_id: user.id)
-    @sum = 0
-    works.each { |w| @sum += calculate_pay_per_day(w) }
-    @sum
-  end
-
-  def calculate_pay_per_this_month_for_client(client)
-    funerals = Funeral.where(client_id: client.id)
-    @sum = 0
-    @working_hours.each { |w| @sum += calculate_pay_per_day(w) }
-    @sum
+  def calculate_monthly(works)
+    works.inject(0){ |sum, w| sum += calculate_pay_per_day(w) }
   end
 end

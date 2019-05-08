@@ -7,6 +7,6 @@ class Admin::PayslipsController < Admin::ApplicationController
   end
 
   def show
-    @working_hours = WorkingHour.where(user_id: @current_user.id)
+    @working_hours = WorkingHour.where(user_id: params[:id]).where(status: "done")
   end
 end
