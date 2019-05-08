@@ -1,11 +1,23 @@
 defaults: &defaults
-  url: https://komo-service-staging.herokuapp.com/staff/working_hours/working_hour/%s/edit
+  work_accept:
+    url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit
+    mail_from: leetanshim@gmail.com
+  staff_authentication:
+    url: https://komo-service.herokuapp.com/admin/users/authenticate_staff.html.erb
+    mail_from: leetanshim@gmail.com
+    mail_to: leetanshim@gmail.com
 
 development:
-  <<: *defaults
+  work_accept:
+    url: https://komo-service-staging.herokuapp.com/staff/working_hours/%s/edit
+    mail_from: urusei_suika@yahoo.co.jp
+  staff_authentication:
+    url: https://komo-service-staging.herokuapp.com/admin/users/authenticate_staff.html.erb
+    mail_from: urusei_suika@yahoo.co.jp
+    mail_to: urusei_suika@yahoo.co.jp
 
 test:
   <<: *defaults
 
 production:
-  url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit
+  <<: *defaults
