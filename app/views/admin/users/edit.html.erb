@@ -1,28 +1,5 @@
-<h1>Editing User</h1>
-
-<%= form_with model: [:admin, @user] do |f| %>
-  <div>
-    <%= f.label :氏名 %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :アドレス %>
-    <%= f.text_field :email %>
-  </div>
-  <div>
-    <%= f.label :住所 %>
-    <%= f.text_field :address %>
-  </div>
-  <div>
-    <%= f.label :可能会場 %>
-  </div>
-  <div>
-    <%= f.label :時給 %>
-    <%= f.text_field :pay_per_hour %>
-  </div>
-
-  <%= f.submit "登録申請" %>
+<% if @user.user_type = "unauthenticated" %>
+  <%= render :partial => "admin/users/staff_authentication" %>
+<% else %>
+  <%= render :partial => "admin/users/edit" %>
 <% end %>
-
-
-<%= link_to '一覧に戻る', admin_users_path %>
