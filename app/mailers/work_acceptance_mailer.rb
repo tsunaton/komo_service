@@ -4,7 +4,7 @@ class WorkAcceptanceMailer < ApplicationMailer
   def send_mail
     @user = User.first
     @funeral = Funeral.first
-    Settings.url % @working_hour.id
+    @url = Settings.url % @working_hour.id
     mail(to: @user.email, subject: 'お仕事依頼がきました')
   end
 end
