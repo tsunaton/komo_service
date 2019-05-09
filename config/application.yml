@@ -1,14 +1,5 @@
 defaults: &defaults
   work_accept:
-    url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit
-    mail_from: leetanshim@gmail.com
-  apply_for_authentication:
-    url: https://komo-service.herokuapp.com/admin/users/%s/edit
-    mail_from: leetanshim@gmail.com
-    mail_to: leetanshim@gmail.com
-
-development:
-  work_accept:
     url: https://komo-service-staging.herokuapp.com/staff/working_hours/%s/edit
     mail_from: urusei_suika@yahoo.co.jp
   apply_for_authentication:
@@ -16,8 +7,17 @@ development:
     mail_from: urusei_suika@yahoo.co.jp
     mail_to: urusei_suika@yahoo.co.jp
 
+development:
+  <<: *defaults
+
 test:
   <<: *defaults
 
 production:
-  <<: *defaults
+  work_accept:
+    url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit
+    mail_from: leetanshim@gmail.com
+  apply_for_authentication:
+    url: https://komo-service.herokuapp.com/admin/users/%s/edit
+    mail_from: leetanshim@gmail.com
+    mail_to: leetanshim@gmail.com
