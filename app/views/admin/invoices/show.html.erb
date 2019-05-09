@@ -1,7 +1,7 @@
 <h1>請求書</h1>
 
 <div class="flex-box">
-  <p class="payslip-sum">¥<%= calculate_pay_per_this_month_for_client(@client) %></p>
+  <p class="payslip-sum">¥<%= calculate_monthly(@working_hours) %></p>
   <p class="right-p">派遣料<%= @client.dispatching_fee_per_hour %>円/h</p>
 </div>
 

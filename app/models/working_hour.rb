@@ -5,6 +5,7 @@ belongs_to :funeral
 enum status: [
   :waiting,
   :accepted,
-  :rejected
+  :rejected,
+  :done
 ]
 end

@@ -7,7 +7,6 @@ class Admin::InvoicesController < Admin::ApplicationController
 
   def show
     @client = Client.find(params[:id])
-    funerals = Funeral.where(client_id: params[:id])
-    funerals.each { |f| @working_hours = Array(nil) << f.working_hours[0]}
+    @working_hours = WorkingHour.where(funeral_id: @client.funerals.ids).where(status: "done")
   end
 end

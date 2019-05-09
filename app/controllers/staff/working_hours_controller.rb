@@ -28,7 +28,7 @@ class Staff::WorkingHoursController < Staff::ApplicationController
     when "辞退する"
       action_after.(working_hour.update(status: "rejected"))
     else
-      action_after.(working_hour.update(end_time: working_hour_params[:end_time]))
+      action_after.(working_hour.update(end_time: working_hour_params[:end_time], status: "done"))
     end
   end
 
