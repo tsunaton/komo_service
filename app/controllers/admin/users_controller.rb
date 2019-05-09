@@ -22,7 +22,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def update
       @user = User.find(params[:id])
-      render :edit unless user.update(user_params)
+      render :edit unless @user.update(user_params)
       if @user.user_type == "unauthenticated" && @user.update(user_type: "staff")
         redirect_to admin_users_path
       else
