@@ -44,11 +44,9 @@ class Staff::UsersController < Staff::ApplicationController
   end
 
   def apply_for_authentication
-    @user = User.new
     added_user_params = user_params.merge(user_type: "unauthenticated", pay_per_hour: 0)
-
-    user = User.new(added_user_params)
-    if user.save
+    @user = User.new(added_user_params)
+    if @user.save
       ApplyForAuthenticationMailer.send_mail(user).deliver_later
       redirect_to root_path
     else

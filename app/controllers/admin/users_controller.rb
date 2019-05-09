@@ -21,9 +21,9 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def update
-      user = User.find(params[:id])
+      @user = User.find(params[:id])
       render :edit unless user.update(user_params)
-      if user.user_type == "unauthenticated" && user.update(user_type: "staff")
+      if @user.user_type == "unauthenticated" && @user.update(user_type: "staff")
         redirect_to admin_users_path
       else
         render :edit
@@ -31,8 +31,10 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    redirect_to admin_home_path
+    if User.find(params[:id]).destroy
+      redirect_to admin_home_path
+    else
+      render admin_users_path
   end
 
   private
