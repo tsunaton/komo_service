@@ -1,9 +1,20 @@
-<h1>メニュー</h1>
-  <ul>
-    <li><%= link_to "シフトを入力する", :controller => "staff/shifts", :action => "new" %></li>
-    <li><%= link_to "シフト一覧をみる", :controller => "staff/shifts", :action => "index" %></li>
-    <li><%= link_to "会場一覧", staff_funeral_halls_path %></li>
-    <li><%= link_to "取引先一覧", staff_clients_path %></li>
-    <li><%= link_to "給与明細", staff_payslip_path(@current_user) %></li>
-    <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
-  </ul>
+<header>
+  <div id="nav-drawer">
+    <input id="nav-input" type="checkbox" class="nav-unshown">
+    <label id="nav-open" for="nav-input"><span></span></label>
+    <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+    <div id="nav-content">
+      <nav>
+        <h1>メニュー</h1>
+        <ul>
+          <li><%= link_to "シフトを入力する", :controller => "staff/shifts", :action => "new" %></li>
+          <li><%= link_to "シフト一覧をみる", :controller => "staff/shifts", :action => "index" %></li>
+          <li><%= link_to "会場一覧", staff_funeral_halls_path %></li>
+          <li><%= link_to "取引先一覧", staff_clients_path %></li>
+          <li><%= link_to "給与明細", staff_payslip_path(@current_user) %></li>
+          <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

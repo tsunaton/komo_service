@@ -1,27 +1,19 @@
 <body>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <header>
-    <div id="nav-drawer">
-      <input id="nav-input" type="checkbox" class="nav-unshown">
-      <label id="nav-open" for="nav-input"><span></span></label>
-      <label class="nav-unshown" id="nav-close" for="nav-input"></label>
-      <div id="nav-content">
-        <nav>
-          <% if controller.controller_path.include?('admin') %>
-          <%= render :partial => "admin/nav_content" %>
-          <% else %>
-          <%= render :partial => "staff/nav_content" %>
-          <% end %>
-        </nav>
-      </div>
-    </div>
-  </header>
+  <% if controller_path.include?('admin') %>
+    <%= render :partial => "admin/nav_content" %>
+  <!-- loginとsignupとスタッフ登録申請はヘッダーなし -->
+  <% elsif controller_path.include?('session') || controller_path.include?('user') && action_name.include?('new') || action_name.include?('apply_for_authentication') %>
+  <% else %>
+    <%= render :partial => "staff/nav_content" %>
+  <% end %>
 
   <%= yield %>
 
