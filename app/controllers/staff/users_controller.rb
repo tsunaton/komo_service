@@ -1,5 +1,9 @@
 class Staff::UsersController < Staff::ApplicationController
-  before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
+  before_action :logged_out_user, only: [:new, :create]
+  
+  def new
+    @user = User.new
+  end
 
   def index
     @users = User.all
@@ -7,10 +11,6 @@ class Staff::UsersController < Staff::ApplicationController
 
   def show
     @user = User.find(params[:id])
-  end
-
-  def new
-    @user = User.new
   end
 
   def edit
@@ -47,7 +47,7 @@ class Staff::UsersController < Staff::ApplicationController
     added_user_params = user_params.merge(user_type: "unauthenticated", pay_per_hour: 0)
     @user = User.new(added_user_params)
     if @user.save
-      ApplyForAuthenticationMailer.send_mail(user).deliver_later
+      ApplyForAuthenticationMailer.send_mail(@user).deliver_later
       redirect_to root_path
     else
       render :new

@@ -9,6 +9,6 @@
       <%= f.password_field :password_confirmation, class: "pass", placeholder: "パスワード（確認）" %>
 
       <%= f.submit "#{ yield :submit_button }", class: "submit" %>
-      <%= link_to "#{ yield :under_link }", "#{ yield :path }", class: "forgot" %>
     <% end %>
+    <%= link_to "#{ yield :under_link }", "#{ yield :path }", class: "forgot" %>
 </div>
