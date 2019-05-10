@@ -14,6 +14,12 @@ validates :address, length: { maximum: 50 }
 validates :nearest_station, length: { maximum: 50 }
 validates :pay_per_hour, numericality: { less_than: 10000 }
 
+enum user_type: [
+  :unauthenticated,
+  :admin,
+  :staff
+]
+
   attr_accessor :remember_token
   has_secure_password
 

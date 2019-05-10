@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_30_103227) do
+ActiveRecord::Schema.define(version: 2019_05_07_130710) do
 
   create_table "available_halls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2019_04_30_103227) do
     t.string "address"
     t.string "nearest_station"
     t.integer "pay_per_hour"
-    t.integer "user_type"
+    t.integer "user_type", default: 0
     t.string "password_digest"
     t.string "remember_digest"
     t.datetime "created_at", null: false

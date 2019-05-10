@@ -1,10 +1,9 @@
 class WorkAcceptanceMailer < ApplicationMailer
-  default from: 'urusei_suika@yahoo.co.jp'
 
-  def send_mail
-    @user = User.first
-    @funeral = Funeral.first
-    @url = Settings.url % @working_hour.id
-    mail(to: @user.email, subject: 'お仕事依頼がきました')
+  def send_mail(user, funeral, working_hour)
+    @user = user
+    @funeral = funeral
+    @url = Settings.work_accept.url % working_hour.id
+    mail(from: Settings.work_accept.mail_from, to: @user.email, subject: 'お仕事依頼がきました')
   end
 end

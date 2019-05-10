@@ -43,12 +43,28 @@ class Staff::UsersController < Staff::ApplicationController
     end
   end
 
+  def apply_for_authentication
+    added_user_params = user_params.merge(user_type: "unauthenticated", pay_per_hour: 0)
+    @user = User.new(added_user_params)
+    if @user.save
+      ApplyForAuthenticationMailer.send_mail(user).deliver_later
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
+
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params
         .require(:user)
-        .permit(:name, :email, :password, :password_confirmation, :address, :available_funeral_halls)
+        .permit(:name,
+                :email,
+                :address,
+                :nearest_station,
+                :password,
+                :password_confirmation)
     end
 end

@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  root 'staff/sessions#new'
+  root 'sessions#new'
   post   '/login'   => 'sessions#create'
   delete '/logout'  => 'sessions#destroy'
 
   namespace :staff do
 
     get '/signup',  to: 'users#new'
-    post '/signup'  => 'users#create'
+    post '/apply_for_authentication'  => 'users#apply_for_authentication'
 
     get    '/home',   to: 'static_pages#home'
 
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
     get    '/home',   to: 'static_pages#home'
 
+    get    '/authenticate_staff', to: 'users#authenticate_staff'
     resources :users
 
     resources :funeral_halls, :except => [:show]
