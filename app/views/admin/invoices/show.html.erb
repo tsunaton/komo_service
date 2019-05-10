@@ -1,7 +1,7 @@
 <h1>請求書</h1>
 
 <div class="flex-box">
-  <p class="payslip-sum">¥<%= calculate_monthly(@working_hours) %></p>
+  <p class="payslip-sum">¥<%= calculate_monthly(@working_hours, @client.dispatching_fee_per_hour) %></p>
   <p class="right-p">派遣料<%= @client.dispatching_fee_per_hour %>円/h</p>
 </div>
 
@@ -20,7 +20,7 @@
         <td><%= w.funeral.family_name %>家</td>
         <td><%= w.start_time.strftime("%H:%M") %>-<%= w.end_time.strftime("%H:%M") %></td>
         <td><%= w.user.name %></td>
-        <td><%= calculate_pay_per_day(w) %></td>
+        <td><%= calculate_pay_per_day(w, @client.dispatching_fee_per_hour) %></td>
       </tr>
     <% end %>
   </table>

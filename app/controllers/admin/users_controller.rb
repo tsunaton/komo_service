@@ -35,6 +35,7 @@ class Admin::UsersController < Admin::ApplicationController
       redirect_to admin_home_path
     else
       render admin_users_path
+    end
   end
 
   private
