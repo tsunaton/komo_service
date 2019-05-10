@@ -1,57 +1,62 @@
-
 <%= form_with url: new_admin_funeral_path, local: true, method: (:get) do |f| %>
   <h1>スタッフ検索</h1>
   <h2>日付</h2>
-  <div class='container'>
-    <div class='radio-tile-group'>
-
-      <!-- 日付選択機能 -->
-      <ul class='horizontal-list'>
-        <% @days.each_with_index do |day, i| %>
-          <li class='item'>
-            <div class='input-container'>
-              <%=f.radio_button :start_date, day, class: 'radio-button' %>
-
-              <div class='radio-tile'>
-                <label class='radio-tile-label'>
-                  <% if i == 0 %>
-                    <%= '今日' %>
-                  <% elsif i == 1 %>
-                    <%= '明日' %>
-                  <% else %>
-                    <%= day.day %>日
-                  <% end %>
-                </label>
-              </div>
-
+  <!-- 日付選択機能 -->
+  <div class='date_picker'>
+    <ul class='horizontal-list'>
+      <% @days.each_with_index do |day, i| %>
+        <li class='item'>
+          <div class='input-container'>
+            <% if day.day == @last_day %>
+            <%=f.radio_button :start_date, day, {class: 'radio-button',checked: true}  %>
+            <% else %>
+            <%=f.radio_button :start_date, day, class: 'radio-button' %>
+            <% end %>
+            <div class='radio-tile'>
+              <label class='radio-tile-label'>
+                <% if i == 0 %>
+                  <%= '今日' %>
+                <% elsif i == 1 %>
+                  <%= '明日' %>
+                <% else %>
+                  <%= day.day %>日
+                <% end %>
+              </label>
             </div>
-          </li>
-        <% end %>
-      </ul>
-
-    </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </div>
-
 
   <!-- TimeDropper -->
   <h2>開始時間と人数</h2>
-  <!-- <input type='text' id='alarm'> -->
-  <%= f.text_field :start_time, id: 'alarm' %>
+  <%= f.text_field :start_time, id: 'alarm', value: @last_funeral.start_time.strftime("%H:%M") %>
 
   <!-- NumberPicker -->
-  <!-- <input type='number' min='1' max='100' value='1' /> -->
-  <%= f.number_field :number_of_people, min: '1', max: '100', value: '1'%>
+  <%= f.number_field :number_of_people, min: '1', max: '100', value: @last_funeral.number_of_people.to_s, class: "num_pick"%>
 
   <!-- 会場選択 -->
   <h2>斎場</h2>
   <div class="vertical-menu">
-    <% @halls.each do |hall| %>
-      <label>
-        <%= f.radio_button :funeral_hall, hall.id %>
-        <%= hall.name %>
-      </label>
-    <% end %>
+      <% @halls.each do |hall| %>
+      <div class="item">
+        <div class='input-container'>
+          <% if hall.id == @last_hall_id %>
+          <%= f.radio_button :funeral_hall, hall.id, {class: 'radio-button',checked: true} %>
+          <% else %>
+          <%= f.radio_button :funeral_hall, hall.id, class: 'radio-button' %>
+          <% end %>
+          <div class='radio-tile'>
+            <label class = "radio-tile-label">
+              <%= hall.name %>
+            </label>
+          </div>
+        </div>
+      </div>
+      <% end %>
   </div>
+
 
 <div class="ripple">
     <span class="ripple__effect is-white"></span>
@@ -61,6 +66,9 @@
 <% end %>
 
 <script>
-  $( '#alarm' ).timeDropper();
+  $( '#alarm' ).timeDropper({
+    format: "H:mm",
+    setCurrentTime: false
+  });
   $('input[type=number]').spinner();
 </script>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get '/signup',  to: 'users#new'
     post '/apply_for_authentication'  => 'users#apply_for_authentication'
 
-    get    '/home',   to: 'static_pages#home'
+    get    '/home',   to: 'homes#home'
 
     resources :users
 
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-    get    '/home',   to: 'static_pages#home'
+    get    '/home',   to: 'homes#home'
 
     get    '/authenticate_staff', to: 'users#authenticate_staff'
     resources :users

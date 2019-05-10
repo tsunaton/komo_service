@@ -1,13 +1,12 @@
-<h1>会場一覧</h1>
-<ul>
-  <% @funeral_halls.each do |funeral_halls| %>
-  <li>会館名：<%= funeral_halls.name %></li>
-  <li>住所：<%= funeral_halls.address %></li>
-  <li>最寄駅：<%= funeral_halls.nearest_station %></li>
-  <%= link_to "編集", edit_admin_funeral_halls_path(funeral_halls.id) %>
-  <li>------------------------------------------------</li>
-  <% end %>
-</ul>
-
-<%= link_to :新しい会場を追加, new_admin_funeral_halls_path %>
-<%= link_to 'ホームへ戻る', admin_home_path %>
+<div class="inner">
+  <h1>会場一覧</h1>
+    <% @funeral_halls.each do |funeral_halls| %>
+    <div class="white-cards">
+    <p class = "name"><%= funeral_halls.name %></p>
+    <i class="fas fa-map-marker-alt"></i>&nbsp;<%= funeral_halls.address %><br>
+    <i class="fas fa-subway"></i>&nbsp;<%= funeral_halls.nearest_station %><br>
+    <%= link_to content_tag(:i, "", class: "fas fa-edit"), edit_admin_funeral_hall_path(funeral_halls.id), class: "edit-button" %>
+    </div>
+    <% end %>
+  <%= link_to(content_tag(:i, "", class: 'fas fa-plus-circle plus-button'), new_admin_funeral_hall_path) %>
+</div>

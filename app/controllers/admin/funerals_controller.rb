@@ -6,12 +6,13 @@ class Admin::FuneralsController < Admin::ApplicationController
 
   def new
     start_time = Time.zone.parse(params[:start_date] + " " + params[:start_time])
+    # start_time = Time.zone.parse(params[:start_time])
     quickest_end_time = start_time + 4.hours
 
     @shift = Shift.new
     @shifts = @shift.matches(start_time, quickest_end_time)
 
-    @users = []
+    @users = [User.find_by(user_type: "admin")]
     @shifts.each do |shift|
       user = User.find(shift.user_id)
       @users.append(user)
@@ -24,12 +25,27 @@ class Admin::FuneralsController < Admin::ApplicationController
   end
 
   def create
-    funeral = Funeral.new(funeral_params)
-    if funeral.save!
-      WorkAcceptanceMailer.with(user: @user).send_mail.deliver_later
-      redirect_to admin_funerals_path
+    @funeral = Funeral.new(funeral_params)
+
+    if funeral_params[:working_hours_attributes]
+      @users = @funeral.working_hours.map{ |w| User.where(id: w.user_id) }
+      if @funeral.save!
+        @users.each do |u|
+          case u[0].user_type
+          when "admin"
+            render :new unless @funeral.working_hours[0].update(start_time: @funeral.start_time, status: "accepted")
+          when "staff"
+
+            render :new unless WorkAcceptanceMailer.send_mail(u[0], @funeral, @funeral.working_hours[0]).deliver_later
+          end
+        end
+        redirect_to admin_home_path
+      else
+        render :new
+      end
     else
-      render :new
+      render :new unless @funeral.save
+      redirect_to admin_home_path
     end
   end
 
@@ -56,6 +72,9 @@ class Admin::FuneralsController < Admin::ApplicationController
     @days = (t..(t + 7)).to_a
 
     @halls = FuneralHall.all
+    @last_funeral = Funeral.find(Funeral.all.ids.max)
+    @last_day = @last_funeral.start_time.day
+    @last_hall_id = @last_funeral.funeral_hall_id
   end
 
   def destroy

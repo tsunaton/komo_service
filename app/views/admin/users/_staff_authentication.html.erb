@@ -1,18 +1,22 @@
-<%= form_with model: [ :admin, @user], local: true do |f| %>
-  <li>氏名<%= @user.name %></li>
-  <li>メールアドレス<%= @user.email %></li>
-  <li>住所<%= @user.address %></li>
-  <li>最寄駅(車以外の通勤をする可能性がある場合)<%= @user.nearest_station %></li>
+  <div class="inner">
+    <h1 class="text-align-center">&nbsp;&nbsp;内容ご確認後、<br>&nbsp;&nbsp;承認してください。</h1>
+    <%= form_with model: [ :admin, @user], local: true do |f| %>
+    <div class="white-cards">
+      <p class = "name"><%= @user.name %></p>
+      <i class="far fa-envelope"></i>&nbsp;<%= @user.email %><br>
+      <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;<%= @user.address %><br>
+      <i class="fas fa-subway"></i>&nbsp;&nbsp;<%= @user.nearest_station %><br>
 
-  <%= f.hidden_field :name, :value => @user.name %>
-  <%= f.hidden_field :email, :value => @user.email %>
-  <%= f.hidden_field :address, :value => @user.address %>
-  <%= f.hidden_field :nearest_station, :value => @user.nearest_station %>
-
-  時給<%= f.number_field "pay_per_hour", value: 1000, step:100 %>
-
-  <div class="ripple">
-      <span class="ripple__effect is-white"></span>
-      <%= f.submit '承認する',class: 'content_in_ripple_button' %>
+      <%= f.hidden_field :name, :value => @user.name %>
+      <%= f.hidden_field :email, :value => @user.email %>
+      <%= f.hidden_field :address, :value => @user.address %>
+      <%= f.hidden_field :nearest_station, :value => @user.nearest_station %>
+      <hr>
+      時給：¥<%= f.number_field "pay_per_hour", value: 1000, class:"num-pick" %>
+    </div>
+      <div class="ripple">
+          <span class="ripple__effect is-white"></span>
+          <%= f.submit '承認する',class: 'content_in_ripple_button' %>
+      </div>
+    <% end %>
   </div>
-<% end %>

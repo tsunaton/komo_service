@@ -1,0 +1,7 @@
+<%= @user.name %>さんが、
+<%= @work.start_time.strftime("%m月 %d日 %H:%M") %>、<%= @work.funeral.funeral_hall.name %>でのお仕事を承認しました。
+<% if @users.blank? %>
+これで全員承認しました。
+<% else %>
+残るは<%= @users.map{ |u| "#{u.name}さん"} %>です。
+<% end %>

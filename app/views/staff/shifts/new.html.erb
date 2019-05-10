@@ -1,5 +1,40 @@
-<h1>シフト入力画面</h1>
+<%= form_with(model: [:staff, @shift], local: true) do |f| %>
+  <div class='container'>
+    <div class='checkbox-tile-group-shift'>
 
-<%= render :partial => "form" %>
+          <!--日付選択機能-->
+          <% @all_shifts.each_with_index do |daily_s,i| %>
+            <ul class='horizontal-list-shift'>
+              <!--日付表示-->
+              <span class="shift-date"><%= daily_s[i].day %>日</span>
+              <!--時間表示-->
+              <% daily_s.each_with_index do |s,i_2| %>
+                <li class='item-shift'>
+                  <div class='input-container-shift'>
 
-<%= link_to 'ホームへ戻る', staff_home_path %>
+                    <% unless @checked_times.blank? %>
+                    <%= piyo(@checked_times, s, f, i, i_2)%>
+                    <% else %>
+                    <%= f.check_box "scheduled_from#{i}-#{i_2}", {}, s, nil %>
+                    <% end %>
+
+                    <div class='checkbox-tile-shift'>
+                      <label class='checkbox-tile-label'>
+                        <%= s.hour %>
+                      </label>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+
+      </div>
+    </div>
+
+  <div class="ripple">
+      <span class="ripple__effect is-white"></span>
+      <%= f.submit 'シフトを登録',class: 'content_in_ripple_button' %>
+  </div>
+
+  <% end %>

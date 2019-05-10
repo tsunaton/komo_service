@@ -1,10 +1,11 @@
 class Shift < ApplicationRecord
 belongs_to :user
-
 with_options presence: true do
   validates :scheduled_from
   validates :scheduled_to
 end
+default_scope -> { order(scheduled_from: :asc) }
+
 
   def matches(start_time, quickest_end_time)
     results = Shift.all

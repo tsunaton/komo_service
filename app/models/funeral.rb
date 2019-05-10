@@ -9,4 +9,6 @@ class Funeral < ApplicationRecord
   validates :family_name, presence: true, length: { maximum: 50 }
 
   accepts_nested_attributes_for :working_hours
+
+  default_scope -> { order(start_time: :asc) }
 end
