@@ -4,12 +4,12 @@ module DocumentsHelper
     working_hours.ceil
   end
 
-  def calculate_pay_per_day(work)
-    pay_per_day = @current_user.pay_per_hour * calculate_working_hour(work)
+  def calculate_pay_per_day(work, per_hour)
+    pay_per_day = per_hour * calculate_working_hour(work)
     pay_per_day.ceil
   end
 
-  def calculate_monthly(works)
-    works.inject(0){ |sum, w| sum += calculate_pay_per_day(w) }
+  def calculate_monthly(works, per_hour)
+    works.inject(0){ |sum, w| sum += calculate_pay_per_day(w, per_hour) }
   end
 end

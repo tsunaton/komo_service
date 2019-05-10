@@ -1,8 +1,8 @@
 <h1>給与明細</h1>
 
 <div class="flex-box">
-  <p class="payslip-sum">¥<%= calculate_monthly(@working_hours) %></p>
-  <p class="right-p">時給<%= @current_user.pay_per_hour %>円</p>
+  <p class="payslip-sum">¥<%= calculate_monthly(@working_hours, @user.pay_per_hour) %></p>
+  <p class="right-p">時給<%= @user.pay_per_hour %>円</p>
 </div>
 
 <div class="pay_table_container">
@@ -19,7 +19,7 @@
         <td><%= w.start_time.strftime("%d") %>日</td>
         <td><%= w.funeral.funeral_hall.name %></td>
         <td><%= calculate_working_hour(w) %>h</td>
-        <td><%= calculate_pay_per_day(w) %></td>
+        <td><%= calculate_pay_per_day(w, @user.pay_per_hour) %></td>
         <td><%= w.start_time.strftime("%H:%M") %>-<%= w.end_time.strftime("%H:%M") %></td>
         <td><%= w.funeral.family_name %>家</td>
         <td><%= w.funeral.client.name %></td>
