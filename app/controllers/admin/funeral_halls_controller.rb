@@ -1,5 +1,4 @@
 class Admin::FuneralHallsController < Admin::ApplicationController
-before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
     def index
       @funeral_halls = FuneralHall.all

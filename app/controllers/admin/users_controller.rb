@@ -1,5 +1,4 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -7,10 +6,6 @@ class Admin::UsersController < Admin::ApplicationController
 
   def show
     @user = User.find(params[:id])
-  end
-
-  def new
-    @user = User.new
   end
 
   def edit

@@ -1,5 +1,4 @@
 class Admin::PayslipsController < Admin::ApplicationController
-  before_action :logged_in_user
 
   def index
     @users = User.all

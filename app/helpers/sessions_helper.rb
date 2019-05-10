@@ -1,5 +1,23 @@
 module SessionsHelper
 
+  # どこのページからリクエストが来たか保存しておく
+  def set_request_from
+    if session[:request_from]
+      @request_from = session[:request_from]
+    end
+    # 現在のURLを保存しておく
+    session[:request_from] = request.original_url
+  end
+
+  # 前の画面に戻る
+  def return_back
+    if request.referer
+      redirect_to :back
+    elsif @request_from
+      redirect_to @request_from
+    end
+  end
+
   def remember(user)
     user.remember
     cookies.permanent.signed[:user_id] = user.id
@@ -17,7 +35,7 @@ module SessionsHelper
   end
 
   def log_out
-    forget(current_user)
+    forget(@current_user)
     session.delete(:user_id)
     @current_user = nil
   end
@@ -35,16 +53,28 @@ module SessionsHelper
   end
 
   def logged_in?
-   !current_user.nil?
+   !@current_user.nil?
   end
 
   def logged_in_user
-    unless logged_in?
+    unless logged_in? || controller_path.include?("session") || controller_path.include?("users") && action_name.include?("new") || action_name.include?("apply_for_authentication")
       flash[:danger] = "Please log in."
-      redirect_to staff_login_path
+      redirect_to root_path
     end
   end
 
+  def logged_out_user
+    if @current_user
+      if @request_from == "http://localhost:3000/"
+        redirect_to admin_home_path
+      else
+        return_back
+      end
+    end
+  end
 
+  def admin_user
+    return_back unless @current_user.user_type == "admin"
+  end
 
 end
