@@ -6,18 +6,33 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-#Workをいっぱい作る
-6.times do |i|
-  unless i == 0
-    start_time = "2019-03-1#{i} 0#{i}:00:00"
-    end_time = "2019-03-1#{i} 1#{i}:00:00"
-    Work.create(:id => i, :start_time => start_time, :end_time => end_time, :number_of_people => i, :place_id => i, :client_id => i)
-  end
+@t = Time.now
+
+@funerals =[
+%W(#{@t.prev_week} 田中 1 1 2),
+%W(#{@t.prev_week + 1.days} 朝倉 1 1 2),
+%W(#{@t.yesterday} 吉田 2 2 3),
+%W(#{@t.yesterday + 1.days} 真壁 2 2 3),
+%W(#{@t} 臼倉 3 3 4),
+%W(#{@t + 2.days} 浅田 2 4 3),
+%W(#{@t.next_week} 松岡 5 5 1)]
+
+@funerals.each do |start_time, family_name, number_of_people, client_id, funeral_hall_id|
+  Funeral.create(start_time: start_time, family_name: family_name, number_of_people: number_of_people.to_i, client_id: client_id.to_i, funeral_hall_id: funeral_hall_id.to_i)
 end
 
-#Machingをいっぱい作る
-10.times do |i|
-  unless i == 0
-    Maching.create(:id => i, :shift_id => rand(10..13), :work_id => rand(1..5))
-  end
+@works =[
+%W(2 19 #{@t.prev_week} #{@t.prev_week + 3.hours} 3),
+%W(3 19 #{@t.prev_week} #{@t.prev_week + 3.hours} 3),
+%W(2 20 #{@t.prev_week + 1.days} #{@t.prev_week + 1.days + 4.hours} 3),
+%W(3 21 #{@t.yesterday} #{@t.yesterday + 5.hours} 3),
+%W(3 22 #{@t.yesterday + 1.days} #{@t.yesterday + 1.days + 6.hours} 3),
+%W(2 23 #{@t} nil 1),
+%W(2 24 #{@t + 2.days} nil 1),
+%W(2 25 #{@t.next_week} nil 0),
+%W(3 25 #{@t.next_week} nil 0)
+]
+
+@works.each do |user_id, funeral_id, start_time, end_time, status|
+  WorkingHour.create(user_id: user_id.to_i, funeral_id: funeral_id.to_i, start_time: start_time, end_time: end_time, status: status.to_i)
 end

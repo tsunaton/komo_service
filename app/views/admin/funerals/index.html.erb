@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<ul>
+  <% @funerals.each do |funeral| %>
+  <div class="index-card">
+    <% funeral_hall = FuneralHall.find(funeral.funeral_hall_id).name %>
+    <% client = Client.find(funeral.client_id).name %>
+    <li><%= funeral.start_time.strftime("%Y年%m月%d日 %H:%M") %>〜
+    <li><%= funeral.family_name %>家/<%= funeral_hall %>（<%= client %>）</li>
+    <li></li>
+    <li>募集人数：<%= funeral.number_of_people %></li>
+    <li><%= link_to "編集", edit_admin_funeral_path(funeral.id) %></li>
+  </div>
+  <% end %>
+</ul>
+
+<%= link_to 'ホームへ戻る', admin_home_path %>

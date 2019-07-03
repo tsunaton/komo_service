@@ -1,0 +1,21 @@
+<%= form_with(model: [ :staff, @working_hour ], local: true) do |f| %>
+  <!-- お仕事詳細 -->
+  <ul>
+    <div class="index-card">
+      <li><%= f.label "#{@working_hour.funeral.start_time.strftime("%Y年%m月%d日 %H:%M")}" %>〜
+      <li>会場：<%= f.label "#{@working_hour.funeral.funeral_hall.name}" %> ご喪家：<%= f.label "#{@working_hour.funeral.family_name}" %>家</li>
+      <li>取引先：<%= f. label"#{@working_hour.funeral.client.name}" %></li>
+      <li>ポラムのスタッフ数：<%= f.label "#{@working_hour.funeral.number_of_people}" %></li>
+    </div>
+  </ul>
+
+  <p>お仕事終了した時間
+  <%= @t.strftime("%H:%M") %>
+  </p>
+  <%= f.hidden_field :end_time, value: @t %>
+  <!-- 終了報告ボタン -->
+  <div class="ripple">
+      <span class="ripple__effect is-white"></span>
+      <%= f.submit '終了報告',class: 'content_in_ripple_button' %>
+  </div>
+<% end %>

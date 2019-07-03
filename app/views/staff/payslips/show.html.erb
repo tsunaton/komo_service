@@ -1,0 +1,30 @@
+<h1>給与明細</h1>
+
+<div class="flex-box">
+  <p class="payslip-sum">¥<%= calculate_monthly(@working_hours, @current_user.pay_per_hour) %></p>
+  <p class="right-p">時給<%= @current_user.pay_per_hour %>円</p>
+</div>
+
+<div class="pay_table_container">
+  <table>
+    <tr>
+      <% t_headers = %w(日時 会場 実働 日給 就労時間 喪家 取引先 交通費) %>
+      <% t_headers.each do |th| %>
+      <th><%= th %></th>
+      <% end %>
+    </tr>
+
+    <% @working_hours.each do |w| %>
+      <tr>
+        <td><%= w.start_time.strftime("%d") %>日</td>
+        <td><%= w.funeral.funeral_hall.name %></td>
+        <td><%= calculate_working_hour(w) %>h</td>
+        <td><%= calculate_pay_per_day(w, @current_user.pay_per_hour) %></td>
+        <td><%= w.start_time.strftime("%H:%M") %>-<%= w.end_time.strftime("%H:%M") %></td>
+        <td><%= w.funeral.family_name %>家</td>
+        <td><%= w.funeral.client.name %></td>
+        <td><%= "交通費" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

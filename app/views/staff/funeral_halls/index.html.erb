@@ -1,0 +1,10 @@
+<div class="inner">
+  <h1>会場一覧</h1>
+    <% @funeral_halls.each do |funeral_halls| %>
+    <div class="white-cards">
+    <p class = "name"><%= funeral_halls.name %></p>
+    住所：<%= funeral_halls.address %><br>
+    最寄駅：<%= funeral_halls.nearest_station %><br>
+    </div>
+    <% end %>
+</div>

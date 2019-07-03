@@ -1,12 +1,16 @@
 class Shift < ApplicationRecord
-  has_many :machings
-  has_many :works, through: :machings
+belongs_to :user
+with_options presence: true do
+  validates :scheduled_from
+  validates :scheduled_to
+end
+default_scope -> { order(scheduled_from: :asc) }
 
-  def matches(start_time, end_time)
+
+  def matches(start_time, quickest_end_time)
     results = Shift.all
-    results = results.where("start_time <= ?", start_time)
-    results = results.where("end_time >= ?", end_time)
-
+    results = results.where("scheduled_from <= ?", start_time)
+    results = results.where("scheduled_to >= ?", quickest_end_time )
   end
 
 end

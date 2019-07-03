@@ -1,0 +1,12 @@
+<div class="inner">
+  <h1>会場一覧</h1>
+    <% @funeral_halls.each do |funeral_halls| %>
+    <div class="white-cards">
+    <p class = "name"><%= funeral_halls.name %></p>
+    <i class="fas fa-map-marker-alt"></i>&nbsp;<%= funeral_halls.address %><br>
+    <i class="fas fa-subway"></i>&nbsp;<%= funeral_halls.nearest_station %><br>
+    <%= link_to content_tag(:i, "", class: "fas fa-edit"), edit_admin_funeral_hall_path(funeral_halls.id), class: "edit-button" %>
+    </div>
+    <% end %>
+  <%= link_to(content_tag(:i, "", class: 'fas fa-plus-circle plus-button'), new_admin_funeral_hall_path) %>
+</div>

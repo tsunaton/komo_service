@@ -1,10 +1,10 @@
 class CreateShifts < ActiveRecord::Migration[5.2]
   def change
     create_table :shifts do |t|
-      t.integer :user_id
-      t.datetime :start_time
-      t.datetime :end_time
-
+      t.datetime :scheduled_from
+      t.datetime :scheduled_to
+      t.references :user, foreign_key: true
+      
       t.timestamps
     end
   end

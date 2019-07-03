@@ -1,0 +1,10 @@
+<ul>
+<%= form_with model: @funeral_halls do |f| %>
+<li><%= f.label :会場名 %></li>
+<li><%= f.text_field :name %></li>
+<li><%= f.label :住所 %></li>
+<li><%= f.text_field :address %></li>
+<li><%= f.label :最寄駅 %></li>
+<li><%= f.text_field :nearest_station %></li>
+<li><%= f.submit %></li>
+<% end %>

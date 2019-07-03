@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      <%= @user.name %>さんが、
+      <%= @work.start_time.strftime("%m月 %d日 %H:%M") %>、<%= @work.funeral.funeral_hall.name %>でのお仕事を承認しました。
+    </p>
+  </body>
+</html>

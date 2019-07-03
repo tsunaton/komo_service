@@ -1,6 +1,27 @@
 class User < ApplicationRecord
-    attr_accessor :remember_token
-    has_secure_password
+has_many :available_halls
+has_many :funeral_halls, through: :available_halls
+has_many :working_hours
+has_many :funerals, through: :working_hours
+has_many :shifts
+
+validates :name, presence: true, length: { maximum: 50 }
+VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }, length: { maximum: 255 }
+validates :pay_per_hour, presence: true
+validates :user_type, presence: true
+validates :address, length: { maximum: 50 }
+validates :nearest_station, length: { maximum: 50 }
+validates :pay_per_hour, numericality: { less_than: 10000 }
+
+enum user_type: [
+  :unauthenticated,
+  :admin,
+  :staff
+]
+
+  attr_accessor :remember_token
+  has_secure_password
 
   # ただランダムなトークンを返すだけ
   def User.new_token

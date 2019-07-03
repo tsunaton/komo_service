@@ -1,5 +1,4 @@
-class Staff::ClientsController < ApplicationController
-before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
+class Staff::ClientsController < Staff::ApplicationController
 
     def index
       @clients = Client.all

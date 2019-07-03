@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html>
+<body>
   <head>
-    <title>KomoService</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
+  <% if controller_path.include?('admin') %>
+    <%= render :partial => "admin/nav_content" %>
+  <!-- loginとsignupとスタッフ登録申請はヘッダーなし -->
+  <% elsif controller_path.include?('session') || controller_path.include?('user') && action_name.include?('new') || action_name.include?('apply_for_authentication') %>
+  <% else %>
+    <%= render :partial => "staff/nav_content" %>
+  <% end %>
+
+  <%= yield %>
+
+</body>

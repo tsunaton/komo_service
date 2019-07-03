@@ -1,9 +1,0 @@
-<ul>
-  <li>空いている時間帯を入力してください。</li>
-  <%= form_with(model: [:staff, @shift]) do |f| %>
-  <li><%= f.datetime_select :start_time, :minute_step => 15 %>
-  の</li>
-  <li><%= f.datetime_select :end_time, :minute_step => 15 %>
-  <li><%= f.submit %></li>
-<% end %>
-</ul>

@@ -1,1 +1,12 @@
-遅刻処理
+<% case @working_hour.status %>
+<% when "waiting" %>
+ <%= render :partial => "accept" %>
+<% when "accepted"%>
+ <% if work_started?(@working_hour) %>
+  <%= render :partial => "end_report" %>
+ <% else %>
+  <%= render :partial => "please_wait" %>
+ <% end %>
+<% when "done" %>
+ <%= render :partial => "done" %>
+<% end %>

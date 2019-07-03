@@ -1,56 +1,52 @@
 Rails.application.routes.draw do
 
-
-
+  root 'sessions#new'
+  post   '/login'   => 'sessions#create'
+  delete '/logout'  => 'sessions#destroy'
 
   namespace :staff do
 
     get '/signup',  to: 'users#new'
-    post '/signup'  => 'users#create'
+    post '/apply_for_authentication'  => 'users#apply_for_authentication'
 
-    get    '/login',   to: 'sessions#new'
-    post   '/login'   => 'sessions#create'
-
-    delete '/logout'  => 'sessions#destroy'
-
-    get    '/home',   to: 'static_pages#home'
-
-    get     '/payslip',  to:'documents#payslip'
+    get    '/home',   to: 'homes#home'
 
     resources :users
 
-    resources :places, :except => [:show]
+    resources :funeral_halls, :except => [:show]
 
     resources :clients, :except => [:show]
 
-    resources :machings
-
-    resources :working_hours, :only => [:new, :create, :edit, :update, :destroy]
+    resources :working_hours
 
     resources :shifts
+
+    resources :payslips, :only => [:show]
 
   end
 
 
-  namespace :oba do
+  namespace :admin do
 
-    get    '/home',   to: 'static_pages#home'
-    get     '/payslip',  to:'static_pages#payslip'
+    get    '/home',   to: 'homes#home'
 
+    get    '/authenticate_staff', to: 'users#authenticate_staff'
     resources :users
 
-    resources :places, :except => [:show]
+    resources :funeral_halls, :except => [:show]
 
     resources :clients, :except => [:show]
 
-    resources :works
+    resources :funerals
 
-    get   '/search_page',  to: 'works#search_page'
-    get   '/search',  to: 'works#search'
-
-    resources :machings
+    get   '/search_page',  to: 'funerals#search_page'
+    get   '/search',  to: 'funerals#search'
 
     resources :working_hours, :only => [:new, :create, :edit, :update, :destroy]
+
+    resources :payslips, :only => [:index, :show, :edit, :update]
+
+    resources :invoices, :only => [:index, :show, :edit, :update]
 
   end
 
