@@ -65,8 +65,11 @@ module SessionsHelper
 
   def logged_out_user
     if @current_user
-      flash[:danger] = "you've already logged in."
-      return_back
+      if @request_from == "http://localhost:3000/"
+        redirect_to admin_home_path
+      else
+        return_back
+      end
     end
   end
 
