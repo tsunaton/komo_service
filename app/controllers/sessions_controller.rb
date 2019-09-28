@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :logged_out_user, only: [:new, :create]
+  skip_before_action :logged_out_user, only: [:new, :create]
 
   def new
   end
@@ -16,12 +16,12 @@ class SessionsController < ApplicationController
         redirect_to staff_home_path
       end
     else
-      render :new
+      render :new, alert: "ログインに失敗しました"
     end
   end
 
   def destroy
-    log_out if logged_in?
+    log_out
     redirect_to root_path
   end
 

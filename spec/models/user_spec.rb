@@ -11,14 +11,26 @@ RSpec.describe User, type: :model do
     end
 
     context '通らない' do
-      describe 'name' do
+      describe 'family_name' do
         it '空だとNG' do
-          user.name = ''
+          user.family_name = ''
           expect(user).to be_invalid
         end
 
         it '文字数が51文字以上だとNG' do
-          user.name = 'ア' * 51
+          user.family_name = 'ア' * 51
+          expect(user).to be_invalid
+        end
+      end
+
+      describe 'first_name' do
+        it '空だとNG' do
+          user.first_name = ''
+          expect(user).to be_invalid
+        end
+
+        it '文字数が51文字以上だとNG' do
+          user.first_name = 'ア' * 51
           expect(user).to be_invalid
         end
       end

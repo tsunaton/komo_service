@@ -1,0 +1,22 @@
+<%= form_with(model: [ :staff, @working_hour ], local: true) do |f| %>
+  <div class="white-cards">
+    <%= f.label "開始："  %><br>
+    <%= f.datetime_select :start_time, {}, class: "datetime_select", selected: @working_hour.start_time %><br>
+    <%= f.label "終了："  %><br>
+    <%= f.datetime_select :end_time, {}, class: "datetime_select", selected: @working_hour.end_time %><br>
+    <%= f.label "会場："  %>
+    <%= f.collection_select :funeral_hall, FuneralHall.all, :id, :name, selected: @funeral_hall.name %><br>
+    <%= f.label "喪家名："  %>
+    <%= f.text_field :family_name, value: "#{@funeral.family_name}" %>家<br>
+    <%= f.label "取引先："  %>
+    <%= f.collection_select :client, Client.all, :id, :name, selected: @funeral.client.name %><br>
+    <%= f.label "人数："  %>
+    <%= f.number_field :number_of_people, value: "#{@funeral.number_of_people}" %><br>
+  </div>
+
+  <div class="ripple">
+      <span class="ripple__effect is-white"></span>
+      <%= f.submit '修正する',class: 'content_in_ripple_button' %>
+  </div>
+<% end %>
+<%= link_to "戻る", admin_payslip_path(@working_hour.user_id), class: "back_btn" %>

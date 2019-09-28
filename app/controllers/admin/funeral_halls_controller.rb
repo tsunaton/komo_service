@@ -37,7 +37,7 @@ class Admin::FuneralHallsController < Admin::ApplicationController
 
       def funeral_halls_params
         params
-          .require(:funeral_halls)
+          .require(:funeral_hall)
           .permit(:name, :address, :nearest_station)
       end
 

@@ -16,13 +16,21 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def update
-      @user = User.find(params[:id])
-      render :edit unless @user.update(user_params)
-      if @user.user_type == "unauthenticated" && @user.update(user_type: "staff")
+    @user = User.find(params[:id])
+    case @user.user_type
+    when "unauthenticated"
+      if @user.update(user_params.merge(user_type: "staff"))
+        redirect_to admin_users_path
+      else
+        render :staff_authentication
+      end
+    when "staff"
+      if @user.update(user_params)
         redirect_to admin_users_path
       else
         render :edit
       end
+    end
   end
 
   def destroy
@@ -33,12 +41,17 @@ class Admin::UsersController < Admin::ApplicationController
     end
   end
 
+  def staff_authentication
+    @user = User.find(params[:id])
+    redirect_to admin_users_path unless @user.user_type == "unauthenticated"
+  end
+
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params
         .require(:user)
-        .permit(:name, :email, :password, :password_confirmation, :address, :available_funeral_halls, :pay_per_hour)
+        .permit(:pay_per_hour)
     end
+
 end

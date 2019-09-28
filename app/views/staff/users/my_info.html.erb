@@ -1,0 +1,11 @@
+<div class="inner">
+  <h1>取引先一覧</h1>
+  <div class="white-cards">
+    <p class = "name"><%= @current_user.family_name, @current_user.first_name %>さん</p><br>
+    <i class="fas fa-envelope">&nbsp;</i><%= @current_user.email %><br>
+    <i class="fas fa-home"></i>&nbsp;<%= @current_user.address %><br>
+    最寄駅：<%= @current_user.nearest_station %><br>
+    時給：<%= @current_user.pay_per_hour %>円/h<br>
+  </div>
+  <%= link_to "戻る", staff_home_path, class: "back_btn" %>
+</div>

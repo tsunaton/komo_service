@@ -5,7 +5,7 @@
   </head>
   <body>
     <p>
-      <%= @user.name %>さんが、
+      <%= @user.family_name + @user.first_name %>さんが、
       <%= @work.start_time.strftime("%m月 %d日 %H:%M") %>、<%= @work.funeral.funeral_hall.name %>でのお仕事を承認しました。
     </p>
   </body>

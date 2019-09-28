@@ -24,7 +24,7 @@
               <%= f.fields_for :working_hours, @funeral.working_hours.build do |working_hour| %>
                 <%= working_hour.check_box :user_id, {} , "#{user.id}", nil %>
                 <div class="checkbox-tile">
-                  <label for="walk" class="checkbox-tile-label"><%= user.name %></label>
+                  <label for="walk" class="checkbox-tile-label"><%= user.family_name %></label>
                 </div>
               <% end %>
 

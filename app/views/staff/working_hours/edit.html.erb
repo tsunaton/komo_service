@@ -2,11 +2,15 @@
 <% when "waiting" %>
  <%= render :partial => "accept" %>
 <% when "accepted"%>
- <% if work_started?(@working_hour) %>
+ <% if work_started?(@working_hour) && @funeral.start_time.today? %>
   <%= render :partial => "end_report" %>
+ <% elsif work_started?(@working_hour) %>
+  <%= render :partial => "forgotten_end_report" %>
  <% else %>
   <%= render :partial => "please_wait" %>
  <% end %>
 <% when "done" %>
- <%= render :partial => "done" %>
+  <% if @current_user.user_type == "admin" %>
+   <%= render :partial => "modify_working_hour" %>
+ <% end %>
 <% end %>

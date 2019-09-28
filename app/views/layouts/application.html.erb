@@ -7,7 +7,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
-
+  <%= image_tag 'poram_logo_white.png', class: "poram_logo_white" %>
   <% if controller_path.include?('admin') %>
     <%= render :partial => "admin/nav_content" %>
   <!-- loginとsignupとスタッフ登録申請はヘッダーなし -->
@@ -17,5 +17,28 @@
   <% end %>
 
   <%= yield %>
+
+  <% flash.each do |key, value| %>
+
+    <% key = "success" if key == "notice" %>
+    <% key = "error" if key == "alert" %>
+
+    <script type="text/javascript">
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": true,
+          "progressBar": false,
+          "positionClass": "toast-bottom-center",
+          "preventDuplicates": false,
+          "onclick": null,
+          "timeOut": "3000",
+          "extendedTimeOut": "500",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+        }
+        toastr["<%= key %>"]("<%= value %>")
+    </script>
+  <% end %>
 
 </body>

@@ -13,7 +13,7 @@
                   <div class='input-container-shift'>
 
                     <% unless @checked_times.blank? %>
-                    <%= piyo(@checked_times, s, f, i, i_2)%>
+                    <%= hoge(@checked_times, s, f, i, i_2)%>
                     <% else %>
                     <%= f.check_box "scheduled_from#{i}-#{i_2}", {}, s, nil %>
                     <% end %>

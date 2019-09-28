@@ -1,7 +1,8 @@
 <div class="main">
   <p class="sign" align="center"><%= yield :title %></p>
     <%= form_with url: staff_apply_for_authentication_path, model: [ :staff, @user], local: true do |f| %>
-      <%= f.text_field :name,       class: "un", placeholder: "氏名" %>
+      <%= f.text_field :family_name,       class: "un", placeholder: "姓" %>
+      <%= f.text_field :first_name,       class: "un", placeholder: "名" %>
       <%= f.text_field :email,      class: "un", placeholder: "メールアドレス" %>
       <%= f.text_field :address,         class: "un", placeholder: "住所" %>
       <%= f.text_field :nearest_station, class: "un", placeholder: "最寄駅" %>

@@ -1,0 +1,17 @@
+<% @works.each do |w| %>
+  <%= form_for w, url: staff_update_transportation_fee_path do |f| %>
+    <p><%= "#{w.start_time.strftime("%Y年%m月%d日 %H:%M")}" %>〜</p>
+    <p>会場：<%= "#{w.funeral.funeral_hall.name}" %></p>
+      <div class="white-cards">
+        <%= User.find(w.user_id).family_name %>さん<br>
+        <%= f.label :交通費 %>
+        <%= f.number_field :transportation_fee %><br>
+        <%= f.hidden_field :working_hour_id, value: w.id%>
+        <%= f.hidden_field :funeral_id, value: w.funeral_id%>
+      </div>
+      <div class="ripple">
+        <span class="ripple__effect is-white"></span>
+        <%= f.submit '保存する',class: 'content_in_ripple_button' %>
+      </div>
+  <% end %>
+<% end %>

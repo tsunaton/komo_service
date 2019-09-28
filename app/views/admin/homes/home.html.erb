@@ -1,37 +1,33 @@
-<h1>お疲れ様です、<%= @current_user.name %>さん</h1>
+<h1>お疲れ様です、<%= @current_user.family_name %>さん</h1>
 <div class="inner">
   <div class="home-sum">
     <p><%= Date.today.month %>月の利益</p>
-    <p class="payslip-sum">¥<%= @sum %>~</p>
+    <p class="payslip-sum">¥<%= @sum.to_s(:delimited) %>~</p>
   </div>
 
    <h2 class="line-height-0">今日以降のお仕事：</h2>
+
     <% @funerals.each do |f| %>
       <div class="white-cards">
-        <%= f.start_time.strftime("%m月%d %H:%M") %>〜
+        <% if f.start_time <= Date.today %>
+          <span class = "end_report_button">
+            <%= link_to "交通費を入力", staff_form_transportation_fee_path(funeral_id: f.id) %>
+          </span><br>
+        <% end %>
+        <%= f.start_time.strftime("%m月%d") %>〜
         <br>
         <%= f.funeral_hall.name %>
         (<%= f.client.name %>)
         <br>
-
-        <% f.working_hours.each do |w| %>
-          <%= w.user.name%>
-          <% if w.status == "waiting" %>
-            <i class="far fa-question-circle"></i>
-          <% elsif w.status == "accepted" %>
-            <i class="fas fa-thumbs-up"></i>
-          <% elsif w.status == "done" %>
-            <i class="fas fa-check-square"></i>
-          <% end %>
-        <% end %>
 
         <%= form_with url: new_admin_funeral_path, local: true, method: (:get) do |t| %>
           <%= t.hidden_field :start_time, value: f.start_time %>
           <%= t.hidden_field :funeral_hall, value: f.funeral_hall.id %>
           <%= t.hidden_field :client_id, value: f.client.id %>
           <%= t.hidden_field :number_of_people, value: f.number_of_people %>
-          <!-- < t.submit "編集" %> -->
         <% end %>
       </div>
     <% end %>
+
+
   </div>

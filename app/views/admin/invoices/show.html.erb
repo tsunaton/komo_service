@@ -1,14 +1,14 @@
 <h1>請求書</h1>
 
 <div class="flex-box">
-  <p class="payslip-sum">¥<%= calculate_monthly(@working_hours, @client.dispatching_fee_per_hour) %></p>
-  <p class="right-p">派遣料<%= @client.dispatching_fee_per_hour %>円/h</p>
+  <p class="payslip-sum">¥<%= calculate_monthly(@working_hours, @client.dispatching_fee_per_hour).to_s(:delimited) %></p>
+  <p class="right-p">派遣料<%= @client.dispatching_fee_per_hour.to_s(:delimited) %>円/h</p>
 </div>
 
 <div class="invoices_table_container">
   <table>
     <tr>
-      <% t_headers = %w(日付 喪家 就労時間 スタッフ 派遣料) %>
+      <% t_headers = %w(日付 喪家 就労時間 スタッフ 会場 派遣料) %>
       <% t_headers.each do |th| %>
       <th><%= th %></th>
       <% end %>
@@ -19,8 +19,9 @@
         <td><%= w.start_time.strftime("%d") %>日</td>
         <td><%= w.funeral.family_name %>家</td>
         <td><%= w.start_time.strftime("%H:%M") %>-<%= w.end_time.strftime("%H:%M") %></td>
-        <td><%= w.user.name %></td>
-        <td><%= calculate_pay_per_day(w, @client.dispatching_fee_per_hour) %></td>
+        <td><%= w.user.family_name + w.user.first_name %></td>
+        <td><%= w.funeral.funeral_hall.name %>
+        <td><%= calculate_pay_per_day(w, @client.dispatching_fee_per_hour).to_s(:delimited) %></td>
       </tr>
     <% end %>
   </table>

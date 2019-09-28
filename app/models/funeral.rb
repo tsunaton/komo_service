@@ -10,5 +10,14 @@ class Funeral < ApplicationRecord
 
   accepts_nested_attributes_for :working_hours
 
-  default_scope -> { order(start_time: :asc) }
+  default_scope -> { order(start_time: :desc) }
+
+  def done?
+    self.working_hours.all? {|w| w.status == ("done" || "rejected")}
+  end
+
+  def done?(staff)
+    this_staffs_work = self.working_hours.find_by(user_id: staff.id)
+    this_staffs_work.status == "done"
+  end
 end

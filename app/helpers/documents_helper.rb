@@ -1,7 +1,11 @@
 module DocumentsHelper
   def calculate_working_hour(work)
-    working_hours = (work.end_time - work.start_time) / 3600
-    working_hours.round(2)
+    if work.end_time
+      working_hours = (work.end_time - work.start_time) / 3600
+      working_hours.round(2)
+    else
+      return 0
+    end
   end
 
   def calculate_pay_per_day(work, per_hour)

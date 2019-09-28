@@ -27,7 +27,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'settingslogic'
-
+gem 'jquery-rails'
+gem 'toastr-rails'
+gem 'rails-i18n'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

@@ -1,0 +1,8 @@
+<h1>修正依頼</h1>
+<%= form_with url: staff_send_modification_report_path do |f| %>
+  <%= f.text_area :content, class: "modification_report_text_area", placeholder: "こちらに、修正内容と理由をご記入ください。" %>
+  <%= f.hidden_field :working_hour_id, value: @working_hour.id %>
+  <%= f.hidden_field :end_time, value: @rounded_down_time %>
+  <%= f.submit "送信する", class: "submit" %>
+<% end %>
+<%= link_to "戻る", edit_staff_working_hour_path(@working_hour.id), class: "back_btn" %>

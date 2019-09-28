@@ -1,46 +1,29 @@
 class Staff::UsersController < Staff::ApplicationController
-  before_action :logged_out_user, only: [:new, :create]
-  
+  skip_before_action :logged_out_user, only: [:new, :apply_for_authentication]
+
   def new
     @user = User.new
   end
 
   def index
-    @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def create
-    user = User.new(user_params)
-    if user.save
-      redirect_to '/staff/home', notice: 'スタッフ登録完了しました！'
-    else
-      render :new
-    end
   end
 
   def update
-    user = User.find(params[:id])
-    if user.update(user_params)
-      redirect_to edit_admin_user_path
-    else
-      render :edit
-    end
   end
 
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  end
+
+  def my_info
   end
 
   def apply_for_authentication
@@ -48,7 +31,7 @@ class Staff::UsersController < Staff::ApplicationController
     @user = User.new(added_user_params)
     if @user.save
       ApplyForAuthenticationMailer.send_mail(@user).deliver_later
-      redirect_to root_path
+      redirect_to root_path, notice: "社長へ、確認メールが送信されました<br>確認が取れましたら、<br>メールでおしらせします".html_safe
     else
       render :new
     end
@@ -60,7 +43,8 @@ class Staff::UsersController < Staff::ApplicationController
     def user_params
       params
         .require(:user)
-        .permit(:name,
+        .permit(:family_name,
+                :first_name,
                 :email,
                 :address,
                 :nearest_station,

@@ -9,11 +9,12 @@ class Admin::ClientsController < Admin::ApplicationController
     end
 
     def create
-      client = Client.new(client_params)
-      if client.save
-        redirect_to action: 'index'
+      @client = Client.new(client_params)
+      if @client.save
+        redirect_to admin_clients_path, notice: "#{@client.name}を新しく登録しました"
       else
-        render :back
+        flash.now[:alert] = "登録に失敗しました"
+        render :new
       end
     end
 
@@ -22,15 +23,22 @@ class Admin::ClientsController < Admin::ApplicationController
     end
 
     def update
-      client = Client.find(params[:id])
-      if client.update(client_params)
-        redirect_to admin_clients_path
+      @client = Client.find(params[:id])
+      if @client.update(client_params)
+        redirect_to admin_clients_path, notice: "#{@client.name}を修正しました"
       else
+        flash.now[:alert] = "登録に失敗しました"
         render :edit
       end
     end
 
     def destroy
+      client = Client.find(params[:id])
+      if client.destroy
+        redirect_to admin_clients_path, notice: "#{client.name}を削除しました"
+      else
+        render :edit, alert: "削除に失敗しました"
+      end
     end
 
     private

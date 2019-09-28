@@ -1,5 +1,5 @@
-<% if @user.user_type = "unauthenticated" %>
-  <%= render :partial => "admin/users/staff_authentication" %>
-<% else %>
-  <%= render :partial => "admin/users/edit" %>
-<% end %>
+<h1>スタッフの時給を編集する</h1>
+
+<% content_for :btn_content, "変更する" %>
+
+<%= render :partial => "form" %>

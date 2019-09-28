@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    お疲れさまです。<br>
+    <%= @user_name %>さんから、お仕事内容の修正依頼が届いています。<br>
+    <br>
+    ・該当のお仕事 ---------------------<br>
+    <br>
+    開始：<%= @start_time %><br>
+    終了：<%= @end_time %><br>
+    会場：<%= @funeral_hall_name %><br>
+    取引先：<%= @client_name %><br>
+    喪家名：<%= @family_name %><br>
+    人数：<%= @number_of_people %><br>
+    <br>
+    ---------------------------------<br>
+    <br>
+    ・修正内容 ========================<br>
+    <br>
+    <%= @content %>
+    <br>
+    =================================<br>
+    <br>
+    「給与明細」の<%= @user_name %>さんを選択し、さらに「修正する」を押すと、修正することができます。<br>
+    <br>
+    「給与明細」へは、以下をクリックすると移動できます。<br>
+    <%= @url %>
+    わからないことがあれば、運営者の方にご連絡くださいませ。<br>
+  </body>
+</html>

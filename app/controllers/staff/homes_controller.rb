@@ -8,7 +8,5 @@ class Staff::HomesController < Staff::ApplicationController
 
     accepted_works = user_works.where(status: "accepted")
     @funerals = accepted_works.inject(Array(nil)){ |funerals,w| funerals << w.funeral}
-    # @ids = accepted_works.inject(Array(nil)){|ids,w| ids << w.funeral_id}
-    # @funerals = Funeral.where(id: @ids)
   end
 end

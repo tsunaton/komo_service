@@ -4,7 +4,7 @@
   <% @users.each do |user| %>
     <tr>
       <td>
-        <%= link_to user.name, admin_payslip_path(user.id) %>
+        <%= link_to user.family_name + user.first_name, admin_payslip_path(user.id) %>
       </td>
     </tr>
   <% end %>

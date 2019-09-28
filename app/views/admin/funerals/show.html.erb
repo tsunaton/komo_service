@@ -1,0 +1,12 @@
+<div class="inner">
+  <h1>お仕事詳細</h1>
+  <div class="white-cards">
+    <p>開始時間：<%= @funeral.start_time.strftime("%m月%d日 %H:%M〜") %></p>
+    <p>会場：<%= @funeral.funeral_hall.name %></p>
+    <p>喪家：<%= @funeral.family_name %></p>
+    <p>スタッフ数：<%= @funeral.number_of_people %>人</p>
+    <p>〜<%= @users.join( sep = ", " )%></p>
+    <p>取引先：<%= @funeral.client.name %></p>
+  </div>
+  <%= link_to "戻る", admin_funerals_path, class: "back_btn" %>
+</div>

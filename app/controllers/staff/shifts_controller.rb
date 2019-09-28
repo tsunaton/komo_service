@@ -19,7 +19,7 @@ class Staff::ShiftsController < Staff::ApplicationController
     else
       render :new unless Shift.where(user_id: @current_user).delete_all
     end
-    redirect_to staff_home_path
+    redirect_to staff_home_path, notice: 'シフトを登録しました'
   end
 
   def destroy

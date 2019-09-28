@@ -1,2 +1,8 @@
-<p>すでに終了しています！</p>
-<p>詳細をご覧になりたい場合は、給与明細をご覧くださいませ。</p>
+<div class="inner">
+  <div class="white-cards">
+    <p>すでに終了しています！</p>
+    <p>詳細をご覧になりたい場合は、給与明細をご覧くださいませ。</p>
+    <%= link_to "給与明細へ", staff_payslip_path, class: "submit" %>
+  </div>
+  <%= link_to "戻る", staff_home_path, class: "back_btn" %>
+</div>

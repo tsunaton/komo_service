@@ -11,11 +11,17 @@ Rails.application.routes.draw do
 
     get    '/home',   to: 'homes#home'
 
+    get '/my_info', to: 'users#my_info'
     resources :users
 
     resources :funeral_halls, :except => [:show]
 
     resources :clients, :except => [:show]
+
+    get '/modification_report', to: 'working_hours#modification_report'
+    post '/send_modification_report'  => 'working_hours#send_modification_report'
+    get '/form_transportation_fee'  => 'working_hours#form_transportation_fee'
+    patch '/update_transportation_fee'  => 'working_hours#update_transportation_fee'
 
     resources :working_hours
 
@@ -30,8 +36,8 @@ Rails.application.routes.draw do
 
     get    '/home',   to: 'homes#home'
 
-    get    '/authenticate_staff', to: 'users#authenticate_staff'
     resources :users
+    get    '/users/:id/staff_authentication',   to: 'users#staff_authentication', as: 'staff_authentication'
 
     resources :funeral_halls, :except => [:show]
 

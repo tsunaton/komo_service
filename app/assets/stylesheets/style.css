@@ -3,12 +3,17 @@
 ナビ
 ナビ中身
 入力フォーム
+ホワイトカード
+終了報告ボタン
+右下プラスボタン
 テーブル
 横スクロール日付選択
 縦スクロールシフト選択
+toastr
 ナンバーピッカー
 縦スクロール会場選択
-メニューリップルボタン */
+メニューリップルボタン
+modification_reportのテキストエリア */
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝共通＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
@@ -108,6 +113,10 @@ form {
   font-size: 10vw;
   line-height: 1;
 }
+.payslip_month_arrows {
+  padding: 30px;
+  color: white;
+}
 .line-height-0 {
   line-height: 0;
 }
@@ -125,6 +134,10 @@ form {
 .text-align-center {
   text-align: center;
 }
+.field_with_errors {
+  display: inline;
+}
+
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナビ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 /* A PEN BY saruwakakun */
 
@@ -215,6 +228,12 @@ header {
     -webkit-transform: translateX(0%);
     transform: translateX(0%);/*中身を表示*/
     box-shadow: 6px 0 25px rgba(0,0,0,.15);
+}
+.poram_logo_white {
+  width: 60px;
+  height: auto;
+  position: absolute;
+  right: calc(50% - 30px);
 }
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナビここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
@@ -351,6 +370,7 @@ a {text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
   border-radius: 10px;
   box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
   width: 90%;
+  position: relative;
 }
 .white-cards .name {
   color: rgba(0, 0, 0, 0.8);
@@ -360,34 +380,168 @@ a {text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
   font-size: 1em;
   width: -webkit-fill-available;
 }
+.edit-button {
+  float: right;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: pink;
+}
+.white-cards form label {
+  font-size: 18px;
+  margin-left: -20px;
+}
+.white-cards input[type="text"], .white-cards > form input[type="number"] {
+  height: 30px;
+  font-size: 16px;
+  position: absolute;
+  right: 20px;
+  background: aliceblue;
+}
+ .white-cards > input[type="number"] {
+   height: 30px;
+   font-size: 16px;
+   position: absolute;
+   right: 20px;
+   background: aliceblue;
+   width: 50%;
+ }
+.white-cards textarea {
+  height: 90px;
+  font-size: 16px;
+  vertical-align:top;
+  position: absolute;
+  right: 20px;
+  background: aliceblue;
+}
+.label-for-address {
+  height: 90px;
+  display: inline-block;
+}
+.white-cards input[type="submit"]{
+  margin: 30px auto 0;
+  font-size: 18px;
+}
+.back_btn {
+  color: white;
+  font-size: 18px;
+  display: block;
+  text-align: center;
+}
+#finished_time_label {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+#finished_time {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 0px;
+}
+.delete_btn {
+  text-align: center;
+  display: block;
+  margin: 0.8rem 0 0;
+  font-size: 18px;
+  color: grey;
+}
+/* 以下ホワイトカードのリボン */
+.ribbon18-content {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 89px;
+  height: 91px;
+  overflow: hidden;
+  }
+
+.ribbon18 {
+  display: inline-block;
+  position: absolute;
+  padding: 7px 0;
+  left: -23px;
+  top: 22px;
+  width: 160px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 16px;
+  background: linear-gradient(to right, #4298fa 0%,#8fcdff 100%);
+  color: #fff;
+  text-shadow: 0 2px 2px #56a1f3;
+  letter-spacing: 0.05em;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ribbon18:before, .ribbon18:after {
+  position: absolute;
+  content: "";
+  border-top: 4px solid #3672b6;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  bottom: -4px;
+}
+
+.ribbon18:before {
+  left: 14px;
+}
+
+.ribbon18:after {
+  right: 18px;
+}
+.datetime_select {
+  font-size: 19px;
+  background-color: aliceblue;
+}
+#working_hour_funeral_hall {
+  font-size: 19px;
+  height: 30px;
+  background: aliceblue;
+}
+#working_hour_family_name {
+  position: relative;
+  width: 150px;
+}
+#working_hour_client {
+  font-size: 19px;
+  height: 30px;
+  background: aliceblue;
+}
+#working_hour_number_of_people {
+  position: relative;
+  right: 0;
+}
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ホワイトカードここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝終了報告ボタン＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.end_report_button {
+  border-radius: 5px;
+  padding: 3px;
+  background: darkorange;
+}
+.end_report_button a, .forgotten_end_report_button a {
+  color: white;
+}
+.forgotten_end_report_button {
+  border-radius: 5px;
+  padding: 3px;
+  background: red;
+}
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝終了報告ボタンここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝右下プラスボタン＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
 .plus-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
   font-size: 70px;
+  color: firebrick;
 }
-.edit-button {
-  float: right;
-  position: relative;
-  bottom: 8px;
-  right: -10px;
-  color: pink;
-}
-.fa-edit {
-  position: relative;
-  bottom: 15px;
-  right: 15px;
-}
-.end_report_button {
-  border-radius: 5px;
-  padding: 3px;
-  background: darkorange;
-}
-.end_report_button a {
-  color: white;
-}
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝右下プラスボタンここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝テーブル＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .pay_table_container {
   width: 100%;
@@ -395,7 +549,7 @@ a {text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
   text-align: center;
 }
 .pay_table_container table {
-  width: 800px;
+  width: 900px;
 	background: rgba(255,255,255,0.2);
 	margin: 0 auto;
 	border-radius:3px;
@@ -480,7 +634,11 @@ a {text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
   padding: 15px 10px;
 	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
 }
-
+.transportation_fee {
+  width: 60px;
+  font-size: 18px;
+  border-radius: 5px;
+}
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝テーブルここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝横スクロールラジオボタン＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
@@ -783,7 +941,27 @@ span.spinner > .add:hover {
 }
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝縦スクロール会場選択メニューここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝toastrここから＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+#toast-container {
+  width: 100%;
+  height: 30px;
+  bottom: 30px;
+}
+#toast-container > div {
+  width: 100%;
+  font-size: 20px;
+  opacity: 0.9;
+}
+.toast-message {
+  width: 100%;
+}
+#toast-container > .toast-success {
+  background-color: mediumpurple;
+}
+#toast-container > .toast-error {
+  background-color: red;
+}
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝toastrここから＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝リップルボタンここから＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 /* クリックできる要素 */
 .ripple {
@@ -842,5 +1020,13 @@ span.spinner > .add:hover {
         opacity: 0;
     }
 }
-
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝リップルボタンここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝modification_reportボタン＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.modification_report_text_area {
+  width: 100%;
+  height: 300px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝modification_reportボタンここまで＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */

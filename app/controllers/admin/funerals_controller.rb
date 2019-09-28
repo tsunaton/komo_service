@@ -6,7 +6,6 @@ class Admin::FuneralsController < Admin::ApplicationController
 
   def new
     start_time = Time.zone.parse(params[:start_date] + " " + params[:start_time])
-    # start_time = Time.zone.parse(params[:start_time])
     quickest_end_time = start_time + 4.hours
 
     @shift = Shift.new
@@ -35,11 +34,10 @@ class Admin::FuneralsController < Admin::ApplicationController
           when "admin"
             render :new unless @funeral.working_hours[0].update(start_time: @funeral.start_time, status: "accepted")
           when "staff"
-
             render :new unless WorkAcceptanceMailer.send_mail(u[0], @funeral, @funeral.working_hours[0]).deliver_later
           end
         end
-        redirect_to admin_home_path
+        redirect_to admin_home_path, notice: "#{@users[0].map { |u| u.family_name + u.first_name + "さん" }}に、お仕事依頼をしました"
       else
         render :new
       end
@@ -49,13 +47,9 @@ class Admin::FuneralsController < Admin::ApplicationController
     end
   end
 
-  def edit
+  def show
     @funeral = Funeral.find(params[:id])
-    @users = []
-    @funeral.shifts.each do |shift|
-      user = User.find(shift.user_id)
-      @users.append(user)
-    end
+    @users = @funeral.users.map { |user| user.family_name }
   end
 
   def update

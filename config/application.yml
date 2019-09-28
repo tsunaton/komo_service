@@ -3,7 +3,11 @@ defaults: &defaults
     url: https://komo-service-staging.herokuapp.com/staff/working_hours/%s/edit
     mail_from: tsuna.tonight@gmail.com
   apply_for_authentication:
-    url: https://komo-service-staging.herokuapp.com/admin/users/%s/edit
+    url: https://komo-service-staging.herokuapp.com/admin/users/%s/staff_authentication
+    mail_from: tsuna.tonight@gmail.com
+    mail_to: tsuna.tonight@gmail.com
+  modification_report:
+    url: https://localhost:3000/admin/payslips/%s
     mail_from: tsuna.tonight@gmail.com
     mail_to: tsuna.tonight@gmail.com
 
@@ -15,9 +19,11 @@ test:
 
 production:
   work_accept:
-    url: https://komo-service-staging.herokuapp.com/staff/working_hours/%s/edit
+    url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit
     mail_from: leetanshim@gmail.com
   apply_for_authentication:
-    url: https://komo-service-staging.herokuapp.com/admin/users/%s/edit
-    mail_from: leetanshim@gmail.com
+    url: https://komo-service.herokuapp.com/admin/users/%s/staff_authentication
+    mail_to: leetanshim@gmail.com
+  modification_report:
+    url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit?end_time=%s
     mail_to: leetanshim@gmail.com

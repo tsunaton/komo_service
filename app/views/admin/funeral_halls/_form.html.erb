@@ -1,10 +1,14 @@
-<ul>
-<%= form_with model: [:admin, @funeral_halls] do |f| %>
-<li><%= f.label :会場名 %></li>
-<li><%= f.text_field :name %></li>
-<li><%= f.label :住所 %></li>
-<li><%= f.text_field :address %></li>
-<li><%= f.label :最寄駅 %></li>
-<li><%= f.text_field :nearest_station %></li>
-<li><%= f.submit %></li>
-<% end %>
+<div class="inner">
+  <div class="white-cards">
+    <%= form_with model: [:admin, @funeral_halls] do |f| %>
+      <%= f.label :会場名 %>
+      <%= f.text_field :name %><br>
+      <%= f.label :最寄駅 %>
+      <%= f.text_field :nearest_station %><br>
+      <%= f.label :住所, class: "label-for-address" %>
+      <%= f.text_area :address %><br>
+      <%= f.submit "修正する", class: "submit" %>
+    <% end %>
+  </div>
+  <%= link_to "戻る", admin_funeral_halls_path, class: "back_btn" %>
+</div>

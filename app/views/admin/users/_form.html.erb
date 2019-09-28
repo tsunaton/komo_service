@@ -1,0 +1,17 @@
+<div class="inner">
+  <%= form_with model: [ :admin, @user], local: true do |f| %>
+  <div class="white-cards">
+    <p class = "name"><%= @user.family_name + @user.first_name %></p>
+    <i class="far fa-envelope"></i>&nbsp;<%= @user.email %><br>
+    <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;<%= @user.address %><br>
+    <i class="fas fa-subway"></i>&nbsp;&nbsp;<%= @user.nearest_station %><br>
+
+    <hr>
+    時給：¥<%= f.number_field "pay_per_hour", value: @user.pay_per_hour, class:"num-pick" %>
+  </div>
+    <div class="ripple">
+        <span class="ripple__effect is-white"></span>
+        <%= f.submit "#{ yield :btn_content }", class: 'content_in_ripple_button' %>
+    </div>
+  <% end %>
+</div>
