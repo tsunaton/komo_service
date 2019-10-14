@@ -20,14 +20,17 @@ class Admin::UsersController < Admin::ApplicationController
     case @user.user_type
     when "unauthenticated"
       if @user.update(user_params.merge(user_type: "staff"))
-        redirect_to admin_users_path
+        NoticeCompleteAuthenticationMailer.send_mail(@user).deliver_later
+        redirect_to admin_users_path, notice: "新しいスタッフを登録しました"
       else
+        flash.now[:alert] = "登録に失敗しました"
         render :staff_authentication
       end
     when "staff"
       if @user.update(user_params)
-        redirect_to admin_users_path
+        redirect_to admin_users_path, notice: "修正しました"
       else
+        flash.now[:alert] = "修正に失敗しました"
         render :edit
       end
     end
@@ -35,15 +38,18 @@ class Admin::UsersController < Admin::ApplicationController
 
   def destroy
     if User.find(params[:id]).destroy
-      redirect_to admin_home_path
+      redirect_to admin_home_path, notice: "スタッフを削除しました"
     else
+      flash.now[:alert] = "削除に失敗しました"
       render admin_users_path
     end
   end
 
   def staff_authentication
     @user = User.find(params[:id])
-    redirect_to admin_users_path unless @user.user_type == "unauthenticated"
+    unless @user.user_type == "unauthenticated"
+      redirect_to admin_home_path, notice: "この方は承認済みです"
+    end
   end
 
   private

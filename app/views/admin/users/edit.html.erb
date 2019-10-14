@@ -3,3 +3,5 @@
 <% content_for :btn_content, "変更する" %>
 
 <%= render :partial => "form" %>
+
+<%= link_to "戻る", admin_user_path(@user.id), class: "back_btn" %>

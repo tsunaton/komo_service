@@ -1,5 +1,6 @@
 class Staff::UsersController < Staff::ApplicationController
   skip_before_action :logged_out_user, only: [:new, :apply_for_authentication]
+  before_action :logged_in_user, only: [:new, :apply_for_authentication]
 
   def new
     @user = User.new
@@ -31,8 +32,9 @@ class Staff::UsersController < Staff::ApplicationController
     @user = User.new(added_user_params)
     if @user.save
       ApplyForAuthenticationMailer.send_mail(@user).deliver_later
-      redirect_to root_path, notice: "社長へ、確認メールが送信されました<br>確認が取れましたら、<br>メールでおしらせします".html_safe
+      redirect_to root_path, notice: "承認完了メールをお待ちください"
     else
+      flash.now[:alert] = "登録の申請に失敗しました"
       render :new
     end
   end

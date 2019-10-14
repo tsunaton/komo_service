@@ -1,7 +1,10 @@
 <h1>請求書</h1>
+<h1><%= link_to "<", admin_invoice_path(:transition => "last_month", :month => @month),
+        class: "payslip_month_arrows" %><%= @month.strftime("%Y年%m月") %><%= link_to ">",
+        admin_invoice_path(:transition => "next_month", :month => @month), class: "payslip_month_arrows" %></h1>
 
 <div class="flex-box">
-  <p class="payslip-sum">¥<%= calculate_monthly(@working_hours, @client.dispatching_fee_per_hour).to_s(:delimited) %></p>
+  <p class="payslip-sum">¥<%= calculate_pay_per_month(@working_hours, @client.dispatching_fee_per_hour).to_s(:delimited) %></p>
   <p class="right-p">派遣料<%= @client.dispatching_fee_per_hour.to_s(:delimited) %>円/h</p>
 </div>
 
@@ -21,8 +24,9 @@
         <td><%= w.start_time.strftime("%H:%M") %>-<%= w.end_time.strftime("%H:%M") %></td>
         <td><%= w.user.family_name + w.user.first_name %></td>
         <td><%= w.funeral.funeral_hall.name %>
-        <td><%= calculate_pay_per_day(w, @client.dispatching_fee_per_hour).to_s(:delimited) %></td>
+        <td><%= calculate_pay_per_day(w, @client.dispatching_fee_per_hour).round.to_s(:delimited) %></td>
       </tr>
     <% end %>
   </table>
 </div>
+<%= link_to "戻る", admin_invoices_path, class: "back_btn" %>

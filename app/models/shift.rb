@@ -6,7 +6,6 @@ with_options presence: true do
 end
 default_scope -> { order(scheduled_from: :asc) }
 
-
   def matches(start_time, quickest_end_time)
     results = Shift.all
     results = results.where("scheduled_from <= ?", start_time)

@@ -10,6 +10,9 @@ defaults: &defaults
     url: https://localhost:3000/admin/payslips/%s
     mail_from: tsuna.tonight@gmail.com
     mail_to: tsuna.tonight@gmail.com
+  notice_complete_authentication:
+    url: https://localhost:3000
+    mail_from: leetanshim@gmail.com
 
 development:
   <<: *defaults
@@ -27,3 +30,6 @@ production:
   modification_report:
     url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit?end_time=%s
     mail_to: leetanshim@gmail.com
+  notice_complete_authentication:
+    url: https://komo-service.herokuapp.com
+    mail_from: leetanshim@gmail.com

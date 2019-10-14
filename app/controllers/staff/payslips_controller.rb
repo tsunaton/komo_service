@@ -10,7 +10,7 @@ class Staff::PayslipsController < Staff::ApplicationController
         @month = Time.zone.parse(payslip_params[:month] + " 00:00:00").last_month
     end
 
-    @working_hours = WorkingHour.month(@month).where(user_id: @current_user.id )
+    @working_hours = WorkingHour.month(@month).where(user_id: @current_user.id ).where(status: "done")
   end
 
   def payslip_params

@@ -1,4 +1,4 @@
-<%= form_with(model: [ :staff, @working_hour ], local: true) do |f| %>
+<%= form_with(url: staff_accept_or_reject_path, local: true) do |f| %>
   <div class="white-cards">
     <p><%= f.label "#{@funeral.start_time.strftime("%Y年%m月%d日 %H:%M")}" %>〜</p>
     <p>会場：<%= f.label "#{@funeral_hall.name}" %></p>
@@ -6,6 +6,8 @@
     <p>取引先：<%= f. label"#{@client.name}" %></p>
     <p>ポラムのスタッフ数：<%= f.label "#{@funeral.number_of_people}" %></p>
   </div>
+  <%= f.hidden_field :w_id, value: @working_hour.id %>
+
 
   <!-- 承認ボタン -->
   <div class="ripple">

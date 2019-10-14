@@ -18,6 +18,20 @@ module SessionsHelper
     end
   end
 
+  def logged_in_user
+    if @current_user
+      judge_user(@current_user)
+    end
+  end
+
+  def judge_user(user)
+    case user.user_type
+    when 'admin'
+      redirect_to admin_home_path, notice: "すでにログインしています"
+    when 'staff'
+      redirect_to staff_home_path, notice: "すでにログインしています"
+    end
+  end
   # どこのページからリクエストが来たか保存しておく
   def set_request_from
     if session[:request_from]
@@ -38,6 +52,7 @@ module SessionsHelper
 
   def log_in(user)
     session[:user_id] = user.id
+    remember user
   end
 
   def log_out
@@ -46,11 +61,9 @@ module SessionsHelper
     @current_user = nil
   end
 
-
-
   def admin_user
     unless @current_user.user_type == "admin"
-      redirect_to root_path
+      redirect_to root_path, notice: "管理者ではありません"
     end
   end
 

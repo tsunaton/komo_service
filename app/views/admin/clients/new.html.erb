@@ -1,5 +1,14 @@
 <h1>新しい取引先を作成</h1>
-
-<% content_for :btn_content, "登録する" %>
-
-<%= render :partial => "form" %>
+<div class="inner">
+  <div class="white-cards">
+    <%= form_for [:admin, @client] do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      <%= f.label :取引先名 %>
+      <%= f.text_field :name %><br>
+      <%= f.label :派遣料 %>
+      <%= f.number_field :dispatching_fee_per_hour %><br>
+      <%= f.submit "登録する", class: "submit" %>
+    <% end %>
+  </div>
+  <%= link_to "戻る", admin_clients_path, class: "back_btn" %>
+</div>

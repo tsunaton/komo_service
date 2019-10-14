@@ -1,10 +1,11 @@
 <div class="inner">
   <h1>会場一覧</h1>
     <% @funeral_halls.each do |funeral_halls| %>
-    <div class="white-cards">
-    <p class = "name"><%= funeral_halls.name %></p>
-    住所：<%= funeral_halls.address %><br>
-    最寄駅：<%= funeral_halls.nearest_station %><br>
-    </div>
+      <div class="white-cards">
+        <p class = "name"><%= funeral_halls.name %></p>
+        <i class="fas fa-map-marker-alt"></i>&nbsp;<%= funeral_halls.address %><br>
+        <i class="fas fa-subway"></i>&nbsp;<%= funeral_halls.nearest_station %><br>
+      </div>
     <% end %>
 </div>
+<%= link_to "戻る", staff_home_path, class: "back_btn" %>

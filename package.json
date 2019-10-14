@@ -1,5 +1,10 @@
 {
-  "name": "komo_service",
+  "name": "leesooryung",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tsunaton/komo_service.git",
+  "author": "lee sooryung <tsuna.tonight@gmail.com>",
+  "license": "MIT"
 }

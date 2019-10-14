@@ -9,7 +9,7 @@
         <ul>
           <li><%= link_to "ホーム", staff_home_path %></li>
           <li><%= link_to "シフトを入力する", new_staff_shift_path %></li>
-          <li><%= link_to "給与明細", staff_payslip_path(@current_user) %></li>
+          <li><%= link_to "給与明細", staff_payslip_path(@current_user.id) %></li>
           <% if @current_user.user_type == "admin" %>
           <li><%= link_to "社長モード", admin_home_path %></li>
           <% end %>

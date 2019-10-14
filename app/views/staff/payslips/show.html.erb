@@ -1,7 +1,9 @@
 <h1><%= link_to "<", staff_payslip_path(:transition => "last_month", :month => @month), class: "payslip_month_arrows" %><%= @month.strftime("%Y年%m月") %><%= link_to ">", staff_payslip_path(:transition => "next_month", :month => @month), class: "payslip_month_arrows" %></h1>
 
 <div class="flex-box">
-  <p class="payslip-sum">¥<%= calculate_monthly(@working_hours, @current_user.pay_per_hour).to_s(:delimited) %></p>
+  <p class="payslip-sum">
+    ¥<%= calculate_pay_per_month(@working_hours, @current_user.pay_per_hour).to_s(:delimited) %>
+    <span class="transportation_fee">+¥<%= transportation_fee_total(@working_hours).to_s(:delimited)%>(交)</span></p>
   <p class="right-p">時給<%= @current_user.pay_per_hour %>円</p>
 </div>
 
@@ -19,12 +21,13 @@
         <td><%= w.start_time.strftime("%d") %>日</td>
         <td><%= w.funeral.funeral_hall.name %></td>
         <td><%= calculate_working_hour(w) %>h</td>
-        <td><%= calculate_pay_per_day(w, @current_user.pay_per_hour).to_s(:delimited) %></td>
+        <td><%= calculate_pay_per_day_without_transportation_fee(w, @current_user.pay_per_hour).round.to_s(:delimited) %></td>
         <td><%= w.start_time.strftime("%H:%M") %>-<%= w.end_time.strftime("%H:%M") %></td>
         <td><%= w.funeral.family_name %>家</td>
         <td><%= w.funeral.client.name %></td>
-        <td><%= "交通費" %></td>
+        <td><%= w.transportation_fee.to_s(:delimited) %></td>
       </tr>
     <% end %>
   </table>
 </div>
+<%= link_to "戻る", staff_home_path, class: "back_btn" %>

@@ -1,7 +1,7 @@
 <div class="inner">
-  <h1>取引先一覧</h1>
+  <h1>プロフィール</h1>
   <div class="white-cards">
-    <p class = "name"><%= @current_user.family_name, @current_user.first_name %>さん</p><br>
+    <p class = "name"><%= @current_user.family_name + @current_user.first_name %>さん</p><br>
     <i class="fas fa-envelope">&nbsp;</i><%= @current_user.email %><br>
     <i class="fas fa-home"></i>&nbsp;<%= @current_user.address %><br>
     最寄駅：<%= @current_user.nearest_station %><br>

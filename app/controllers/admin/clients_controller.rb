@@ -25,7 +25,7 @@ class Admin::ClientsController < Admin::ApplicationController
     def update
       @client = Client.find(params[:id])
       if @client.update(client_params)
-        redirect_to admin_clients_path, notice: "#{@client.name}を修正しました"
+        redirect_to admin_clients_path, notice: "修正しました"
       else
         flash.now[:alert] = "登録に失敗しました"
         render :edit
@@ -37,7 +37,8 @@ class Admin::ClientsController < Admin::ApplicationController
       if client.destroy
         redirect_to admin_clients_path, notice: "#{client.name}を削除しました"
       else
-        render :edit, alert: "削除に失敗しました"
+        flash.now[:alert] = "削除できませんでした"
+        render :edit
       end
     end
 

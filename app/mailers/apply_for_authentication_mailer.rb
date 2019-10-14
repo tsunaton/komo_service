@@ -1,6 +1,6 @@
 class ApplyForAuthenticationMailer < ApplicationMailer
   def send_mail(applicant)
-    @applicant_name = applicant.name
+    @applicant_name = applicant.family_name + applicant.first_name
     @url = Settings.apply_for_authentication.url % applicant.id
     mail(from: Settings.apply_for_authentication.mail_from,
          to: Settings.apply_for_authentication.mail_to,

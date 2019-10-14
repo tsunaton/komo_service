@@ -16,8 +16,4 @@ class Funeral < ApplicationRecord
     self.working_hours.all? {|w| w.status == ("done" || "rejected")}
   end
 
-  def done?(staff)
-    this_staffs_work = self.working_hours.find_by(user_id: staff.id)
-    this_staffs_work.status == "done"
-  end
 end

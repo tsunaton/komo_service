@@ -24,11 +24,15 @@ class Staff::WorkingHoursController < Staff::ApplicationController
   end
 
   def update
-    working_hour = WorkingHour.find(params[:id])
+  end
+
+  def accept_or_reject
+    working_hour = WorkingHour.find(params[:w_id])
     action = proc {|cond|
       if cond
-        redirect_to staff_home_path
+        redirect_to staff_home_path, notice: "了解しました"
       else
+        flash.now[:alert] = "失敗しました"
         render :edit
       end
     }
@@ -39,23 +43,26 @@ class Staff::WorkingHoursController < Staff::ApplicationController
     when "辞退する"
       action.(working_hour.update(status: "rejected"))
     end
+  end
 
-    if @current_user.user_type == "admin"
-      if working_hour.update(working_hour_params.merge(status: "done")) && working_hour.funeral.update(funeral_params)
-        redirect_to admin_payslips_path,notice: "修正されました"
-      else
-        render :modify_working_hour, alert: "修正に失敗しました"
-      end
+  def end_report
+    working_hour = WorkingHour.find(end_report_params[:w_id])
+    if working_hour.update(end_time: end_report_params[:end_time], status: "done")
+      redirect_to staff_home_path, notice: "終了報告をしました"
     else
-      if working_hour.update(end_time: working_hour_params[:end_time], status: "done")
-        redirect_to admin_payslips_path, notice: "終了報告をしました"
-      else
-        render :edit, alert: "終了報告に失敗しました"
-      end
+      flash.now[:alert] = "終了報告に失敗しました"
+      render :edit
     end
   end
 
-  def destroy
+  def modify_working_hour
+    @current_user.user_type == "admin" && working_hour_params[:commit].nil?
+    if working_hour.update(working_hour_params.merge(status: "done")) && working_hour.funeral.update(funeral_params)
+      redirect_to admin_payslips_path,notice: "修正されました"
+    else
+      flash.now[:alert] = "修正に失敗しました"
+      render :modify_working_hour
+    end
   end
 
   def modification_report
@@ -69,15 +76,15 @@ class Staff::WorkingHoursController < Staff::ApplicationController
     content = modification_report_params[:content]
     end_time = Time.zone.parse( modification_report_params[:end_time] )
     if @working_hour.update(end_time: end_time)
-      if ModificationReportMailer.send_mail(@current_user, @working_hour,
-                                            funeral, end_time, content).deliver_later
-        redirect_to staff_home_path, notice: "修正依頼を送信しました"
-      else
-        render :back, alert: "送信に失敗しました"
-      end
+      ModificationReportMailer.send_mail(@current_user, funeral, end_time, content).deliver_later
+      redirect_to staff_home_path, notice: "修正依頼を送信しました"
     else
-      render :back, alert: "送信に失敗しました"
+      flash.now[:alert] = "送信に失敗しました"
+      render :back
     end
+  end
+
+  def destroy
   end
 
   def form_transportation_fee
@@ -107,6 +114,11 @@ class Staff::WorkingHoursController < Staff::ApplicationController
       else
         params.permit(:commit)
       end
+    end
+
+    def end_report_params
+      params
+        .permit(:end_time, :w_id)
     end
 
     def funeral_params

@@ -1,10 +1,10 @@
-<h1>取引先一覧</h1>
-<ul>
-  <% @clients.each do |client| %>
-  <li>会社名：<%= client.name %></li>
-  <li>派遣料：<%= client.dispatching_fee_per_hour %>円/1時間</li>
-  <li>------------------------------------------------</li>
-  <% end %>
-</ul>
-
-  <%= link_to 'ホームへ戻る', staff_home_path %>
+<div class="inner">
+  <h1>取引先一覧</h1>
+    <% @clients.each do |client| %>
+      <div class="white-cards">
+        <p class = "name"><%= client.name %></p>
+        <i class="fas fa-coins"></i>&nbsp;<%= client.dispatching_fee_per_hour %>円/1時間
+      </div>
+    <% end %>
+</div>
+<%= link_to "戻る", staff_home_path, class: "back_btn" %>

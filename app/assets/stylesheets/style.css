@@ -106,6 +106,7 @@ form {
   display: inline-block;
   text-align: right;
   margin: 0 10px 0 0;
+  opacity: 0.7;
 }
 .payslip-sum {
   display: inline-block;
@@ -136,6 +137,9 @@ form {
 }
 .field_with_errors {
   display: inline;
+}
+.transportation_fee {
+  font-size: 10px;
 }
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ナビ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
@@ -364,7 +368,7 @@ a {text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
 .white-cards {
   background-color: #FFFFFF;
   color: rgba(0,0,0,0.5);
-  font-size: 20px ;
+  font-size: 18px ;
   margin: 20px auto;
   padding: 15px;
   border-radius: 10px;
@@ -427,6 +431,7 @@ a {text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
   font-size: 18px;
   display: block;
   text-align: center;
+  margin: 30px 0 50px;
 }
 #finished_time_label {
   text-align: center;
@@ -833,7 +838,7 @@ a {text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
   display: block;
   background: #fff;
   border-radius: 40px;
-  width: 50px;
+  width: 50%;
   color: a58fd1;
   padding: 5px;
   margin: 0 auto 10px;

@@ -2,7 +2,8 @@ class WorkingHour < ApplicationRecord
   belongs_to :user
   belongs_to :funeral
   default_scope -> { order(start_time: :asc) }
-  scope :month, -> month { where(status: "done").where(start_time: month.beginning_of_month..month.end_of_month) }
+  # scope :month, -> month { where(status: "done").where(start_time: month.beginning_of_month..month.end_of_month) }
+  scope :month, -> month { where(start_time: month.beginning_of_month..month.end_of_month) }
 
   enum status: [
     :waiting,

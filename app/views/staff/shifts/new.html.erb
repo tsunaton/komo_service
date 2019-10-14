@@ -1,40 +1,46 @@
-<%= form_with(model: [:staff, @shift], local: true) do |f| %>
-  <div class='container'>
-    <div class='checkbox-tile-group-shift'>
+  <%= form_with model: [:staff, @shift] do |f| %>
+    <div class='container'>
+      <div class='checkbox-tile-group-shift'>
 
-          <!--日付選択機能-->
-          <% @all_shifts.each_with_index do |daily_s,i| %>
-            <ul class='horizontal-list-shift'>
-              <!--日付表示-->
-              <span class="shift-date"><%= daily_s[i].day %>日</span>
-              <!--時間表示-->
-              <% daily_s.each_with_index do |s,i_2| %>
-                <li class='item-shift'>
-                  <div class='input-container-shift'>
+      <% @days.each do |day| %>
+        <ul class='horizontal-list-shift'>
 
-                    <% unless @checked_times.blank? %>
-                    <%= hoge(@checked_times, s, f, i, i_2)%>
-                    <% else %>
-                    <%= f.check_box "scheduled_from#{i}-#{i_2}", {}, s, nil %>
-                    <% end %>
+          <!--日付表示-->
+          <span class="shift-date"><%= day.month %>/<%= day.day %></span>
+          <%= link_to "全日", staff_shifts_path(params: { whole_day: "#{day}" }), :method => :post %>
 
-                    <div class='checkbox-tile-shift'>
-                      <label class='checkbox-tile-label'>
-                        <%= s.hour %>
-                      </label>
-                    </div>
-                  </div>
-                </li>
-              <% end %>
-            </ul>
+          <!--時間表示-->
+          <% @hash[day] %>
+          <% (7..22).each do |i|  %>
+            <li class='item-shift'>
+              <div class='input-container-shift'>
+                <% if @hash[day].any?{|w| w.include?(i)} %>
+                  <%= f.check_box "#{day.day}-#{i}", {checked: true}, "#{day.year}-#{day.month}-#{day.day} #{i}:00:00 +0900", nil %>
+                <% else %>
+                  <%= f.check_box "#{day.day}-#{i}", {}, "#{day.year}-#{day.month}-#{day.day} #{i}:00:00 +0900", nil %>
+                <% end %>
+
+                <div class='checkbox-tile-shift'>
+                  <label class='checkbox-tile-label'>
+                    <%= i %>
+                  </label>
+                </div>
+
+              </div>
+            </li>
           <% end %>
 
-      </div>
+        </ul>
+      <% end %>
     </div>
-
-  <div class="ripple">
-      <span class="ripple__effect is-white"></span>
-      <%= f.submit 'シフトを登録',class: 'content_in_ripple_button' %>
   </div>
 
-  <% end %>
+  <div class="ripple">
+    <span class="ripple__effect is-white"></span>
+    <%= f.submit 'シフトを登録',class: 'content_in_ripple_button' %>
+  </div>
+
+<% end %>
+
+
+<%= link_to "戻る", staff_home_path, class: "back_btn" %>

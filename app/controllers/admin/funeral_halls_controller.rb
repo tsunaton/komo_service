@@ -11,8 +11,9 @@ class Admin::FuneralHallsController < Admin::ApplicationController
     def create
       funeral_halls = FuneralHall.new(funeral_halls_params)
       if funeral_halls.save
-        redirect_to action: 'index'
+        redirect_to action: 'index', notice: "新しい会場を登録しました"
       else
+        flash.now[:alert] = "登録に失敗しました"
         render :back
       end
     end
@@ -24,8 +25,9 @@ class Admin::FuneralHallsController < Admin::ApplicationController
     def update
       funeral_halls = FuneralHall.find(params[:id])
       if funeral_halls.update(funeral_halls_params)
-        redirect_to admin_funeral_halls_path
+        redirect_to admin_funeral_halls_path, notice: "修正しました"
       else
+        flash.now[:alert] = "修正に失敗しました"
         render :edit
       end
     end

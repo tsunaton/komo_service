@@ -1,5 +1,15 @@
-<h1>取引先の情報を修正</h1>
-
-<% content_for :btn_content, "修正する" %>
-
-<%= render :partial => "form" %>
+<h1>取引先を修正</h1>
+<div class="inner">
+  <div class="white-cards">
+    <%= form_for [:admin, @client] do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      <%= f.label :取引先名 %>
+      <%= f.text_field :name %><br>
+      <%= f.label :派遣料 %>
+      <%= f.number_field :dispatching_fee_per_hour %><br>
+      <%= f.submit "修正する", class: "submit" %>
+    <% end %>
+    <%= link_to "削除する", admin_client_path(@client.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "delete_btn" %>
+  </div>
+  <%= link_to "戻る", admin_clients_path, class: "back_btn" %>
+</div>

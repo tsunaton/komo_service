@@ -2,19 +2,9 @@ class Admin::HomesController < Admin::ApplicationController
   include DocumentsHelper
 
   def home
-    come =
-      Client.all.inject(0){ |total, c|
-      works = WorkingHour.where(funeral_id: c.funerals.ids).where(status: "done")
-      sub_total = calculate_monthly(works, c.dispatching_fee_per_hour)
-      total += sub_total}
-
-    go =
-      User.all.inject(0){ |total, u|
-      works = WorkingHour.where(user_id: u.id).where(status: "done")
-      sub_total = calculate_monthly(works, u.pay_per_hour)
-      total += sub_total}
-
-    @sum = come - go
+    #今月の利益
+    works = get_works_in_month(Time.now)
+    @monthly_gains = calculate_sales(works) - calculate_labor_costs(works)
 
     funerals_after_today = Funeral.where('start_time >= ?', Date.today)
     working_hours_need_transportation_fee = WorkingHour.where(transportation_fee: nil).where(status: "done")
@@ -22,6 +12,6 @@ class Admin::HomesController < Admin::ApplicationController
 
     @funerals = funerals_after_today + funerals_need_transportation_fee
     @funerals.uniq!
-
   end
+
 end

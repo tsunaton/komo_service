@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/rails_admin', as: 'rails_admin'
   root 'sessions#new'
   post   '/login'   => 'sessions#create'
   delete '/logout'  => 'sessions#destroy'
@@ -22,7 +23,9 @@ Rails.application.routes.draw do
     post '/send_modification_report'  => 'working_hours#send_modification_report'
     get '/form_transportation_fee'  => 'working_hours#form_transportation_fee'
     patch '/update_transportation_fee'  => 'working_hours#update_transportation_fee'
-
+    post '/modify_working_hour', to: 'working_hours#modify_working_hour'
+    post '/end_report', to: 'working_hours#end_report'
+    post '/accept_or_reject', to: 'working_hours#accept_or_reject'
     resources :working_hours
 
     resources :shifts

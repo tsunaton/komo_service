@@ -1,5 +1,5 @@
 <h1>終了報告</h1>
-<%= form_with(model: [ :staff, @working_hour ], local: true) do |f| %>
+<%= form_with(url: staff_end_report_path, local: true) do |f| %>
   <div class="white-cards">
     <p><%= f.label "#{@funeral.start_time.strftime("%Y年%m月%d日 %H:%M")}" %>〜</p>
     <p>会場：<%= f.label "#{@funeral_hall.name}" %> </p>
@@ -7,6 +7,7 @@
     <p>取引先：<%= f. label"#{@client.name}" %></p>
     <p>ポラムのスタッフ数：<%= f.label "#{@funeral.number_of_people}" %></p>
   </div>
+  <%= f.hidden_field :w_id, value: @working_hour.id %>
 
   <p id="finished_time_label">お仕事終了した時間</p>
   <p id="finished_time"><%= @rounded_down_time.strftime("%H:%M") %></p>

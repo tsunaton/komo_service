@@ -2,11 +2,12 @@ class Staff::HomesController < Staff::ApplicationController
   include DocumentsHelper
 
   def home
-    user_works = WorkingHour.where(user_id: @current_user.id)
-    done_works = user_works.where(status: "done")
-    @sum = calculate_monthly(done_works, @current_user.pay_per_hour)
+    works = get_works_in_month(Time.now).where(user_id: @current_user.id)
 
-    accepted_works = user_works.where(status: "accepted")
-    @funerals = accepted_works.inject(Array(nil)){ |funerals,w| funerals << w.funeral}
+    @sum = calculate_pay_per_month(works, @current_user.pay_per_hour)
+
+    works = works.where(status: "waiting") + works.where(status: "accepted")
+
+    @funerals = works.inject(Array(nil)){|funerals,w| funerals << w.funeral}
   end
 end

@@ -4,7 +4,8 @@
         admin_payslip_path(:transition => "next_month", :month => @month), class: "payslip_month_arrows" %></h1>
 
 <div class="flex-box">
-  <p class="payslip-sum">¥<%= calculate_monthly(@working_hours, @user.pay_per_hour) %></p>
+  <p class="payslip-sum">¥<%= calculate_pay_per_month(@working_hours, @user.pay_per_hour).to_s(:delimited) %>
+  <span class="transportation_fee">+¥<%= transportation_fee_total(@working_hours).to_s(:delimited)%>(交)</span></p>
   <p class="right-p">時給<%= @user.pay_per_hour %>円</p>
 </div>
 
@@ -16,7 +17,7 @@
         <th><%= th %></th>
       <% end %>
     </tr>
-
+    <% unless @working_hours.nil? %>
     <% @working_hours.each do |w| %>
       <tr>
         <td><%= w.start_time.strftime("%d") %>日</td>
@@ -24,11 +25,13 @@
         <td><%= w.funeral.funeral_hall.name %></td>
         <td><%= w.transportation_fee %></td>
         <td><%= calculate_working_hour(w) %>h</td>
-        <td><%= calculate_pay_per_day(w, @user.pay_per_hour).to_s(:delimited) %></td>
+        <td><%= calculate_pay_per_day_without_transportation_fee(w, @user.pay_per_hour).round.to_s(:delimited) %></td>
         <td><%= w.funeral.family_name %>家</td>
         <td><%= w.funeral.client.name %></td>
         <td><%= link_to "編集", edit_staff_working_hour_path(id: w.id) %></td>
       </tr>
     <% end %>
+    <% end %>
   </table>
 </div>
+<%= link_to "戻る", admin_payslips_path, class: "back_btn" %>

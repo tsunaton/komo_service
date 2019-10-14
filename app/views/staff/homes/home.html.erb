@@ -8,12 +8,15 @@
   <h2 class="line-height-0">確定したお仕事：</h2>
   <% @funerals.each do |f| %>
     <div class="white-cards">
-      <% if (f.start_time < Time.now) && f.start_time.today? %>
+      <% w = f.working_hours.find_by(user_id: @current_user.id) %>
+      <% if (w.status == "waiting") %>
+      <span class = "end_report_button"><%= link_to "承認しますか？", edit_staff_working_hour_path(f.working_hours.find_by(user_id: @current_user.id)) %></span><br>
+      <% elsif (f.start_time < Time.now) && f.start_time.today? %>
       <span class = "end_report_button"><%= link_to "終了報告", edit_staff_working_hour_path(f.working_hours.find_by(user_id: @current_user.id)) %></span><br>
       <% elsif f.start_time < Time.now %>
       <span class = "forgotten_end_report_button"><%= link_to "終了報告忘れ？", edit_staff_working_hour_path(f.working_hours.find_by(user_id: @current_user.id)) %></span><br>
       <% end %>
-      <%= f.start_time.strftime("%m月%d %H:%M") %>〜
+      <%= f.start_time.strftime("%m月%d日 %H:%M") %>〜
       <br>
       <%= f.funeral_hall.name %>
       (<%= f.client.name %>)

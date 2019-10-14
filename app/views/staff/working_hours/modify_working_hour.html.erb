@@ -1,4 +1,4 @@
-<%= form_with(model: [ :staff, @working_hour ], local: true) do |f| %>
+<%= form_with(url: staff_modify_working_hour_path, local: true) do |f| %>
   <div class="white-cards">
     <%= f.label "開始："  %><br>
     <%= f.datetime_select :start_time, {}, class: "datetime_select", selected: @working_hour.start_time %><br>
