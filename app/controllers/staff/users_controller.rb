@@ -31,6 +31,7 @@ class Staff::UsersController < Staff::ApplicationController
     added_user_params = user_params.merge(user_type: "unauthenticated", pay_per_hour: 0)
     @user = User.new(added_user_params)
     if @user.save
+      binding.pry
       ApplyForAuthenticationMailer.send_mail(@user).deliver_later
       redirect_to root_path, notice: "承認完了メールをお待ちください"
     else
