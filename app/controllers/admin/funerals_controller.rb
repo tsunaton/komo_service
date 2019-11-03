@@ -66,9 +66,16 @@ class Admin::FuneralsController < Admin::ApplicationController
     @days = (t..(t + 7)).to_a
 
     @halls = FuneralHall.all
-    @last_funeral = Funeral.find(Funeral.all.ids.max)
-    @last_day = @last_funeral.start_time.day
-    @last_hall_id = @last_funeral.funeral_hall_id
+    if Funeral.all.count > 0
+      @last_funeral = Funeral.find(Funeral.all.ids.max)
+      @last_day = @last_funeral.start_time.day
+      @last_hall_id = @last_funeral.funeral_hall_id
+    else
+      @last_day = Time.current.day
+      @last_hall_id = FuneralHall.first.id
+    end
+  end
+
   end
 
   def destroy
