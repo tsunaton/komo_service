@@ -72,6 +72,8 @@ class Admin::FuneralsController < Admin::ApplicationController
       @last_day = @last_funeral.start_time.day
       @last_hall_id = @last_funeral.funeral_hall_id
     else
+      today = Time.current
+      @last_funeral = Funeral.new(start_time: today, number_of_people: 1)
       @last_day = Time.current.day
       @last_hall_id = FuneralHall.first.id
     end
