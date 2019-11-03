@@ -21,15 +21,18 @@ test:
   <<: *defaults
 
 production:
-  work_accept:
-    url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit
-    mail_from: leetanshim@gmail.com
-  apply_for_authentication:
-    url: https://komo-service.herokuapp.com/admin/users/%s/staff_authentication
-    mail_to: leetanshim@gmail.com
-  modification_report:
-    url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit?end_time=%s
-    mail_to: leetanshim@gmail.com
-  notice_complete_authentication:
-    url: https://komo-service.herokuapp.com
-    mail_from: leetanshim@gmail.com
+  <<: *defaults
+  # work_accept:
+  #   url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit
+  #   mail_from: leetanshim@gmail.com
+  # apply_for_authentication:
+  #   url: https://komo-service.herokuapp.com/admin/users/%s/staff_authentication
+  #   mail_from: leetanshim@gmail.com
+  #   mail_to: leetanshim@gmail.com
+  # modification_report:
+  #   url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit?end_time=%s
+  #   mail_from: leetanshim@gmail.com
+  #   mail_to: leetanshim@gmail.com
+  # notice_complete_authentication:
+  #   url: https://komo-service.herokuapp.com
+  #   mail_from: leetanshim@gmail.com
