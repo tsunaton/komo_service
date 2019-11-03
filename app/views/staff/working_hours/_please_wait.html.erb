@@ -1,10 +1,10 @@
 <div class="inner">
   <div class="white-cards">
     <p>このお仕事は、<br><%= @working_hour.start_time.strftime("%m月%d日の%H:%M") %><br>からです。</p>
-    <p>会場：<%= f.label "#{@funeral_hall.name}" %> </p>
-    <p>ご喪家：<%= f.label "#{@funeral.family_name}" %>家</p>
-    <p>取引先：<%= f. label"#{@client.name}" %></p>
-    <p>ポラムのスタッフ数：<%= f.label "#{@funeral.number_of_people}" %></p>
+    <p>会場：<%= label "#{@funeral_hall.name}" %> </p>
+    <p>ご喪家：<%= label "#{@funeral.family_name}" %>家</p>
+    <p>取引先：<%= label"#{@client.name}" %></p>
+    <p>ポラムのスタッフ数：<%= label "#{@funeral.number_of_people}" %></p>
   </div>
   <%= link_to "戻る", staff_home_path, class: "back_btn" %>
 </div>
