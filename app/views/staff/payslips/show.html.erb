@@ -25,7 +25,7 @@
         <td><%= w.start_time.strftime("%H:%M") %>-<%= w.end_time.strftime("%H:%M") %></td>
         <td><%= w.funeral.family_name %>家</td>
         <td><%= w.funeral.client.name %></td>
-        <td><%= w.transportation_fee.to_s(:delimited) %></td>
+        <td><%= w.transportation_fee.to_s %></td>
       </tr>
     <% end %>
   </table>
