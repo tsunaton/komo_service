@@ -4,13 +4,13 @@ defaults: &defaults
     mail_from: tsuna.tonight@gmail.com
     mail_to: tsuna.tonight@gmail.com
   notice_complete_authentication:
-    url: https://localhost:3000
+    url: https://komo-service-staging.herokuapp.com
     mail_from: tsuna.tonight@gmail.com
   work_accept:
     url: https://komo-service-staging.herokuapp.com/staff/working_hours/%s/edit
     mail_from: tsuna.tonight@gmail.com
   modification_report:
-    url: https://localhost:3000/admin/payslips/%s
+    url: https://komo-service-staging.herokuapp.com/admin/payslips/%s
     mail_from: tsuna.tonight@gmail.com
     mail_to: tsuna.tonight@gmail.com
 
