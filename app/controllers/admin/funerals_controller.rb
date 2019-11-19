@@ -34,7 +34,11 @@ class Admin::FuneralsController < Admin::ApplicationController
           when "admin"
             render :new unless @funeral.working_hours[0].update(start_time: @funeral.start_time, status: "accepted")
           when "staff"
-            render :new unless WorkAcceptanceMailer.send_mail(u[0], @funeral, @funeral.working_hours.find_by(user_id: u[0].id)).deliver_later
+            if WorkAcceptanceMailer.send_mail(u[0], @funeral, @funeral.working_hours.find_by(user_id: u[0].id)).deliver_later
+              @funeral.working_hours[0].update(start_time: @funeral.start_time, status: "waiting")
+            else
+              render :new
+            end
           end
         end
         redirect_to admin_home_path, notice: "#{@users[0].map { |u| u.family_name + u.first_name + "さん" }}に、お仕事依頼をしました"
