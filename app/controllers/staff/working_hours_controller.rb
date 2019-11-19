@@ -20,7 +20,7 @@ class Staff::WorkingHoursController < Staff::ApplicationController
     @end_time = params[:end_time]
 
     # 現在時刻から、15分未満を切り捨てる
-    @rounded_down_time = Time.at((Time.now.to_f.round / 15.minutes) * 15.minutes)
+    @rounded_down_time = Time.at((Time.current.to_f.round / 15.minutes) * 15.minutes)
   end
 
   def update
