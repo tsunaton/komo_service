@@ -1,5 +1,24 @@
 defaults: &defaults
   apply_for_authentication:
+    url: localhost:3000/admin/users/%s/staff_authentication
+    mail_from: tsuna.tonight@gmail.com
+    mail_to: tsuna.tonight@gmail.com
+  notice_complete_authentication:
+    url: localhost:3000
+    mail_from: tsuna.tonight@gmail.com
+  work_accept:
+    url: localhost:3000/staff/working_hours/%s/edit
+    mail_from: tsuna.tonight@gmail.com
+  modification_report:
+    url: localhost:3000/admin/payslips/%s
+    mail_from: tsuna.tonight@gmail.com
+    mail_to: tsuna.tonight@gmail.com
+
+development:
+  <<: *defaults
+
+test:
+  apply_for_authentication:
     url: https://komo-service-staging.herokuapp.com/admin/users/%s/staff_authentication
     mail_from: tsuna.tonight@gmail.com
     mail_to: tsuna.tonight@gmail.com
@@ -14,14 +33,21 @@ defaults: &defaults
     mail_from: tsuna.tonight@gmail.com
     mail_to: tsuna.tonight@gmail.com
 
-development:
-  <<: *defaults
-
-test:
-  <<: *defaults
-
 production:
-  <<: *defaults
+  apply_for_authentication:
+    url: https://komo-service-staging.herokuapp.com/admin/users/%s/staff_authentication
+    mail_from: tsuna.tonight@gmail.com
+    mail_to: tsuna.tonight@gmail.com
+  notice_complete_authentication:
+    url: https://komo-service-staging.herokuapp.com
+    mail_from: tsuna.tonight@gmail.com
+  work_accept:
+    url: https://komo-service-staging.herokuapp.com/staff/working_hours/%s/edit
+    mail_from: tsuna.tonight@gmail.com
+  modification_report:
+    url: https://komo-service-staging.herokuapp.com/admin/payslips/%s
+    mail_from: tsuna.tonight@gmail.com
+    mail_to: tsuna.tonight@gmail.com
   # apply_for_authentication:
   #   url: https://komo-service.herokuapp.com/admin/users/%s/staff_authentication
   #   mail_from: leetanshim@gmail.com
