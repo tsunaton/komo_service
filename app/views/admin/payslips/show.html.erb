@@ -18,19 +18,19 @@
       <% end %>
     </tr>
     <% unless @working_hours.nil? %>
-    <% @working_hours.each do |w| %>
-      <tr>
-        <td><%= w.start_time.strftime("%d") %>日</td>
-        <td><%= w.start_time.strftime("%H:%M") %>-<%= w.end_time.strftime("%H:%M") %></td>
-        <td><%= w.funeral.funeral_hall.name %></td>
-        <td><%= w.transportation_fee %></td>
-        <td><%= calculate_working_hour(w) %>h</td>
-        <td><%= calculate_pay_per_day_without_transportation_fee(w, @user.pay_per_hour).round.to_s(:delimited) %></td>
-        <td><%= w.funeral.family_name %>家</td>
-        <td><%= w.funeral.client.name %></td>
-        <td><%= link_to "編集", edit_staff_working_hour_path(id: w.id) %></td>
-      </tr>
-    <% end %>
+      <% @working_hours.each do |w| %>
+        <tr>
+          <td><%= w&.start_time.strftime("%d") %>日</td>
+          <td><%= w&.start_time.strftime("%H:%M") %>-<%= w.end_time.strftime("%H:%M") %></td>
+          <td><%= w.funeral.funeral_hall.name %></td>
+          <td><%= w.transportation_fee %></td>
+          <td><%= calculate_working_hour(w) %>h</td>
+          <td><%= calculate_pay_per_day_without_transportation_fee(w, @user.pay_per_hour).round.to_s(:delimited) %></td>
+          <td><%= w.funeral.family_name %>家</td>
+          <td><%= w.funeral.client.name %></td>
+          <td><%= link_to "編集", edit_staff_working_hour_path(id: w.id) %></td>
+        </tr>
+      <% end %>
     <% end %>
   </table>
 </div>
