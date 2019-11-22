@@ -12,7 +12,7 @@ class Staff::WorkingHoursController < Staff::ApplicationController
     @client = @funeral.client
     @funeral_halls = FuneralHall.all.inject(Array(nil)){ |funeral_halls,f| funeral_halls << f.name}
 
-    #for _forgotten_end_report partial
+    # for forgotten_end_report partial
     @admin_user = User.find_by(user_type: 'admin')
 
     # for modify_working_hour partial
@@ -75,7 +75,7 @@ class Staff::WorkingHoursController < Staff::ApplicationController
     funeral = @working_hour.funeral
     content = modification_report_params[:content]
     end_time = Time.zone.parse( modification_report_params[:end_time] )
-    if @working_hour.update(end_time: end_time)
+    if @working_hour.update(end_time: end_time, status: "done")
       ModificationReportMailer.send_mail(@current_user, funeral, end_time, content).deliver_later
       redirect_to staff_home_path, notice: "修正依頼を送信しました"
     else
