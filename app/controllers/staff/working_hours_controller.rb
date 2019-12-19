@@ -57,7 +57,7 @@ class Staff::WorkingHoursController < Staff::ApplicationController
 
   def modify_working_hour
     @current_user.user_type == "admin" && working_hour_params[:commit].nil?
-    if working_hour.update(working_hour_params.merge(status: "done")) && working_hour.funeral.update(funeral_params)
+    if working_hour.update(working_hour_params.merge(status: "done")) && working_hour.funeral.update(funeral_params)&&workingHour.update(status: "done")
       redirect_to admin_payslips_path,notice: "修正されました"
     else
       flash.now[:alert] = "修正に失敗しました"
