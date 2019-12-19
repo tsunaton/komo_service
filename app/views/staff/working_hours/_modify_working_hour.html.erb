@@ -13,6 +13,8 @@
     <%= f.label "人数："  %>
     <%= f.number_field :number_of_people, value: "#{@funeral.number_of_people}" %><br>
   </div>
+  <%= f.hidden_field :working_hour_id, value: @working_hour.id %>
+
 
   <div class="ripple">
       <span class="ripple__effect is-white"></span>
