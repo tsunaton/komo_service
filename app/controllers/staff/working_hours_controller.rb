@@ -56,7 +56,7 @@ class Staff::WorkingHoursController < Staff::ApplicationController
   end
 
   def modify_working_hour
-    working_hour = WorkingHour.find(working_hour_params[:working_hour_id].to_i)
+    working_hour = WorkingHour.find(working_hour_params[:working_hour_id])
     if working_hour.update(working_hour_params.merge(status: "done")) && working_hour.funeral.update(funeral_params)&&workingHour.update(status: "done")
       redirect_to admin_payslips_path,notice: "修正されました"
     else
