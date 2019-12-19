@@ -3,7 +3,7 @@
   <span id="start-time-and-hall">
     <%= @funeral.start_time.month %>月
     <%= @funeral.start_time.day %>日
-    <%= @funeral.start_time.strftime("%H:%M") %>〜<br>
+    <%= @funeral.start_time.&.strftime("%H:%M") %>〜<br>
     <%= @hall_name %>,
     <%= @funeral.number_of_people %>人
   </span>

@@ -18,8 +18,8 @@
     <% @current_user.pay_per_hour = 1500 %>
 
     <%= "家" %>|
-    <%= funeral.start_time.strftime("%H:%M") %>|
-    <%= funeral.end_time.strftime("%H:%M") %>|
+    <%= funeral.start_time.&.strftime("%H:%M") %>|
+    <%= funeral.end_time.&.strftime("%H:%M") %>|
     <% working_hours = (funeral.end_time - funeral.start_time) / 3600 %>
     <%= working_hours %>|
     <%= @current_user.pay_per_hour %>|

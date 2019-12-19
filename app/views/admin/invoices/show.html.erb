@@ -1,6 +1,6 @@
 <h1>請求書</h1>
 <h1><%= link_to "<", admin_invoice_path(:transition => "last_month", :month => @month),
-        class: "payslip_month_arrows" %><%= @month.strftime("%Y年%m月") %><%= link_to ">",
+        class: "payslip_month_arrows" %><%= @month.&.strftime("%Y年%m月") %><%= link_to ">",
         admin_invoice_path(:transition => "next_month", :month => @month), class: "payslip_month_arrows" %></h1>
 
 <div class="flex-box">
@@ -19,9 +19,9 @@
 
     <% @working_hours.each do |w| %>
       <tr>
-        <td><%= w.start_time.strftime("%d") %>日</td>
+        <td><%= w.start_time.&.strftime("%d") %>日</td>
         <td><%= w.funeral.family_name %>家</td>
-        <td><%= w.start_time.strftime("%H:%M") %>-<%= w.end_time.strftime("%H:%M") %></td>
+        <td><%= w.start_time.&.strftime("%H:%M") %>-<%= w.end_time.&.strftime("%H:%M") %></td>
         <td><%= w.user.family_name + w.user.first_name %></td>
         <td><%= w.funeral.funeral_hall.name %>
         <td><%= calculate_pay_per_day(w, @client.dispatching_fee_per_hour).round.to_s(:delimited) %></td>
