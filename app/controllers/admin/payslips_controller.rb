@@ -14,7 +14,7 @@ class Admin::PayslipsController < Admin::ApplicationController
     when "last_month"
       @month = Time.zone.parse(payslip_params[:month] + " 00:00:00").last_month
     end
-    @working_hours = WorkingHour.month(@month).where(user_id: @user.id).where(status: "done")
+    @working_hours = WorkingHour.month(@month).where(user_id: @user.id).where("(status = ?) OR (status = ?)", "done", "wrong")
     @working_hour = WorkingHour.new
     @working_hour_ids = Array.new
   end
