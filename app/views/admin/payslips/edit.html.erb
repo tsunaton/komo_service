@@ -3,8 +3,8 @@
 <div class="inner">
   <div class="white-cards">
     <form action="staff/working_hours" method="post">
-      <input type="text" value="<%=@working_hour.start_time.&.strftime("%Y年%m月%d日 %H:%M")%>"><br>
-      <input type="text" value="<%= @working_hour.end_time.&.strftime("%Y年%m月%d日 %H:%M") %>"><br>
+      <input type="text" value="<%=@working_hour.start_time.strftime("%Y年%m月%d日 %H:%M")%>"><br>
+      <input type="text" value="<%= @working_hour.end_time.strftime("%Y年%m月%d日 %H:%M") %>"><br>
       <input type="text" value="<%= @working_hour.funeral.funeral_hall.name %>"><br>
       <input type="text" value="<%= @working_hour.funeral.family_name %>"家<br>
       <input type="text" value="<%= @working_hour.funeral.client.name %>"><br>

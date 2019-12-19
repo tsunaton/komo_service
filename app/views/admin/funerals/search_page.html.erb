@@ -31,7 +31,7 @@
 
   <!-- TimeDropper -->
   <h2>開始時間と人数</h2>
-  <%= f.text_field :start_time, id: 'alarm', value: @last_funeral.start_time.&.strftime("%H:%M") %>
+  <%= f.text_field :start_time, id: 'alarm', value: @last_funeral.start_time.strftime("%H:%M") %>
 
   <!-- NumberPicker -->
   <%= f.number_field :number_of_people, min: '1', max: '100', value: @last_funeral.number_of_people.to_s, class: "num_pick"%>

@@ -1,6 +1,6 @@
 <% @works.each do |w| %>
   <%= form_for w, url: staff_update_transportation_fee_path do |f| %>
-    <p><%= "#{w.start_time.&.strftime("%Y年%m月%d日 %H:%M")}" %>〜</p>
+    <p><%= "#{w.start_time.strftime("%Y年%m月%d日 %H:%M")}" %>〜</p>
     <p>会場：<%= "#{w.funeral.funeral_hall.name}" %></p>
       <div class="white-cards">
         <%= User.find(w.user_id).family_name %>さん<br>

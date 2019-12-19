@@ -14,7 +14,7 @@
             <%= link_to "交通費を入力", staff_form_transportation_fee_path(funeral_id: f.id) %>
           </span><br>
         <% end %>
-        <%= f.start_time.&.strftime("%m月%d") %>〜
+        <%= f.start_time.strftime("%m月%d") %>〜
         <br>
         <%= f.funeral_hall.name %>
         (<%= f.client.name %>)

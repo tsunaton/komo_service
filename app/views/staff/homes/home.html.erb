@@ -16,7 +16,7 @@
       <% elsif f.start_time < Time.now %>
       <span class = "forgotten_end_report_button"><%= link_to "終了報告忘れ？", edit_staff_working_hour_path(f.working_hours.find_by(user_id: @current_user.id)) %></span><br>
       <% end %>
-      <%= f.start_time.&.strftime("%m月%d日 %H:%M") %>〜
+      <%= f.start_time.strftime("%m月%d日 %H:%M") %>〜
       <br>
       <%= f.funeral_hall.name %>
       (<%= f.client.name %>)

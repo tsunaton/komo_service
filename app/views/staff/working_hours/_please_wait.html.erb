@@ -1,6 +1,6 @@
 <div class="inner">
   <div class="white-cards">
-    <p>このお仕事は、<br><%= @working_hour.start_time.&.strftime("%m月%d日の%H:%M") %><br>からです。</p>
+    <p>このお仕事は、<br><%= @working_hour.start_time.strftime("%m月%d日の%H:%M") %><br>からです。</p>
     <p>会場：<%= label "#{@funeral_hall.name}" %> </p>
     <p>ご喪家：<%= label "#{@funeral.family_name}" %>家</p>
     <p>取引先：<%= label"#{@client.name}" %></p>

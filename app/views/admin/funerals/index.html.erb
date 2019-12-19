@@ -10,7 +10,7 @@
         <% end %>
         <i class="far fa-clock"></i>&nbsp;<% funeral_hall = FuneralHall.find(funeral.funeral_hall_id).name %>
         <% client = Client.find(funeral.client_id).name %>
-        <%= funeral.start_time.&.strftime("%Y年%m月%d日 %H:%M") %>〜<br>
+        <%= funeral.start_time.strftime("%Y年%m月%d日 %H:%M") %>〜<br>
         <i class="fas fa-home"></i>&nbsp;<%= funeral.family_name %>家<br>
         <i class="fas fa-map-marker-alt"></i>&nbsp;<%= funeral_hall %>（<%= client %>）<br>
         募集人数：<%= funeral.number_of_people %>

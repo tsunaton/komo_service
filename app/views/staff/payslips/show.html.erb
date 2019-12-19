@@ -1,4 +1,4 @@
-<h1><%= link_to "<", staff_payslip_path(:transition => "last_month", :month => @month), class: "payslip_month_arrows" %><%= @month.&.strftime("%Y年%m月") %><%= link_to ">", staff_payslip_path(:transition => "next_month", :month => @month), class: "payslip_month_arrows" %></h1>
+<h1><%= link_to "<", staff_payslip_path(:transition => "last_month", :month => @month), class: "payslip_month_arrows" %><%= @month.strftime("%Y年%m月") %><%= link_to ">", staff_payslip_path(:transition => "next_month", :month => @month), class: "payslip_month_arrows" %></h1>
 
 <div class="flex-box">
   <p class="payslip-sum">
@@ -18,11 +18,11 @@
 
     <% @working_hours.each do |w| %>
       <tr>
-        <td><%= w.start_time.&.strftime("%d") %>日</td>
+        <td><%= w.start_time.strftime("%d") %>日</td>
         <td><%= w.funeral.funeral_hall.name %></td>
         <td><%= calculate_working_hour(w) %>h</td>
         <td><%= calculate_pay_per_day_without_transportation_fee(w, @current_user.pay_per_hour).round.to_s(:delimited) %></td>
-        <td><%= w.start_time.&.strftime("%H:%M") %>-<%= w.end_time.&.strftime("%H:%M") %></td>
+        <td><%= w.start_time.strftime("%H:%M") %>-<%= w.end_time.strftime("%H:%M") %></td>
         <td><%= w.funeral.family_name %>家</td>
         <td><%= w.funeral.client.name %></td>
         <td><%= w.transportation_fee.to_s %></td>
