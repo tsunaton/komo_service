@@ -9,7 +9,8 @@ class WorkingHour < ApplicationRecord
     :waiting,
     :accepted,
     :rejected,
-    :done
+    :done,
+    :wrong
   ]
 
   WORKINGHOUR_ATTRIBUTES = %i(

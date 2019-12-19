@@ -10,5 +10,7 @@
   <%= render :partial => "please_wait" %>
  <% end %>
 <% when "done"%>
- <%= render :partial => "done" %>
+  <%= render :partial => "done" %>
+<% when "wrong" %>
+  <%= render :partial => "modify_working_hour" %>
 <% end %>

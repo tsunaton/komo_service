@@ -75,7 +75,7 @@ class Staff::WorkingHoursController < Staff::ApplicationController
     funeral = @working_hour.funeral
     content = modification_report_params[:content]
     end_time = Time.zone.parse( modification_report_params[:end_time] )
-    if @working_hour.update(end_time: end_time, status: "done")
+    if @working_hour.update(end_time: end_time, status: "wrong")
       ModificationReportMailer.send_mail(@current_user, funeral, end_time, content).deliver_later
       redirect_to staff_home_path, notice: "修正依頼を送信しました"
     else
