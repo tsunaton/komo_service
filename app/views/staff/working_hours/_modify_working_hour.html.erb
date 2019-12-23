@@ -1,19 +1,42 @@
-<%= form_with(url: staff_modify_working_hour_path, local: true) do |f| %>
+<%= form_with model: [:staff, @working_hour] do |f| %>
   <div class="white-cards">
-    <%= f.label "開始："  %><br>
-    <%= f.datetime_select :start_time, {}, class: "datetime_select", selected: @working_hour.start_time %><br>
-    <%= f.label "終了："  %><br>
-    <%= f.datetime_select :end_time, {}, class: "datetime_select", selected: @working_hour.end_time %><br>
-    <%= f.label "会場："  %>
-    <%= f.collection_select :funeral_hall, FuneralHall.all, :id, :name, selected: @funeral_hall.name %><br>
-    <%= f.label "喪家名："  %>
-    <%= f.text_field :family_name, value: "#{@funeral.family_name}" %>家<br>
-    <%= f.label "取引先："  %>
-    <%= f.collection_select :client, Client.all, :id, :name, selected: @funeral.client.name %><br>
-    <%= f.label "人数："  %>
-    <%= f.number_field :number_of_people, value: "#{@funeral.number_of_people}" %><br>
+    <div class="date_select">
+      <%= f.label "開始時間"  %><br>
+      <%= raw sprintf(
+        f.datetime_select(
+        :start_time,
+        use_month_numbers: true,
+        default: @working_hour.start_time,
+        date_separator: '%s',
+        datetime_separator: '%s',
+        time_separator: '%s'), '年', '月', '日', '時') + '分' %>
+        <br><br>
+      <%= f.label "終了時間"  %><br>
+      <%= raw sprintf(
+        f.datetime_select(
+        :end_time,
+        use_month_numbers: true,
+        default: @working_hour.end_time,
+        date_separator: '%s',
+        datetime_separator: '%s',
+        time_separator: '%s'), '年', '月', '日', '時') + '分' %>
+    </div>
+    <br>
+    <div class="other_select">
+      <%= f.label "会場："  %>
+      <%= f.collection_select :funeral_hall_id, FuneralHall.all, :id, :name, selected: @funeral_hall.id %><br>
+      <%= f.label "喪家名："  %>
+      <%= f.text_field :family_name, value: "#{@funeral.family_name}" %>家<br>
+      <%= f.label "取引先："  %>
+      <%= f.collection_select :client_id, Client.all, :id, :name, selected: @funeral.client.id%><br>
+      <%= f.label "人数："  %>
+      <%= f.number_field :number_of_people, value: "#{@funeral.number_of_people}" %>人<br>
+      <%= f.label "交通費：" %>
+      <%= f.number_field :transportation_fee, value: "#{@working_hour.transportation_fee}" %>円<br>
+    </div>
   </div>
-  <%= f.hidden_field :working_hour_id, value: @working_hour.id %>
+
+  <%= f.hidden_field :id, value: @working_hour.id %>
 
 
   <div class="ripple">

@@ -24,6 +24,14 @@ class Staff::WorkingHoursController < Staff::ApplicationController
   end
 
   def update
+    working_hour = WorkingHour.find(working_hour_params[:id])
+    funeral = working_hour.funeral
+    if working_hour.update(working_hour_params) && funeral.update(funeral_params)
+      redirect_to admin_home_path, notice: "修正しました"
+    else
+      flash.now[:alert] = "修正に失敗しました"
+      render :edit
+    end
   end
 
   def accept_or_reject
@@ -55,34 +63,34 @@ class Staff::WorkingHoursController < Staff::ApplicationController
     end
   end
 
-  def modify_working_hour
-    working_hour = WorkingHour.find(working_hour_params[:working_hour_id])
-    if working_hour.update(working_hour_params.merge(status: "done")) && working_hour.funeral.update(funeral_params)&&workingHour.update(status: "done")
-      redirect_to admin_payslips_path,notice: "修正されました"
-    else
-      flash.now[:alert] = "修正に失敗しました"
-      render :modify_working_hour
-    end
-  end
+  # def modify_working_hour
+  #   working_hour = WorkingHour.find(modify_working_hour_params[:id])
+  #   if working_hour.update(modify_working_hour_params.merge(status: "done")) && working_hour.funeral.update(funeral_params)
+  #     redirect_to admin_payslips_path,notice: "修正されました"
+  #   else
+  #     flash.now[:alert] = "修正に失敗しました"
+  #     render :modify_working_hour
+  #   end
+  # end
 
-  def modification_report
-    @working_hour = WorkingHour.find(params[:id])
-    @t = modification_report_params[:end_time]
-  end
+  # def modification_report
+  #   @working_hour = WorkingHour.find(params[:id])
+  #   @t = modification_report_params[:end_time]
+  # end
 
-  def send_modification_report
-    @working_hour = WorkingHour.find(modification_report_params[:working_hour_id])
-    funeral = @working_hour.funeral
-    content = modification_report_params[:content]
-    end_time = Time.zone.parse( modification_report_params[:end_time] )
-    if @working_hour.update(end_time: end_time, status: "wrong")
-      ModificationReportMailer.send_mail(@current_user, funeral, end_time, content).deliver_later
-      redirect_to staff_home_path, notice: "修正依頼を送信しました"
-    else
-      flash.now[:alert] = "送信に失敗しました"
-      render :back
-    end
-  end
+  # def send_modification_report
+  #   @working_hour = WorkingHour.find(modification_report_params[:working_hour_id])
+  #   funeral = @working_hour.funeral
+  #   content = modification_report_params[:content]
+  #   end_time = Time.zone.parse( modification_report_params[:end_time] )
+  #   if @working_hour.update(end_time: end_time)
+  #     ModificationReportMailer.send_mail(@current_user, funeral, end_time, content).deliver_later
+  #     redirect_to staff_home_path, notice: "修正依頼を送信しました"
+  #   else
+  #     flash.now[:alert] = "送信に失敗しました"
+  #     render :back
+  #   end
+  # end
 
   def destroy
   end
@@ -116,6 +124,10 @@ class Staff::WorkingHoursController < Staff::ApplicationController
       end
     end
 
+    def modify_working_hour_params
+      params.permit(WorkingHour::WORKINGHOUR_ATTRIBUTES)
+    end
+
     def end_report_params
       params
         .permit(:end_time, :w_id)
@@ -127,10 +139,10 @@ class Staff::WorkingHoursController < Staff::ApplicationController
         .permit(:funeral_hall_id, :client_id, :family_name)
     end
 
-    def modification_report_params
-      params
-        .permit(:content, :working_hour_id, :end_time)
-    end
+    # def modification_report_params
+    #   params
+    #     .permit(:content, :working_hour_id, :end_time)
+    # end
 
     def form_transportation_fee_params
       params

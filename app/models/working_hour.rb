@@ -9,12 +9,11 @@ class WorkingHour < ApplicationRecord
     :waiting,
     :accepted,
     :rejected,
-    :done,
-    :wrong
+    :done
   ]
 
   WORKINGHOUR_ATTRIBUTES = %i(
-   working_hour_id end_time(1i) end_time(2i) end_time(3i) end_time(4i) end_time(5i)
+   id transportation_fee end_time(1i) end_time(2i) end_time(3i) end_time(4i) end_time(5i)
    start_time(1i) start_time(2i) start_time(3i) start_time(4i) start_time(5i)
   )
 end
