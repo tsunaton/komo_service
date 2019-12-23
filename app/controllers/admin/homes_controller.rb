@@ -14,9 +14,9 @@ class Admin::HomesController < Admin::ApplicationController
     # @funerals.uniq!
   # end
     def home
-      html = File.read("https://komo-service-staging.herokuapp.com/admin/payslips")
+      html = File.read("#{Rails.root}/views/admin/payslips/index.html")
       kit = PDFKit.new(html, :page_size => 'Letter')
-      kit.stylesheets << "/assets/stylesheets/styles.css"
+      kit.stylesheets << "#{Rails.root}/public/styles.css"
       kit.to_file("#{Rails.root}/public/example.pdf")
       send_data kit.to_pdf, filename: 'example.pdf', type: 'application/pdf'
     end
