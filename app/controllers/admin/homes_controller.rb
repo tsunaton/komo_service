@@ -14,7 +14,7 @@ class Admin::HomesController < Admin::ApplicationController
     # @funerals.uniq!
   # end
     def home
-      html = File.read("#{Rails.root}/views/admin/payslips/index.html")
+      html = File.read("#{Rails.root}/views/admin/payslips/index.html.erb")
       kit = PDFKit.new(html, :page_size => 'Letter')
       kit.stylesheets << "#{Rails.root}/public/styles.css"
       kit.to_file("#{Rails.root}/public/example.pdf")
