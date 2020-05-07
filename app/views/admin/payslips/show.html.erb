@@ -35,3 +35,5 @@
   </table>
 </div>
 <%= link_to "戻る", admin_payslips_path, class: "back_btn" %>
+<%= link_to "PDFで表示",
+              admin_payslip_path(@user, format: "pdf") %>

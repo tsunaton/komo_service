@@ -35,17 +35,17 @@ test:
 
 production:
   apply_for_authentication:
-    url: https://komo-service-staging.herokuapp.com/admin/users/%s/staff_authentication
+    url: https://komo-service.herokuapp.com/admin/users/%s/staff_authentication
     mail_from: tsuna.tonight@gmail.com
     mail_to: tsuna.tonight@gmail.com
   notice_complete_authentication:
-    url: https://komo-service-staging.herokuapp.com
+    url: https://komo-service.herokuapp.com
     mail_from: tsuna.tonight@gmail.com
   work_accept:
-    url: https://komo-service-staging.herokuapp.com/staff/working_hours/%s/edit
+    url: https://komo-service.herokuapp.com/staff/working_hours/%s/edit
     mail_from: tsuna.tonight@gmail.com
   modification_report:
-    url: https://komo-service-staging.herokuapp.com/admin/payslips/%s
+    url: https://komo-service.herokuapp.com/admin/payslips/%s
     mail_from: tsuna.tonight@gmail.com
     mail_to: tsuna.tonight@gmail.com
   # apply_for_authentication:
